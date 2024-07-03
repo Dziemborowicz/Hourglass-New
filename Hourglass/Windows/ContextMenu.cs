@@ -19,6 +19,8 @@ using Managers;
 using Properties;
 using Timing;
 
+// ReSharper disable ExceptionNotDocumented
+
 /// <summary>
 /// A <see cref="System.Windows.Controls.ContextMenu"/> for the <see cref="TimerWindow"/>.
 /// </summary>
@@ -227,12 +229,13 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// Binds the <see cref="ContextMenu"/> to a <see cref="TimerWindow"/>.
     /// </summary>
     /// <param name="window">A <see cref="TimerWindow"/>.</param>
+    /// <exception cref="InvalidOperationException">The timer window is already created.</exception>
     public void Bind(TimerWindow window)
     {
         // Validate state
         if (_timerWindow is not null)
         {
-            throw new InvalidOperationException(@"Timer window is already created.");
+            throw new InvalidOperationException(@"The timer window is already created");
         }
 
         SetValue(TextOptions.TextFormattingModeProperty, TextFormattingMode.Display);
@@ -368,9 +371,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         }
 
         // Theme
-        foreach (MenuItem menuItem in _selectableThemeMenuItems)
+        foreach (var menuItem in _selectableThemeMenuItems)
         {
-            Theme menuItemTheme = (Theme)menuItem.Tag;
+            var menuItemTheme = (Theme)menuItem.Tag;
             menuItem.IsChecked = menuItemTheme == _timerWindow.Options.Theme;
             menuItem.Visibility = (
                 _timerWindow.Options.Theme?.Type == ThemeType.UserProvided
@@ -383,7 +386,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _darkThemeMenuItem!.IsChecked = _timerWindow.Options.Theme?.Type == ThemeType.BuiltInDark;
 
         // Sound
-        foreach (MenuItem menuItem in _selectableSoundMenuItems)
+        foreach (var menuItem in _selectableSoundMenuItems)
         {
             menuItem.IsChecked = menuItem.Tag == _timerWindow.Options.Sound;
         }
@@ -425,16 +428,16 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         }
 
         // Window title
-        foreach (MenuItem menuItem in _selectableWindowTitleMenuItems)
+        foreach (var menuItem in _selectableWindowTitleMenuItems)
         {
-            WindowTitleMode windowTitleMode = (WindowTitleMode)menuItem.Tag;
+            var windowTitleMode = (WindowTitleMode)menuItem.Tag;
             menuItem.IsChecked = windowTitleMode == _timerWindow.Options.WindowTitleMode;
         }
 
         void UpdatePauseResumeAll()
         {
-            bool canPauseAll = TimerManager.CanPauseAll();
-            bool canResumeAll = TimerManager.CanResumeAll();
+            var canPauseAll = TimerManager.CanPauseAll();
+            var canResumeAll = TimerManager.CanResumeAll();
 
             _pauseAllMenuItem.Visibility = canPauseAll.ToVisibility();
             _resumeAllMenuItem.Visibility = canResumeAll.ToVisibility();
@@ -478,7 +481,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         }
 
         // Sound
-        MenuItem? selectedSoundMenuItem = _selectableSoundMenuItems.FirstOrDefault(static mi => mi.IsChecked);
+        var selectedSoundMenuItem = _selectableSoundMenuItems.FirstOrDefault(static mi => mi.IsChecked);
         _timerWindow.Options.Sound = selectedSoundMenuItem?.Tag as Sound;
 
         // Loop sound
@@ -515,7 +518,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         }
 
         // Window title
-        MenuItem? selectedWindowTitleMenuItem = _selectableWindowTitleMenuItems.FirstOrDefault(static mi => mi.IsChecked);
+        var selectedWindowTitleMenuItem = _selectableWindowTitleMenuItems.FirstOrDefault(static mi => mi.IsChecked);
         _timerWindow.Options.WindowTitleMode = selectedWindowTitleMenuItem is not null
             ? (WindowTitleMode)selectedWindowTitleMenuItem.Tag
             : WindowTitleMode.ApplicationName;
@@ -579,19 +582,17 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         Items.Add(_pauseResumeAllSeparator);
 
         // Always on top
-        _alwaysOnTopMenuItem = new()
+        _alwaysOnTopMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuAlwaysOnTopMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuAlwaysOnTopMenuItem
         };
         _alwaysOnTopMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_alwaysOnTopMenuItem);
 
         // Full screen
-        _fullScreenMenuItem = new()
+        _fullScreenMenuItem = new CheckableMenuItem
         {
             Header = Properties.Resources.ContextMenuFullScreenMenuItem,
-            IsCheckable = true,
             InputGestureText = TimerWindow.FullScreenKeyGesture.ToInputGestureText()
         };
         _fullScreenMenuItem.Click += CheckableMenuItemClick;
@@ -604,10 +605,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         };
 
         // No window title
-        MenuItem noWindowTitleMenuItem = new()
+        MenuItem noWindowTitleMenuItem = new CheckableMenuItem
         {
             Header = Properties.Resources.ContextMenuNoWindowTitleMenuItem,
-            IsCheckable = true,
             Tag = WindowTitleMode.None
         };
         noWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -618,10 +618,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         windowTitleMenuItem.Items.Add(new Separator());
 
         // Application name (window title)
-        MenuItem applicationNameWindowTitleMenuItem = new()
+        var applicationNameWindowTitleMenuItem = new CheckableMenuItem
         {
             Header = Properties.Resources.ContextMenuApplicationNameWindowTitleMenuItem,
-            IsCheckable = true,
             Tag = WindowTitleMode.ApplicationName
         };
         applicationNameWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -632,10 +631,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         windowTitleMenuItem.Items.Add(new Separator());
 
         // Time left (window title)
-        MenuItem timeLeftWindowTitleMenuItem = new()
+        var timeLeftWindowTitleMenuItem = new CheckableMenuItem
         {
             Header = Properties.Resources.ContextMenuTimeLeftWindowTitleMenuItem,
-            IsCheckable = true,
             Tag = WindowTitleMode.TimeLeft
         };
         timeLeftWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -644,10 +642,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _selectableWindowTitleMenuItems.Add(timeLeftWindowTitleMenuItem);
 
         // Time elapsed (window title)
-        MenuItem timeElapsedWindowTitleMenuItem = new()
+        var timeElapsedWindowTitleMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuTimeElapsedWindowTitleMenuItem,
-            IsCheckable = true,
+            Header = Properties.Resources.ContextMenuElapsedTimeWindowTitleMenuItem,
             Tag = WindowTitleMode.TimeElapsed
         };
         timeElapsedWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -656,10 +653,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _selectableWindowTitleMenuItems.Add(timeElapsedWindowTitleMenuItem);
 
         // Timer title (window title)
-        MenuItem timerTitleWindowTitleMenuItem = new()
+        var timerTitleWindowTitleMenuItem = new CheckableMenuItem
         {
             Header = Properties.Resources.ContextMenuTimerTitleWindowTitleMenuItem,
-            IsCheckable = true,
             Tag = WindowTitleMode.TimerTitle
         };
         timerTitleWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -670,10 +666,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         windowTitleMenuItem.Items.Add(new Separator());
 
         // Time left + timer title (window title)
-        MenuItem timeLeftPlusTimerTitleWindowTitleMenuItem = new()
+        var timeLeftPlusTimerTitleWindowTitleMenuItem = new CheckableMenuItem
         {
             Header = Properties.Resources.ContextMenuTimeLeftPlusTimerTitleWindowTitleMenuItem,
-            IsCheckable = true,
             Tag = WindowTitleMode.TimeLeftPlusTimerTitle
         };
         timeLeftPlusTimerTitleWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -682,10 +677,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _selectableWindowTitleMenuItems.Add(timeLeftPlusTimerTitleWindowTitleMenuItem);
 
         // Time elapsed + timer title (window title)
-        MenuItem timeElapsedPlusTimerTitleWindowTitleMenuItem = new()
+        var timeElapsedPlusTimerTitleWindowTitleMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuTimeElapsedPlusTimerTitleWindowTitleMenuItem,
-            IsCheckable = true,
+            Header = Properties.Resources.ContextMenuElapsedTimePlusTimerTitleWindowTitleMenuItem,
             Tag = WindowTitleMode.TimeElapsedPlusTimerTitle
         };
         timeElapsedPlusTimerTitleWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -696,10 +690,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         windowTitleMenuItem.Items.Add(new Separator());
 
         // Timer title + time left (window title)
-        MenuItem timerTitlePlusTimeLeftWindowTitleMenuItem = new()
+        var timerTitlePlusTimeLeftWindowTitleMenuItem = new CheckableMenuItem
         {
             Header = Properties.Resources.ContextMenuTimerTitlePlusTimeLeftWindowTitleMenuItem,
-            IsCheckable = true,
             Tag = WindowTitleMode.TimerTitlePlusTimeLeft
         };
         timerTitlePlusTimeLeftWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -708,10 +701,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _selectableWindowTitleMenuItems.Add(timerTitlePlusTimeLeftWindowTitleMenuItem);
 
         // Timer title + time elapsed (window title)
-        MenuItem timerTitlePlusTimeElapsedWindowTitleMenuItem = new()
+        var timerTitlePlusTimeElapsedWindowTitleMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuTimerTitlePlusTimeElapsedWindowTitleMenuItem,
-            IsCheckable = true,
+            Header = Properties.Resources.ContextMenuTimerTitlePlusElapsedTimeWindowTitleMenuItem,
             Tag = WindowTitleMode.TimerTitlePlusTimeElapsed
         };
         timerTitlePlusTimeElapsedWindowTitleMenuItem.Click += WindowTitleMenuItemClick;
@@ -724,28 +716,25 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         Items.Add(new Separator());
 
         // Prompt on exit
-        _promptOnExitMenuItem = new()
+        _promptOnExitMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuPromptOnExitMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuPromptOnExitMenuItem
         };
         _promptOnExitMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_promptOnExitMenuItem);
 
         // Show progress in taskbar
-        _showProgressInTaskbarMenuItem = new()
+        _showProgressInTaskbarMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuShowProgressInTaskbarMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuShowProgressInTaskbarMenuItem
         };
         _showProgressInTaskbarMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_showProgressInTaskbarMenuItem);
 
         // Show in notification area
-        _showInNotificationAreaMenuItem = new()
+        _showInNotificationAreaMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuShowInNotificationAreaMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuShowInNotificationAreaMenuItem
         };
         _showInNotificationAreaMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_showInNotificationAreaMenuItem);
@@ -753,28 +742,25 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         Items.Add(new Separator());
 
         // Loop timer
-        _loopTimerMenuItem = new()
+        _loopTimerMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuLoopTimerMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuLoopTimerMenuItem
         };
         _loopTimerMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_loopTimerMenuItem);
 
         // Pop up when expired
-        _popUpWhenExpiredMenuItem = new()
+        _popUpWhenExpiredMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuPopUpWhenExpiredMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuPopUpWhenExpiredMenuItem
         };
         _popUpWhenExpiredMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_popUpWhenExpiredMenuItem);
 
         // Close when expired
-        _closeWhenExpiredMenuItem = new()
+        _closeWhenExpiredMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuCloseWhenExpiredMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuCloseWhenExpiredMenuItem
         };
         _closeWhenExpiredMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_closeWhenExpiredMenuItem);
@@ -821,36 +807,34 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         Items.Add(advancedOptionsMenuItem);
 
         // Display time in the digital clock format
-        _digitalClockTimeMenuItem = new()
+        _digitalClockTimeMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuDigitalClockTimeMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuDigitalClockTimeMenuItem
         };
         _digitalClockTimeMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_digitalClockTimeMenuItem);
 
         // Show time elapsed
-        _showTimeElapsedMenuItem = new()
+        _showTimeElapsedMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuShowTimeElapsedMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuShowElapsedTimeMenuItem
         };
         _showTimeElapsedMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_showTimeElapsedMenuItem);
 
+        advancedOptionsMenuItem.Items.Add(new Separator());
+
         // Reverse progress bar
-        _reverseProgressBarMenuItem = new()
+        _reverseProgressBarMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuReverseProgressBarMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuReverseProgressBarMenuItem
         };
         _reverseProgressBarMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_reverseProgressBarMenuItem);
 
-        _activateNextWindowMenuItem = new()
+        _activateNextWindowMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuActivateNextWindowMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuActivateNextWindowMenuItem
         };
         _activateNextWindowMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_activateNextWindowMenuItem);
@@ -858,19 +842,17 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         advancedOptionsMenuItem.Items.Add(new Separator());
 
         // Open saved timers on startup
-        _openSavedTimersOnStartupMenuItem = new()
+        _openSavedTimersOnStartupMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuOpenSavedTimersOnStartupMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuOpenSavedTimersOnStartupMenuItem
         };
         _openSavedTimersOnStartupMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_openSavedTimersOnStartupMenuItem);
 
         // Prefer 24-hour time when parsing
-        _prefer24HourTimeMenuItem = new()
+        _prefer24HourTimeMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuPrefer24HourTimeMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuPrefer24HourTimeMenuItem
         };
         _prefer24HourTimeMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_prefer24HourTimeMenuItem);
@@ -878,19 +860,17 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         advancedOptionsMenuItem.Items.Add(new Separator());
 
         // Do not keep computer awake
-        _doNotKeepComputerAwakeMenuItem = new()
+        _doNotKeepComputerAwakeMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuDoNotKeepComputerAwakeMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuDoNotKeepComputerAwakeMenuItem
         };
         _doNotKeepComputerAwakeMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_doNotKeepComputerAwakeMenuItem);
 
         // Shut down when expired
-        _shutDownWhenExpiredMenuItem = new()
+        _shutDownWhenExpiredMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuShutDownWhenExpiredMenuItem,
-            IsCheckable = true
+            Header = Properties.Resources.ContextMenuShutDownWhenExpiredMenuItem
         };
         _shutDownWhenExpiredMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_shutDownWhenExpiredMenuItem);
@@ -981,7 +961,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         }
         else
         {
-            foreach (TimerStart timerStart in TimerStartManager.Instance.TimerStarts)
+            foreach (var timerStart in TimerStartManager.Instance.TimerStarts)
             {
                 MenuItem timerMenuItem = new()
                 {
@@ -1015,8 +995,8 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void RecentInputMenuItemClick(object sender, RoutedEventArgs e)
     {
-        MenuItem menuItem = (MenuItem)sender;
-        TimerStart timerStart = (TimerStart)menuItem.Tag;
+        var menuItem = (MenuItem)sender;
+        var timerStart = (TimerStart)menuItem.Tag;
 
         TimerWindow window;
         if (_timerWindow.Timer.State is TimerState.Stopped or TimerState.Expired)
@@ -1054,7 +1034,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     {
         _savedTimersMenuItem.Items.Clear();
 
-        IList<Timer> savedTimers = TimerManager.Instance.ResumableTimers;
+        var savedTimers = TimerManager.Instance.ResumableTimers;
 
         if (savedTimers.Count == 0)
         {
@@ -1068,7 +1048,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         }
         else
         {
-            foreach (Timer savedTimer in savedTimers)
+            foreach (var savedTimer in savedTimers)
             {
                 savedTimer.Update();
 
@@ -1114,7 +1094,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// </summary>
     private void UpdateSavedTimersHeaders()
     {
-        foreach (MenuItem menuItem in _savedTimersMenuItem.Items.OfType<MenuItem>())
+        foreach (var menuItem in _savedTimersMenuItem.Items.OfType<MenuItem>())
         {
             if (menuItem.Tag is Timer timer)
             {
@@ -1198,8 +1178,8 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void SavedTimerMenuItemClick(object sender, RoutedEventArgs e)
     {
-        MenuItem menuItem = (MenuItem)sender;
-        Timer savedTimer = (Timer)menuItem.Tag;
+        var menuItem = (MenuItem)sender;
+        var savedTimer = (Timer)menuItem.Tag;
         ShowSavedTimer(savedTimer);
     }
 
@@ -1210,7 +1190,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void OpenAllSavedTimersMenuItemClick(object sender, RoutedEventArgs e)
     {
-        foreach (Timer savedTimer in TimerManager.Instance.ResumableTimers)
+        foreach (var savedTimer in TimerManager.Instance.ResumableTimers)
         {
             ShowSavedTimer(savedTimer);
         }
@@ -1346,7 +1326,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     {
         _themeMenuItem.Items.Add(new Separator());
 
-        foreach (Theme theme in themes)
+        foreach (var theme in themes)
         {
             CreateThemeMenuItem(theme);
         }
@@ -1358,11 +1338,10 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="theme">A <see cref="Theme"/>.</param>
     private void CreateThemeMenuItem(Theme theme)
     {
-        MenuItem menuItem = new()
+        var menuItem = new CheckableMenuItem
         {
             Header = GetHeaderForTheme(theme),
-            Tag = theme,
-            IsCheckable = true
+            Tag = theme
         };
         menuItem.Click += ThemeMenuItemClick;
         menuItem.Click += CheckableMenuItemClick;
@@ -1409,8 +1388,8 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void ThemeTypeMenuItemClick(object sender, RoutedEventArgs e)
     {
-        MenuItem clickedMenuItem = (MenuItem)sender;
-        ThemeType type = (ThemeType)clickedMenuItem.Tag;
+        var clickedMenuItem = (MenuItem)sender;
+        var type = (ThemeType)clickedMenuItem.Tag;
 
         _timerWindow.Options.Theme = type == ThemeType.BuiltInDark
             ? _timerWindow.Options.Theme?.DarkVariant
@@ -1424,12 +1403,12 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void ThemeMenuItemClick(object sender, RoutedEventArgs e)
     {
-        foreach (MenuItem menuItem in _selectableThemeMenuItems)
+        foreach (var menuItem in _selectableThemeMenuItems)
         {
             menuItem.IsChecked = ReferenceEquals(menuItem, sender);
         }
 
-        MenuItem selectedMenuItem = (MenuItem)sender;
+        var selectedMenuItem = (MenuItem)sender;
         _timerWindow.Options.Theme = (Theme)selectedMenuItem.Tag;
     }
 
@@ -1440,7 +1419,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void ManageThemesMenuItemClick(object sender, RoutedEventArgs e)
     {
-        ThemeManagerWindow? themeManagerWindow = Application.Current.Windows.OfType<ThemeManagerWindow>().FirstOrDefault();
+        var themeManagerWindow = Application.Current.Windows.OfType<ThemeManagerWindow>().FirstOrDefault();
         if (themeManagerWindow is null)
         {
             themeManagerWindow = new(_timerWindow);
@@ -1475,10 +1454,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
 
         if (_loopSoundMenuItem is null)
         {
-            _loopSoundMenuItem = new()
+            _loopSoundMenuItem = new CheckableMenuItem
             {
-                Header = Properties.Resources.ContextMenuLoopSoundMenuItem,
-                IsCheckable = true
+                Header = Properties.Resources.ContextMenuLoopSoundMenuItem
             };
             _loopSoundMenuItem.Click += CheckableMenuItemClick;
         }
@@ -1492,11 +1470,10 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="sound">A <see cref="Sound"/>.</param>
     private void CreateSoundMenuItem(Sound? sound)
     {
-        MenuItem menuItem = new()
+        var menuItem = new CheckableMenuItem
         {
             Header = sound is not null ? sound.Name : Properties.Resources.ContextMenuNoSoundMenuItem,
-            Tag = sound,
-            IsCheckable = true
+            Tag = sound
         };
         menuItem.Click += SoundMenuItemClick;
         menuItem.Click += CheckableMenuItemClick;
@@ -1514,7 +1491,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         if (sounds.Count > 0)
         {
             _soundMenuItem.Items.Add(new Separator());
-            foreach (Sound sound in sounds)
+            foreach (var sound in sounds)
             {
                 CreateSoundMenuItem(sound);
             }
@@ -1528,7 +1505,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void SoundMenuItemClick(object sender, RoutedEventArgs e)
     {
-        foreach (MenuItem menuItem in _selectableSoundMenuItems)
+        foreach (var menuItem in _selectableSoundMenuItems)
         {
             menuItem.IsChecked = ReferenceEquals(menuItem, sender);
         }
@@ -1543,7 +1520,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private void WindowTitleMenuItemClick(object sender, RoutedEventArgs e)
     {
-        foreach (MenuItem menuItem in _selectableWindowTitleMenuItems)
+        foreach (var menuItem in _selectableWindowTitleMenuItems)
         {
             menuItem.IsChecked = ReferenceEquals(menuItem, sender);
         }
@@ -1635,4 +1612,11 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _fullScreenMenuItem.IsChecked = false;
         _timerWindow.IsFullScreen = false;
     }
+
+    internal sealed class CheckableMenuItem : MenuItem
+    {
+        public CheckableMenuItem() =>
+            (IsCheckable, StaysOpenOnClick) = (true, true);
+    }
 }
+

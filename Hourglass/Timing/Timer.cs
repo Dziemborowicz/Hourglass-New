@@ -13,6 +13,8 @@ using Extensions;
 using Properties;
 using Serialization;
 
+// ReSharper disable ExceptionNotDocumented
+
 /// <summary>
 /// A countdown timer.
 /// </summary>
@@ -32,6 +34,7 @@ public sealed class Timer : TimerBase
     /// Initializes a new instance of the <see cref="Timer"/> class.
     /// </summary>
     /// <param name="options">Configuration data for this timer.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="options"/> is <see langword="null"/></exception>
     public Timer(TimerOptions? options)
     {
         if (options is null)
@@ -229,6 +232,8 @@ public sealed class Timer : TimerBase
     /// </summary>
     protected override void OnStarted()
     {
+        ResetLastEndTime();
+
         UpdateHourglassTimer();
         base.OnStarted();
     }
@@ -238,6 +243,8 @@ public sealed class Timer : TimerBase
     /// </summary>
     protected override void OnPaused()
     {
+        ResetLastEndTime();
+
         UpdateHourglassTimer();
         base.OnPaused();
     }
@@ -247,6 +254,8 @@ public sealed class Timer : TimerBase
     /// </summary>
     protected override void OnResumed()
     {
+        ResetLastEndTime();
+
         UpdateHourglassTimer();
         base.OnResumed();
     }
@@ -256,6 +265,8 @@ public sealed class Timer : TimerBase
     /// </summary>
     protected override void OnStopped()
     {
+        ResetLastEndTime();
+
         UpdateHourglassTimer();
         base.OnStopped();
     }
@@ -265,6 +276,8 @@ public sealed class Timer : TimerBase
     /// </summary>
     protected override void OnExpired()
     {
+        ResetLastEndTime();
+
         UpdateHourglassTimer();
         base.OnExpired();
 
@@ -343,7 +356,10 @@ public sealed class Timer : TimerBase
     /// <returns>The percentage of time left until the timer expires.</returns>
     private double? GetTimeLeftAsPercentage()
     {
-        if (!SupportsProgress || State == TimerState.Stopped || !TimeElapsed.HasValue || !TotalTime.HasValue)
+        if (!SupportsProgress ||
+            State == TimerState.Stopped ||
+            !TimeElapsed.HasValue ||
+            !TotalTime.HasValue)
         {
             return null;
         }
@@ -370,7 +386,11 @@ public sealed class Timer : TimerBase
     /// <returns>The percentage of time elapsed since the timer was started.</returns>
     private double? GetTimeElapsedAsPercentage()
     {
-        if (!SupportsProgress || !SupportsTimeElapsed || State == TimerState.Stopped || !TimeLeft.HasValue || !TotalTime.HasValue)
+        if (!SupportsProgress ||
+            !SupportsTimeElapsed ||
+            State == TimerState.Stopped ||
+            !TimeLeft.HasValue ||
+            !TotalTime.HasValue)
         {
             return null;
         }
@@ -396,62 +416,96 @@ public sealed class Timer : TimerBase
     /// </summary>
     /// <param name="compact">Use compact time format.</param>
     /// <returns>The string representation of the time left until the timer expires.</returns>
-    private string GetTimeLeftAsString(bool compact)
-    {
-        if (State == TimerState.Stopped)
+    private string GetTimeLeftAsString(bool compact) =>
+        State switch
         {
-            return Resources.TimerTimerStopped;
-        }
-
-        if (State == TimerState.Expired)
-        {
-            return Resources.TimerTimerExpired;
-        }
-
-        return TimeLeft.RoundUp().ToNaturalString(compact);
-    }
+            TimerState.Stopped => Resources.TimerTimerStopped,
+            TimerState.Expired => Resources.TimerTimerExpired,
+            _ => TimeLeft.RoundUp().ToNaturalString(compact)
+        };
 
     /// <summary>
     /// Returns the string representation of the time elapsed since the timer was started.
     /// </summary>
     /// <param name="compact">Use compact time format.</param>
     /// <returns>The string representation of the time elapsed since the timer was started.</returns>
-    private string? GetTimeElapsedAsString(bool compact)
-    {
-        if (!SupportsTimeElapsed)
+    private string? GetTimeElapsedAsString(bool compact) =>
+        State switch
         {
-            return null;
-        }
-
-        if (State == TimerState.Stopped)
-        {
-            return Resources.TimerTimerStopped;
-        }
-
-        if (State == TimerState.Expired)
-        {
-            return Resources.TimerTimerExpired;
-        }
-
-        return TimeElapsed.ToNaturalString(compact);
-    }
+            _ when !SupportsTimeElapsed => null,
+            TimerState.Stopped => Resources.TimerTimerStopped,
+            TimerState.Expired => Resources.TimerTimerExpired,
+            _ => TimeElapsed.ToNaturalString(compact)
+        };
 
     /// <summary>
     /// Returns the string representation of the time since the timer expired.
     /// </summary>
     /// <param name="compact">Use compact time format.</param>
     /// <returns>The string representation of the time since the timer expired.</returns>
-    private string GetTimeExpiredAsString(bool compact)
+    private string GetTimeExpiredAsString(bool compact) =>
+        State != TimerState.Expired
+            ? FormatEndTime()
+            : string.Format(
+                Resources.ResourceManager.GetEffectiveProvider(),
+                Resources.TimerTimeExpiredFormatString,
+                TimeExpired.ToNaturalString(compact));
+
+    private static readonly TimeSpan OneDay = TimeSpan.FromDays(1);
+
+    private EndTimeFormatState _endTimeFormatState;
+    private string _endTimeFormatted = string.Empty;
+
+    private void ResetLastEndTime()
     {
-        if (State != TimerState.Expired)
+        _endTimeFormatState = EndTimeFormatState.Undefined;
+        _endTimeFormatted = string.Empty;
+    }
+
+    private enum EndTimeFormatState
+    {
+        Undefined,
+        Today,
+        Tomorrow,
+        Other
+    }
+
+    private string FormatEndTime()
+    {
+        if (EndTime is null)
         {
-            return Resources.TimerTimerNotExpired;
+            return string.Empty;
         }
 
-        return string.Format(
-            Resources.ResourceManager.GetEffectiveProvider(),
-            Resources.TimerTimeExpiredFormatString,
-            TimeExpired.ToNaturalString(compact));
+        DateTime endTime = EndTime.Value;
+        DateTime now = DateTime.Now;
+
+        var endTimeFormatState = true switch
+        {
+            _ when now.Date == endTime.Date =>
+                EndTimeFormatState.Today,
+            _ when (endTime - now).Duration() < OneDay =>
+                EndTimeFormatState.Tomorrow,
+            _ =>
+                EndTimeFormatState.Other
+        };
+
+        if (_endTimeFormatState == endTimeFormatState)
+        {
+            return _endTimeFormatted;
+        }
+
+        _endTimeFormatState = endTimeFormatState;
+
+        return _endTimeFormatted = endTimeFormatState switch
+        {
+            EndTimeFormatState.Today =>
+                endTime.ToLongTimeString(),
+            EndTimeFormatState.Tomorrow =>
+                string.Format(Resources.TimerTimeTomorrowFormatString, endTime.ToLongTimeString()),
+            _ =>
+                string.Format(Resources.TimerTimeDateTimeFormatString, endTime.ToLongDateString(), endTime.ToLongTimeString()),
+        };
     }
 
     #endregion

@@ -19,7 +19,8 @@
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Options.WindowTitleMode, RelativeSource={RelativeSource Self}}" Value="None">
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <DataTrigger Binding="{Binding Options.WindowTitleMode, RelativeSource={RelativeSource Self}, Mode=OneWay}" Value="None">
                     <Setter Property="WindowStyle" Value="None"/>
                     <Setter Property="WindowChrome.WindowChrome">
                         <Setter.Value>
@@ -27,7 +28,8 @@
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding IsFullScreen, RelativeSource={RelativeSource Self}}" Value="True">
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                <DataTrigger Binding="{Binding IsFullScreen, RelativeSource={RelativeSource Self}, Mode=OneWay}" Value="True">
                     <Setter Property="WindowStyle" Value="None"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -76,8 +78,8 @@
                                         <RotateTransform Angle="270"/>
                                     </Setter.Value>
                                 </Setter>
-                                <Setter TargetName="Root" Property="Width"  Value="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                <Setter TargetName="Root" Property="Height" Value="{Binding Width,  RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Setter TargetName="Root" Property="Width"  Value="{Binding Height, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+                                <Setter TargetName="Root" Property="Height" Value="{Binding Width,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -88,20 +90,20 @@
             <Style.Triggers>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding ElementName=TitleTextBox, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=TimerTextBox, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=StartButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=PauseButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=ResumeButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=StopButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=RestartButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=CloseButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=CancelButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=UpdateButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=InnerGrid, Path=IsMouseOver}" Value="False"/>
-                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=ContextMenu.IsOpen}" Value="False"/>
-                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Mode}" Value="Status"/>
-                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value=""/>
+                        <Condition Binding="{Binding ElementName=TitleTextBox, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=TimerTextBox, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=StartButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=PauseButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=ResumeButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=StopButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=RestartButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=CloseButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=CancelButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=UpdateButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=InnerGrid, Path=IsMouseOver, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=ContextMenu.IsOpen, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Mode, Mode=OneWay}" Value="Status"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text, Mode=OneWay}" Value=""/>
                     </MultiDataTrigger.Conditions>
                     <MultiDataTrigger.EnterActions>
                         <BeginStoryboard>
@@ -132,19 +134,19 @@
             <Style.Triggers>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding ElementName=TitleTextBox, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=TimerTextBox, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=StartButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=PauseButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=ResumeButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=StopButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=RestartButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=CloseButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=CancelButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=UpdateButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=InnerGrid, Path=IsMouseOver}" Value="False"/>
-                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=ContextMenu.IsOpen}" Value="False"/>
-                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Timer.State, Converter={StaticResource RegexMatchConverter}, ConverterParameter=^(Running|Expired)$}" Value="True"/>
+                        <Condition Binding="{Binding ElementName=TitleTextBox, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=TimerTextBox, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=StartButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=PauseButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=ResumeButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=StopButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=RestartButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=CloseButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=CancelButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=UpdateButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=InnerGrid, Path=IsMouseOver, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=ContextMenu.IsOpen, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Timer.State, Mode=OneWay, Converter={StaticResource RegexMatchConverter}, ConverterParameter=^(Running|Expired)$}" Value="True"/>
                     </MultiDataTrigger.Conditions>
                     <MultiDataTrigger.EnterActions>
                         <BeginStoryboard>
@@ -207,19 +209,19 @@
             <Style.Triggers>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding ElementName=TitleTextBox, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=TimerTextBox, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=StartButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=PauseButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=ResumeButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=StopButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=RestartButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=CloseButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=CancelButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=UpdateButton, Path=IsFocused}" Value="False"/>
-                        <Condition Binding="{Binding ElementName=InnerGrid, Path=IsMouseOver}" Value="False"/>
-                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=ContextMenu.IsOpen}" Value="False"/>
-                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Timer.State}" Value="Expired"/>
+                        <Condition Binding="{Binding ElementName=TitleTextBox, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=TimerTextBox, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=StartButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=PauseButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=ResumeButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=StopButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=RestartButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=CloseButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=CancelButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=UpdateButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=InnerGrid, Path=IsMouseOver, Mode=OneWay}" Value="False"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=ContextMenu.IsOpen, Mode=OneWay}" Value="False"/>
+                        <!--<Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Timer.State, Mode=OneWay}" Value="Expired"/>-->
                     </MultiDataTrigger.Conditions>
                     <MultiDataTrigger.EnterActions>
                         <BeginStoryboard>
@@ -281,7 +283,7 @@
                                         TextAlignment="Center"/>
                 <Grid>
                     <Label x:Name="TimeExpiredLabel"
-                           Content="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Timer.TimeExpiredAsString}"
+                           Content="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Timer.TimeExpiredAsString, Mode=OneWay}"
                            HorizontalAlignment="Center"
                            Opacity="0.0"
                            Style="{StaticResource TimeExpiredLabelStyle}"/>

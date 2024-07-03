@@ -1115,10 +1115,8 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         {
             return Timer.TimeElapsedAsPercentage ?? 100.0;
         }
-        else
-        {
-            return Timer.TimeLeftAsPercentage ?? 0.0;
-        }
+
+        return Timer.TimeLeftAsPercentage ?? 0.0;
     }
 
     /// <summary>
@@ -1365,26 +1363,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                 break;
 
             case WindowTitleMode.TimeLeftPlusTimerTitle:
-                if (Timer.State != TimerState.Stopped && !string.IsNullOrWhiteSpace(Options.Title))
-                {
-                    Title = string.Join(
-                        Properties.Resources.TimerWindowTitleSeparator,
-                        Timer.TimeLeftAsString,
-                        Options.Title);
-                }
-                else if (Timer.State != TimerState.Stopped)
-                {
-                    Title = Timer.TimeLeftAsString;
-                }
-                else if (!string.IsNullOrWhiteSpace(Options.Title))
-                {
-                    Title = Options.Title;
-                }
-                else
-                {
-                    Title = Properties.Resources.TimerWindowTitle;
-                }
-
+                Title = GetTimeLeftPlusTimerTitle();
                 break;
 
             case WindowTitleMode.TimeElapsedPlusTimerTitle:
@@ -1392,49 +1371,11 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                 break;
 
             case WindowTitleMode.TimerTitlePlusTimeLeft:
-                if (Timer.State != TimerState.Stopped && !string.IsNullOrWhiteSpace(Options.Title))
-                {
-                    Title = string.Join(
-                        Properties.Resources.TimerWindowTitleSeparator,
-                        Options.Title,
-                        Timer.TimeLeftAsString);
-                }
-                else if (Timer.State != TimerState.Stopped)
-                {
-                    Title = Timer.TimeLeftAsString;
-                }
-                else if (!string.IsNullOrWhiteSpace(Options.Title))
-                {
-                    Title = Options.Title;
-                }
-                else
-                {
-                    Title = Properties.Resources.TimerWindowTitle;
-                }
-
+                Title = GetTimeLeftPlusTimerTitle(true);
                 break;
 
             case WindowTitleMode.TimerTitlePlusTimeElapsed:
-                if (Timer.State != TimerState.Stopped && !string.IsNullOrWhiteSpace(Options.Title))
-                {
-                    Title = string.Join(
-                        Properties.Resources.TimerWindowTitleSeparator,
-                        Options.Title,
-                        Timer.TimeElapsedAsString);
-                }
-                else if (Timer.State != TimerState.Stopped)
-                {
-                    Title = Timer.TimeElapsedAsString;
-                }
-                else if (!string.IsNullOrWhiteSpace(Options.Title))
-                {
-                    Title = Options.Title;
-                }
-                else
-                {
-                    Title = Properties.Resources.TimerWindowTitle;
-                }
-
+                Title = GetTimeElapsedPlusTimerTitle(true);
                 break;
         }
 
@@ -1562,7 +1503,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             return;
         }
 
-        string? toolTip = GetTimeElapsedPlusTimerTitle();
+        string? toolTip = GetTimeLeftPlusTimerTitle();
         TimeToolTip = Timer.State switch
         {
             TimerState.Stopped => string.Format(Properties.Resources.TimerStoppedToolTipFormatString, toolTip),
@@ -1571,27 +1512,32 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         };
     }
 
-    private void UpdateNotificationAreaIcon()
+    private static void UpdateNotificationAreaIcon()
     {
         NotificationAreaIconManager.Instance.NotifyIcon.RefreshIcon();
     }
 
-    private string? GetTimeElapsedPlusTimerTitle()
+    private string? GetTimePlusTimerTitle(string? timeAsString, bool titleFirst)
     {
         if (Timer.State != TimerState.Stopped)
         {
             return string.IsNullOrWhiteSpace(Options.Title)
-                ? Timer.TimeLeftAsString
-                : string.Join(
-                    Properties.Resources.TimerWindowTitleSeparator,
-                    Timer.TimeLeftAsString,
-                    Options.Title);
+                ? timeAsString
+                : titleFirst
+                    ? string.Join(Properties.Resources.TimerWindowTitleSeparator, Options.Title, timeAsString)
+                    : string.Join(Properties.Resources.TimerWindowTitleSeparator, timeAsString, Options.Title);
         }
 
         return string.IsNullOrWhiteSpace(Options.Title)
             ? Properties.Resources.TimerWindowTitle
             : Options.Title;
     }
+
+    private string? GetTimeLeftPlusTimerTitle(bool titleFirst = false) =>
+        GetTimePlusTimerTitle(Timer.TimeLeftAsString, titleFirst);
+
+    private string? GetTimeElapsedPlusTimerTitle(bool titleFirst = false) =>
+        GetTimePlusTimerTitle(Timer.TimeElapsedAsString, titleFirst);
 
     #endregion
 
