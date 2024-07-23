@@ -51,11 +51,11 @@ public static class WindowExtensions
     /// <param name="window">A <see cref="TimerWindow"/>.</param>
     /// <param name="useImmersiveDarkMode">A value indicating whether to use immersive dark mode.</param>
     /// <returns>A value indicating whether immersive dark mode was successfully applied.</returns>
-    public static bool SetImmersiveDarkMode(this TimerWindow window, bool useImmersiveDarkMode)
+    public static void SetImmersiveDarkMode(this TimerWindow window, bool useImmersiveDarkMode)
     {
         if (!EnvironmentExtensions.IsWindows10BuildOrNewer(17763))
         {
-            return false;
+            return;
         }
 
         IntPtr handle = new WindowInteropHelper(window).EnsureHandle();
@@ -66,17 +66,17 @@ public static class WindowExtensions
 
         if (NativeMethods.DwmGetWindowAttribute(handle, attribute, out bool prevUseImmersiveDarkMode, sizeof(int)) != 0)
         {
-            return false;
+            return;
         }
 
         if (prevUseImmersiveDarkMode == useImmersiveDarkMode)
         {
-            return true;
+            return;
         }
 
         if (NativeMethods.DwmSetWindowAttribute(handle, attribute, ref useImmersiveDarkMode, sizeof(int)) != 0)
         {
-            return false;
+            return;
         }
 
         // This hack appears to be the only way to get the non-client area of the window to redraw correctly.
@@ -94,8 +94,6 @@ public static class WindowExtensions
                 window.Width = width;
             }
         }
-
-        return true;
     }
 
     /// <summary>
