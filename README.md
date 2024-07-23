@@ -11,7 +11,7 @@ Visit the [original Hourglass site](https://chris.dziemborowicz.com/apps/hourgla
 ## Hourglass Command-line Example
 
 ```shell
-hourglass -n on -a on -g on -c on -w minimized -i left+title -t "Timer 1" 1h23
+hourglass -n on -a on -g on -c on -st on -w minimized -i left+title -t "Timer 1" 1h23
 ```
 
 creates
@@ -22,7 +22,8 @@ creates
 - with the timer window:
   - which is always on top: `-a on`
   - shows the reversed progress bar: `-g on`
-  - displays time in the digital clock format: `-c on`
+  - displays the time in the digital clock format: `-c on`
+  - shows the trigger time: `-st on`
   - initially minimized: `-w minimized`
   - has the time left and the timer name displayed in the title: `-i left+title`
 
