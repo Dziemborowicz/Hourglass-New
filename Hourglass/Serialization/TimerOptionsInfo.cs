@@ -55,6 +55,11 @@ public sealed class TimerOptionsInfo
     public bool ShowTimeElapsed { get; set; }
 
     /// <summary>
+    /// Gets or sets a value indicating whether to show the trigger time.
+    /// </summary>
+    public bool ShowTriggerTime { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether to loop the timer continuously.
     /// </summary>
     public bool LoopTimer { get; set; }

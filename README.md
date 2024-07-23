@@ -42,9 +42,10 @@ Run `hourglass -h` to display the **Hourglass** [command-line reference](https:/
 
 - New command `pause`
 - New command `resume`
-- New option `--digital-clock-time` / `-c`
-- New option `--multi-timers` / `-mt`
-- New option `--activate-next` / `-an`
+- New option `--digital-clock-time`, `-c`, `/c`
+- New option `--multi-timers`, `-mt`, `/mt`
+- New option `--activate-next`, `-an`, `/an`
+- New option `--show-trigger-time`, `-st`, `/st`
 
 See [usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
 
@@ -80,8 +81,9 @@ See [usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/
 - The **Window title** submenu is available directly from the timer window context menu.
 - The **Reset bounds** menu command sets the timer window default position and size.
 - The **Restore**, **Minimize** and **Maximize** timer window commands are always present in the timer window context menu.
-- The **Advanced options** / **Display time in the digital clock format** timer window context menu option toggles the displayed time digital clock time format. The command-line option is `--digital-clock-time` / `-c`
-- The **Advanced options** / **Activate next window when minimized or closed** timer window context menu option enables the next timer window activation when the current timer window is minimized or closed. The command-line option is `--activate-next` / `-an`
+- The **Advanced options** / **Display time in the digital clock format** timer window context menu option toggles the displayed time digital clock time format. The command-line option is `--digital-clock-time`, `-c`, `/c`
+- The **Advanced options** / **Show trigger time** timer window context menu option shows the trigger time in the timer window and in the notification area context menu. The command-line option is `--show-trigger-time`, `-st`, `/st`
+- The **Advanced options** / **Activate next window when minimized or closed** timer window context menu option enables the next timer window activation when the current timer window is minimized or closed. The command-line option is `--activate-next`, `-an`, `/an`
 - The **Pause all** timer window context menu command pauses all the running timers. Command-line command is `pause`
 - The **Resume all** timer window context menu command resumes all the paused timers. Command-line command is `resume`
 

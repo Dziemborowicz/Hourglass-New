@@ -108,6 +108,11 @@ public sealed class TimerOptions : INotifyPropertyChanged
     private bool _showTimeElapsed;
 
     /// <summary>
+    /// A value indicating whether to show the trigger time.
+    /// </summary>
+    private bool _showTriggerTime;
+
+    /// <summary>
     /// A value indicating whether to loop the timer continuously.
     /// </summary>
     private bool _loopTimer;
@@ -182,6 +187,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
         _reverseProgressBar = false;
         _digitalClockTime = false;
         _showTimeElapsed = false;
+        _showTriggerTime = false;
         _loopTimer = false;
         _popUpWhenExpired = true;
         _closeWhenExpired = false;
@@ -375,6 +381,25 @@ public sealed class TimerOptions : INotifyPropertyChanged
             }
 
             _showTimeElapsed = value;
+            PropertyChanged.Notify(this);
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether to show the trigger time.
+    /// </summary>
+    public bool ShowTriggerTime
+    {
+        get => _showTriggerTime;
+
+        set
+        {
+            if (_showTriggerTime == value)
+            {
+                return;
+            }
+
+            _showTriggerTime = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -620,6 +645,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
         _reverseProgressBar = options._reverseProgressBar;
         _digitalClockTime = options._digitalClockTime;
         _showTimeElapsed = options._showTimeElapsed;
+        _showTriggerTime = options._showTriggerTime;
         _loopTimer = options._loopTimer;
         _popUpWhenExpired = options._popUpWhenExpired;
         _closeWhenExpired = options._closeWhenExpired;
@@ -672,6 +698,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
         _reverseProgressBar = info.ReverseProgressBar;
         _digitalClockTime = info.DigitalClockTime;
         _showTimeElapsed = info.ShowTimeElapsed;
+        _showTriggerTime = info.ShowTriggerTime;
         _loopTimer = info.LoopTimer;
         _popUpWhenExpired = info.PopUpWhenExpired;
         _closeWhenExpired = info.CloseWhenExpired;
@@ -720,6 +747,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
             ReverseProgressBar = _reverseProgressBar,
             DigitalClockTime = _digitalClockTime,
             ShowTimeElapsed = _showTimeElapsed,
+            ShowTriggerTime = _showTriggerTime,
             LoopTimer = _loopTimer,
             PopUpWhenExpired = _popUpWhenExpired,
             CloseWhenExpired = _closeWhenExpired,

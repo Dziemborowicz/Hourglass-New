@@ -611,6 +611,15 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show _trigger time.
+        /// </summary>
+        public static string ContextMenuShowTriggerTimeMenuItem {
+            get {
+                return ResourceManager.GetString("ContextMenuShowTriggerTimeMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shut _down when expired.
         /// </summary>
         public static string ContextMenuShutDownWhenExpiredMenuItem {

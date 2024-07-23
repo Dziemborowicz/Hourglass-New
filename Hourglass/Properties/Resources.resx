@@ -1128,6 +1128,10 @@ $</value>
     <value>_Show elapsed time instead of time left</value>
     <comment>The text for the show elapsed time menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
+  <data name="ContextMenuShowTriggerTimeMenuItem" xml:space="preserve">
+    <value>Show _trigger time</value>
+    <comment>The text for the show trigger time menu item, where the character following the optional underscore (_) is the access key</comment>
+  </data>
   <data name="ContextMenuDoNotKeepComputerAwakeMenuItem" xml:space="preserve">
     <value>Do not _keep computer awake</value>
     <comment>The text for the do not keep computer awake menu item, where the character following the optional underscore (_) is the access key</comment>

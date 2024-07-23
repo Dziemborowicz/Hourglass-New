@@ -79,7 +79,7 @@ Options:
         Alias           -k, /k
 
   --show-in-notification-area on|off|last
-        Shows an icon for the app in the notification area (system tray).
+        Shows an icon for the app in the notification area.
 
         Required        no
         Default value   last
@@ -115,6 +115,14 @@ Options:
         Required        no
         Default value   last
         Alias           -u, /u
+
+  --show-trigger-time on|off|last
+        Shows the trigger time in the timer window and in the notification
+        area context menu.
+
+        Required        no
+        Default value   last
+        Alias           -st, /st
 
   --multi-timers on|off
         Treats each <input> command-line argument as an individual timer.
@@ -304,6 +312,7 @@ Options:
             --activate-next               -an on
             --digital-clock-time          -c  off
             --show-time-elapsed           -u  off
+            --show-trigger-time           -st off
             --multi-timers                -mt off
             --loop-timer                  -l  off
             --pop-up-when-expired         -p  on

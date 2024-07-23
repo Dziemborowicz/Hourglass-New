@@ -112,6 +112,11 @@ public sealed class CommandLineArguments
     public bool ShowTimeElapsed { get; private set; }
 
     /// <summary>
+    /// Gets a value indicating whether to show the trigger time.
+    /// </summary>
+    public bool ShowTriggerTime { get; private set; }
+
+    /// <summary>
     /// Gets a value indicating whether to loop the timer continuously.
     /// </summary>
     public bool LoopTimer { get; private set; }
@@ -254,6 +259,7 @@ public sealed class CommandLineArguments
             ReverseProgressBar = ReverseProgressBar,
             DigitalClockTime = DigitalClockTime,
             ShowTimeElapsed = ShowTimeElapsed,
+            ShowTriggerTime = ShowTriggerTime,
             LoopTimer = LoopTimer,
             PopUpWhenExpired = PopUpWhenExpired,
             CloseWhenExpired = CloseWhenExpired,
@@ -304,6 +310,7 @@ public sealed class CommandLineArguments
             ReverseProgressBar = options.ReverseProgressBar,
             DigitalClockTime = options.DigitalClockTime,
             ShowTimeElapsed = options.ShowTimeElapsed,
+            ShowTriggerTime = options.ShowTriggerTime,
             ShowInNotificationArea = Settings.Default.ShowInNotificationArea,
             LoopTimer = options.LoopTimer,
             PopUpWhenExpired = options.PopUpWhenExpired,
@@ -346,6 +353,7 @@ public sealed class CommandLineArguments
             ReverseProgressBar = defaultOptions.ReverseProgressBar,
             DigitalClockTime = defaultOptions.DigitalClockTime,
             ShowTimeElapsed = defaultOptions.ShowTimeElapsed,
+            ShowTriggerTime = defaultOptions.ShowTriggerTime,
             ShowInNotificationArea = false,
             LoopTimer = defaultOptions.LoopTimer,
             PopUpWhenExpired = defaultOptions.PopUpWhenExpired,
@@ -537,6 +545,20 @@ public sealed class CommandLineArguments
 
                     argumentsBasedOnMostRecentOptions.ShowTimeElapsed = showTimeElapsed;
                     argumentsBasedOnFactoryDefaults.ShowTimeElapsed = showTimeElapsed;
+                    break;
+
+                case "--show-trigger-time":
+                case "-st":
+                case "/st":
+                    ThrowIfDuplicateSwitch(specifiedSwitches, "--show-trigger-time");
+
+                    bool showTriggerTime = GetBoolValue(
+                        arg,
+                        remainingArgs,
+                        argumentsBasedOnMostRecentOptions.ShowTriggerTime);
+
+                    argumentsBasedOnMostRecentOptions.ShowTriggerTime = showTriggerTime;
+                    argumentsBasedOnFactoryDefaults.ShowTriggerTime = showTriggerTime;
                     break;
 
                 case "--show-in-notification-area":

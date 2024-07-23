@@ -194,6 +194,11 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     private MenuItem _showTimeElapsedMenuItem = null!;
 
     /// <summary>
+    /// The "Show trigger time" <see cref="MenuItem"/>.
+    /// </summary>
+    private MenuItem _showTriggerTimeMenuItem = null!;
+
+    /// <summary>
     /// The "Shut down when expired" <see cref="MenuItem"/>.
     /// </summary>
     private MenuItem _shutDownWhenExpiredMenuItem = null!;
@@ -415,6 +420,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         // Show time elapsed
         _showTimeElapsedMenuItem.IsChecked = _timerWindow.Options.ShowTimeElapsed;
 
+        // Show trigger time
+        _showTriggerTimeMenuItem.IsChecked = _timerWindow.Options.ShowTriggerTime;
+
         // Shut down when expired
         if ((!_timerWindow.Options.LoopTimer || !_timerWindow.Timer.SupportsLooping) && !_timerWindow.Options.LoopSound)
         {
@@ -510,6 +518,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
 
         // Show time elapsed
         _timerWindow.Options.ShowTimeElapsed = _showTimeElapsedMenuItem.IsChecked;
+
+        // Show time elapsed
+        _timerWindow.Options.ShowTriggerTime = _showTriggerTimeMenuItem.IsChecked;
 
         // Shut down when expired
         if (_shutDownWhenExpiredMenuItem.IsEnabled)
@@ -821,6 +832,14 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         };
         _showTimeElapsedMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_showTimeElapsedMenuItem);
+
+        // Show trigger time
+        _showTriggerTimeMenuItem = new CheckableMenuItem
+        {
+            Header = Properties.Resources.ContextMenuShowTriggerTimeMenuItem
+        };
+        _showTriggerTimeMenuItem.Click += CheckableMenuItemClick;
+        advancedOptionsMenuItem.Items.Add(_showTriggerTimeMenuItem);
 
         advancedOptionsMenuItem.Items.Add(new Separator());
 

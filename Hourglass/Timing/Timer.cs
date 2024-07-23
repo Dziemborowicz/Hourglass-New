@@ -206,9 +206,19 @@ public sealed class Timer : TimerBase
         return string.Format(
             Resources.ResourceManager.GetEffectiveProvider(),
             Resources.ResourceManager.GetString(resourceName) ?? GetType().ToString(),
-            Options.ShowTimeElapsed ? TimeElapsed.ToNaturalString(Options.DigitalClockTime) : TimeLeft.RoundUp().ToNaturalString(Options.DigitalClockTime),
-            TimerStart,
+            GetTimeLeft(),
+            GetStartOrTriggerTime(),
             Options.Title);
+
+        string GetTimeLeft() =>
+            Options.ShowTimeElapsed
+                ? TimeElapsed.ToNaturalString(Options.DigitalClockTime)
+                : TimeLeft.RoundUp().ToNaturalString(Options.DigitalClockTime);
+
+        object? GetStartOrTriggerTime() =>
+            Options.ShowTriggerTime
+                ? FormatEndTime()
+                : TimerStart;
     }
 
     /// <summary>
@@ -472,7 +482,7 @@ public sealed class Timer : TimerBase
 
     private string FormatEndTime()
     {
-        if (EndTime is null)
+        if (!Options.ShowTriggerTime || EndTime is null)
         {
             return string.Empty;
         }
