@@ -44,7 +44,7 @@ jobs:
 
     - name: Create ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE_PORTABLE}} test report
       uses: dorny/test-reporter@v1.9.1
-      if: success() || failure()
+      if: ${{success() || failure()}}
       with:
         name: tests
         path: '**/*.trx'
