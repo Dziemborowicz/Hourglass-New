@@ -1119,7 +1119,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://chris.dziemborowicz.com/apps/hourglass/#downloads.
+        ///   Looks up a localized string similar to https://chris.dziemborowicz.com/apps/hourglass/#faq.
         /// </summary>
         public static string FAQUrl {
             get {

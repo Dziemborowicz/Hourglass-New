@@ -1400,7 +1400,7 @@ $</value>
     <comment>Notification area text if no timers</comment>
   </data>
   <data name="FAQUrl" xml:space="preserve">
-    <value>https://chris.dziemborowicz.com/apps/hourglass/#downloads</value>
+    <value>https://chris.dziemborowicz.com/apps/hourglass/#faq</value>
     <comment>FAQ URL</comment>
   </data>
   <data name="CompactTimeSpanWithDaysFormat" xml:space="preserve">

@@ -6,7 +6,7 @@
 
 This project is the modified [simple countdown timer for Windows](https://github.com/dziemborowicz/hourglass). The changes were made to the original **Hourglass** can be found [here](#hourglass-changes). The latest **Hourglass** installer or portable distribution can be downloaded [here](https://github.com/i2van/hourglass/releases/latest).
 
-Visit the [original Hourglass site](https://chris.dziemborowicz.com/apps/hourglass) to learn more. **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#downloads).
+Visit the [original Hourglass site](https://chris.dziemborowicz.com/apps/hourglass) to learn more. **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#faq).
 
 ## Hourglass Command-line Example
 
