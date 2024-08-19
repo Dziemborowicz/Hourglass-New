@@ -78,9 +78,18 @@ public sealed class AppEntry : WindowsFormsApplicationBase
         Application app = new();
         app.Startup += delegate { ShowTimerWindowsForArguments(arguments); };
         app.Exit += AppExit;
+
         app.Run();
 
         return false;
+    }
+
+    /// <inheritdoc />
+    protected override void OnRun()
+    {
+        base.OnRun();
+
+        PersistSettings();
     }
 
     /// <summary>
@@ -202,8 +211,23 @@ public sealed class AppEntry : WindowsFormsApplicationBase
     /// </summary>
     /// <param name="sender">The application.</param>
     /// <param name="e">The event data.</param>
-    private static void AppExit(object sender, ExitEventArgs e)
+    private static void AppExit(object sender, ExitEventArgs e) =>
+        PersistSettings();
+
+    private static bool _settingsPersisted;
+
+    /// <summary>
+    /// Persists settings.
+    /// </summary>
+    private static void PersistSettings()
     {
+        if (_settingsPersisted)
+        {
+            return;
+        }
+
+        _settingsPersisted = true;
+
         AppManager.Instance.Persist();
         AppManager.Instance.Dispose();
     }
