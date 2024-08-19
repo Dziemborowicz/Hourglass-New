@@ -864,6 +864,14 @@ $</value>
     <value>&amp;{0}｜{1}</value>
     <comment>The format for the timer menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
+  <data name="NotificationAreaIconResumeAllNotificationsMenuItem" xml:space="preserve">
+    <value>Resume all no&amp;tifications</value>
+    <comment>The text for the command-line resume all notifications menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+  </data>
+  <data name="NotificationAreaIconSuspendAllNotificationsMenuItem" xml:space="preserve">
+    <value>Suspend all no&amp;tifications</value>
+    <comment>The text for the command-line suspend all notifications menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+  </data>
   <data name="NotificationAreaIconPauseAllMenuItem" xml:space="preserve">
     <value>&amp;Pause all</value>
     <comment>The text for the command-line pause all menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
@@ -1321,8 +1329,8 @@ $</value>
     <comment>The text for the maximize menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="ContextMenuResetMenuItem" xml:space="preserve">
-    <value>Reset _bounds</value>
-    <comment>The text for the reset bounds menu item, where the character following the optional underscore (_) is the access key</comment>
+    <value>Reset position and _bounds</value>
+    <comment>The text for the reset position and bounds menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="ContextMenuMinimizeMenuItem" xml:space="preserve">
     <value>Mi_nimize</value>
@@ -1395,6 +1403,10 @@ $</value>
     <value>Hourglass FAQ</value>
     <comment>The text for the hyperlink that launches the FAQ from the usage dialog</comment>
   </data>
+  <data name="UsageDialogCommandLineUsageHyperlinkText" xml:space="preserve">
+    <value>Hourglass command-line usage</value>
+    <comment>The text for the hyperlink that launches the Hourglass command-line usage from the usage dialog</comment>
+  </data>
   <data name="NoTimersNotificationAreaText" xml:space="preserve">
     <value>There are currently no timers</value>
     <comment>Notification area text if no timers</comment>
@@ -1402,6 +1414,10 @@ $</value>
   <data name="FAQUrl" xml:space="preserve">
     <value>https://chris.dziemborowicz.com/apps/hourglass/#faq</value>
     <comment>FAQ URL</comment>
+  </data>
+  <data name="UsageUrl" xml:space="preserve">
+    <value>https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt</value>
+    <comment>Usage URL</comment>
   </data>
   <data name="CompactTimeSpanWithDaysFormat" xml:space="preserve">
     <value>d'.'hh':'mm':'ss</value>

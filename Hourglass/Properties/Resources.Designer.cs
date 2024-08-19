@@ -539,7 +539,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset _bounds.
+        ///   Looks up a localized string similar to Reset position and _bounds.
         /// </summary>
         public static string ContextMenuResetMenuItem {
             get {
@@ -1522,6 +1522,24 @@ namespace Hourglass.Properties {
         public static string NotificationAreaIconResumeAllMenuItem {
             get {
                 return ResourceManager.GetString("NotificationAreaIconResumeAllMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume all no&amp;tifications.
+        /// </summary>
+        public static string NotificationAreaIconResumeAllNotificationsMenuItem {
+            get {
+                return ResourceManager.GetString("NotificationAreaIconResumeAllNotificationsMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suspend all no&amp;tifications.
+        /// </summary>
+        public static string NotificationAreaIconSuspendAllNotificationsMenuItem {
+            get {
+                return ResourceManager.GetString("NotificationAreaIconSuspendAllNotificationsMenuItem", resourceCulture);
             }
         }
         
@@ -2699,6 +2717,15 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hourglass command-line usage.
+        /// </summary>
+        public static string UsageDialogCommandLineUsageHyperlinkText {
+            get {
+                return ResourceManager.GetString("UsageDialogCommandLineUsageHyperlinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command-line usage.
         /// </summary>
         public static string UsageDialogDefaultMessageText {
@@ -2722,6 +2749,15 @@ namespace Hourglass.Properties {
         public static string UsageDialogTitle {
             get {
                 return ResourceManager.GetString("UsageDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt.
+        /// </summary>
+        public static string UsageUrl {
+            get {
+                return ResourceManager.GetString("UsageUrl", resourceCulture);
             }
         }
         

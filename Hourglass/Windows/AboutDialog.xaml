@@ -16,6 +16,12 @@
         FocusManager.FocusedElement="{Binding ElementName=CloseButton, Mode=OneWay}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <Style x:Key="HyperlinkStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="15 0 0 0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
     </Window.Resources>
     <StackPanel>
         <TextBlock Background="Gray"
@@ -68,15 +74,15 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="15 0" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource HyperlinkStyle}">
                     <Hyperlink Click="UsageHyperlinkClick">
                         <Run Text="{x:Static properties:Resources.UsageDialogDefaultMessageText}"/>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Grid.Column="1" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock Grid.Column="1" Style="{StaticResource HyperlinkStyle}">
                     <Hyperlink NavigateUri="{x:Static hourglass:Consts.FAQUri}" RequestNavigate="HyperlinkRequestNavigate">
                         <Run Text="{x:Static properties:Resources.UsageDialogFAQHyperlinkText}"/>
                     </Hyperlink>
