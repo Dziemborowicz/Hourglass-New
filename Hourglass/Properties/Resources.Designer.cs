@@ -1526,20 +1526,11 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resume all no&amp;tifications.
+        ///   Looks up a localized string similar to &amp;Silent mode.
         /// </summary>
-        public static string NotificationAreaIconResumeAllNotificationsMenuItem {
+        public static string NotificationAreaIconSilentModeMenuItem {
             get {
-                return ResourceManager.GetString("NotificationAreaIconResumeAllNotificationsMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Suspend all no&amp;tifications.
-        /// </summary>
-        public static string NotificationAreaIconSuspendAllNotificationsMenuItem {
-            get {
-                return ResourceManager.GetString("NotificationAreaIconSuspendAllNotificationsMenuItem", resourceCulture);
+                return ResourceManager.GetString("NotificationAreaIconSilentModeMenuItem", resourceCulture);
             }
         }
         

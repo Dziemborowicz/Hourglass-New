@@ -864,29 +864,25 @@ $</value>
     <value>&amp;{0}｜{1}</value>
     <comment>The format for the timer menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
-  <data name="NotificationAreaIconResumeAllNotificationsMenuItem" xml:space="preserve">
-    <value>Resume all no&amp;tifications</value>
-    <comment>The text for the command-line resume all notifications menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
-  </data>
-  <data name="NotificationAreaIconSuspendAllNotificationsMenuItem" xml:space="preserve">
-    <value>Suspend all no&amp;tifications</value>
-    <comment>The text for the command-line suspend all notifications menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+  <data name="NotificationAreaIconSilentModeMenuItem" xml:space="preserve">
+    <value>&amp;Silent mode</value>
+    <comment>The text for the silent mode menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
   <data name="NotificationAreaIconPauseAllMenuItem" xml:space="preserve">
     <value>&amp;Pause all</value>
-    <comment>The text for the command-line pause all menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+    <comment>The text for the pause all menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
   <data name="NotificationAreaIconResumeAllMenuItem" xml:space="preserve">
     <value>&amp;Resume all</value>
-    <comment>The text for the command-line resume all menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+    <comment>The text for the resume all menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
   <data name="NotificationAreaTimerOptionsMenuItem" xml:space="preserve">
     <value>Timer &amp;options</value>
-    <comment>The text for the command-line open timer context menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+    <comment>The text for the open timer context menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
   <data name="NotificationAreaIconAboutMenuItem" xml:space="preserve">
     <value>&amp;About</value>
-    <comment>The text for the command-line about menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+    <comment>The text for the about menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
   <data name="NotificationAreaIconExitMenuItem" xml:space="preserve">
     <value>E&amp;xit</value>

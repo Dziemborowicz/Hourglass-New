@@ -34,7 +34,7 @@ using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 public class NotificationAreaIcon : IDisposable
 {
     /// <summary>
-    /// The timeout in milliseconds for the balloon tip that is showed when a timer has expired.
+    /// The timeout in milliseconds for the balloon tip that is shown when a timer has expired.
     /// </summary>
     private const int TimerExpiredBalloonTipTimeout = 10000;
 
@@ -54,9 +54,19 @@ public class NotificationAreaIcon : IDisposable
     private readonly Icon _normalIcon;
 
     /// <summary>
+    /// Silent notification area icon.
+    /// </summary>
+    private readonly Lazy<Icon> _silentIcon;
+
+    /// <summary>
     /// Paused notification area icon.
     /// </summary>
     private readonly Lazy<Icon> _pausedIcon;
+
+    /// <summary>
+    /// Silent paused notification area icon.
+    /// </summary>
+    private readonly Lazy<Icon> _silentPausedIcon;
 
     /// <summary>
     /// Expired notification area icon.
@@ -64,9 +74,19 @@ public class NotificationAreaIcon : IDisposable
     private readonly Lazy<Icon> _expiredIcon;
 
     /// <summary>
+    /// Silent expired notification area icon.
+    /// </summary>
+    private readonly Lazy<Icon> _silentExpiredIcon;
+
+    /// <summary>
     /// Paused and expired notification area icon.
     /// </summary>
     private readonly Lazy<Icon> _pausedExpiredIcon;
+
+    /// <summary>
+    /// Silent paused and expired notification area icon.
+    /// </summary>
+    private readonly Lazy<Icon> _silentPausedExpiredIcon;
 
     /// <summary>
     /// Indicates whether this object has been disposed.
@@ -84,10 +104,14 @@ public class NotificationAreaIcon : IDisposable
     public NotificationAreaIcon()
     {
         _normalIcon = new(Resources.TrayIcon, SystemInformation.SmallIconSize);
+        _silentIcon = new(CreateSilentIcon);
 
-        _pausedIcon        = new(() => CreateOverlayIcon(true,  false));
-        _expiredIcon       = new(() => CreateOverlayIcon(false, true));
-        _pausedExpiredIcon = new(() => CreateOverlayIcon(true,  true));
+        _pausedIcon              = new(() => CreateOverlayIcon(false, true,  false));
+        _silentPausedIcon        = new(() => CreateOverlayIcon(true,  true,  false));
+        _expiredIcon             = new(() => CreateOverlayIcon(false, false, true));
+        _silentExpiredIcon       = new(() => CreateOverlayIcon(true,  false, true));
+        _pausedExpiredIcon       = new(() => CreateOverlayIcon(false, true,  true));
+        _silentPausedExpiredIcon = new(() => CreateOverlayIcon(true,  true,  true));
 
         _notifyIcon = new()
         {
@@ -111,9 +135,17 @@ public class NotificationAreaIcon : IDisposable
 
         Settings.Default.PropertyChanged += SettingsPropertyChanged;
         IsVisible = Settings.Default.ShowInNotificationArea;
+
+        Icon CreateSilentIcon()
+        {
+            using Bitmap normalIconBitmap = _normalIcon.ToBitmap();
+            using Bitmap silentIconBitmap = (Bitmap)ToolStripRenderer.CreateDisabledImage(normalIconBitmap);
+
+            return Icon.FromHandle(silentIconBitmap.GetHicon());
+        }
     }
 
-    private Icon CreateOverlayIcon(bool paused, bool expired)
+    private Icon CreateOverlayIcon(bool silent, bool paused, bool expired)
     {
         const int diameter          = 8;
         const int circleBorderWidth = 1;
@@ -131,7 +163,7 @@ public class NotificationAreaIcon : IDisposable
         int width  = _normalIcon.Width;
         int height = _normalIcon.Height;
 
-        using Bitmap bitmap = _normalIcon.ToBitmap();
+        using Bitmap bitmap = (silent ? _silentIcon.Value : _normalIcon).ToBitmap();
         using Graphics graphics = Graphics.FromImage(bitmap);
 
         graphics.SmoothingMode = SmoothingMode.HighQuality;
@@ -226,9 +258,13 @@ public class NotificationAreaIcon : IDisposable
         _notifyIcon.Dispose();
         _normalIcon.Dispose();
 
+        DisposeIcon(_silentIcon);
         DisposeIcon(_pausedIcon);
+        DisposeIcon(_silentPausedIcon);
         DisposeIcon(_expiredIcon);
+        DisposeIcon(_silentExpiredIcon);
         DisposeIcon(_pausedExpiredIcon);
+        DisposeIcon(_silentPausedExpiredIcon);
 
         Settings.Default.PropertyChanged -= SettingsPropertyChanged;
 
@@ -533,12 +569,23 @@ public class NotificationAreaIcon : IDisposable
                 menuItem = new(Resources.NotificationAreaTimerOptionsMenuItem);
                 menuItem.Click += delegate { OpenTimerContextMenuFor(firstWindow); };
                 yield return menuItem;
-
-                yield return NewSeparatorMenuItem();
             }
 
+            menuItem = new(Resources.NotificationAreaIconSilentModeMenuItem)
+            {
+                Checked = TimerManager.SilentMode
+            };
+            menuItem.Click += delegate
+            {
+                TimerManager.ToggleSilentMode();
+                RefreshIcon();
+            };
+            yield return menuItem;
+
+            yield return NewSeparatorMenuItem();
+
             menuItem = new(Resources.NotificationAreaIconAboutMenuItem);
-            menuItem.Click += delegate { AboutDialog.ShowOrActivate(); };
+            menuItem.Click += static delegate { AboutDialog.ShowOrActivate(); };
             yield return menuItem;
 
             yield return NewSeparatorMenuItem();
@@ -676,19 +723,23 @@ public class NotificationAreaIcon : IDisposable
     /// </summary>
     public void RefreshIcon()
     {
+        bool silent  = TimerManager.SilentMode;
         bool paused  = TimerManager.GetPausableTimers(TimerState.Paused ).Any();
         bool expired = TimerManager.GetTimersByState (TimerState.Expired).Any();
 
         _notifyIcon.Icon = true switch
         {
             _ when paused && expired =>
-                _pausedExpiredIcon.Value,
+                GetIcon(_silentPausedExpiredIcon, _pausedExpiredIcon),
             _ when expired =>
-                _expiredIcon.Value,
+                GetIcon(_silentExpiredIcon, _expiredIcon),
             _ when paused =>
-                _pausedIcon.Value,
+                GetIcon(_silentPausedIcon, _pausedIcon),
             _ =>
-                _normalIcon
+                silent ? _silentIcon.Value : _normalIcon
         };
+
+        Icon GetIcon(Lazy<Icon> silentIcon, Lazy<Icon> normalIcon) =>
+            (silent ? silentIcon : normalIcon).Value;
     }
 }

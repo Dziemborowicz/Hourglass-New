@@ -43,6 +43,11 @@ public sealed class TimerManager : Manager
     }
 
     /// <summary>
+    /// Gets ot sets the silent mode when all the timers notifications are postponed.
+    /// </summary>
+    public static bool SilentMode { get; set; }
+
+    /// <summary>
     /// Gets a list of the currently loaded timers.
     /// </summary>
     public IList<Timer> Timers => _timers.AsReadOnly();
@@ -149,6 +154,24 @@ public sealed class TimerManager : Manager
     /// <returns><c>true</c> if at least one timer can be resumed.</returns>
     public static bool CanResumeAll() =>
         GetPausableTimers(TimerState.Paused).Any();
+
+    /// <summary>
+    /// Toggles the silent mode.
+    /// </summary>
+    public static void ToggleSilentMode()
+    {
+        SilentMode = !SilentMode;
+
+        if (SilentMode)
+        {
+            return;
+        }
+
+        foreach (TimerWindow timerWindow in GetTimersByState(TimerState.Expired))
+        {
+            timerWindow.BeginExpirationAnimationAndSound();
+        }
+    }
 
     /// <summary>
     /// Pauses all the running timers.

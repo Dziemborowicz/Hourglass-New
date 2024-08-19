@@ -256,17 +256,6 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// <summary>
     /// Initializes a new instance of the <see cref="TimerWindow"/> class.
     /// </summary>
-    /// <param name="timer">The timer to resume when the window loads, or <c>null</c> if no timer is to be resumed.
-    /// </param>
-    public TimerWindow(Timer timer)
-        : this()
-    {
-        _timerToResumeOnLoad = timer;
-    }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="TimerWindow"/> class.
-    /// </summary>
     /// <param name="timerStart">The <see cref="TimerStart"/> to start when the window loads, or <c>null</c> if no
     /// <see cref="TimerStart"/> is to be started.</param>
     public TimerWindow(TimerStart? timerStart)
@@ -936,7 +925,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// <summary>
     /// Begins the animation and sound used to notify the user that the timer has expired.
     /// </summary>
-    private void BeginExpirationAnimationAndSound()
+    public void BeginExpirationAnimationAndSound()
     {
         BeginExpirationAnimation();
         BeginExpirationSound();
@@ -1335,11 +1324,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     {
         switch (Options.WindowTitleMode)
         {
-            case WindowTitleMode.None:
-                // Although the title bar is hidden in this mode, the window title is still used for the Taskbar.
-                Title = Properties.Resources.TimerWindowTitle;
-                break;
-
+            case WindowTitleMode.None: // Although the title bar is hidden in this mode, the window title is still used for the Taskbar.
             case WindowTitleMode.ApplicationName:
                 Title = Properties.Resources.TimerWindowTitle;
                 break;
@@ -1437,7 +1422,11 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// <param name="e">The event data.</param>
     private void TimerExpired(object sender, EventArgs e)
     {
-        BeginExpirationAnimationAndSound();
+        if (!TimerManager.SilentMode)
+        {
+            BeginExpirationAnimationAndSound();
+        }
+
         UpdateTimeToolTip();
         UpdateNotificationAreaIcon();
     }
