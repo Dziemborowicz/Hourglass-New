@@ -578,14 +578,14 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         {
             Header = Properties.Resources.ContextMenuPauseAllMenuItem
         };
-        _pauseAllMenuItem.Click += delegate { TimerManager.PauseAll(); };
+        _pauseAllMenuItem.Click += static delegate { TimerManager.PauseAll(); };
         Items.Add(_pauseAllMenuItem);
 
         _resumeAllMenuItem = new()
         {
             Header = Properties.Resources.ContextMenuResumeAllMenuItem
         };
-        _resumeAllMenuItem.Click += delegate { TimerManager.ResumeAll(); };
+        _resumeAllMenuItem.Click += static delegate { TimerManager.ResumeAll(); };
         Items.Add(_resumeAllMenuItem);
 
         _pauseResumeAllSeparator = new Separator();
