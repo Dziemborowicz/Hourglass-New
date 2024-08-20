@@ -566,7 +566,7 @@ public class NotificationAreaIcon : IDisposable
             TimerWindow? firstWindow = windows.FirstOrDefault();
             if (firstWindow is not null)
             {
-                menuItem = new(Resources.NotificationAreaTimerOptionsMenuItem);
+                menuItem = new(Resources.NotificationAreaOptionsMenuItem);
                 menuItem.Click += delegate { OpenTimerContextMenuFor(firstWindow); };
                 yield return menuItem;
             }

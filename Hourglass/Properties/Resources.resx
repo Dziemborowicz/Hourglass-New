@@ -876,9 +876,9 @@ $</value>
     <value>&amp;Resume all</value>
     <comment>The text for the resume all menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
-  <data name="NotificationAreaTimerOptionsMenuItem" xml:space="preserve">
-    <value>Timer &amp;options</value>
-    <comment>The text for the open timer context menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
+  <data name="NotificationAreaOptionsMenuItem" xml:space="preserve">
+    <value>&amp;Options</value>
+    <comment>The text for the options menu item, where the character following the optional ampersand (&amp;) is the access key</comment>
   </data>
   <data name="NotificationAreaIconAboutMenuItem" xml:space="preserve">
     <value>&amp;About</value>

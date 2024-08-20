@@ -1562,11 +1562,11 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Timer &amp;options.
+        ///   Looks up a localized string similar to &amp;Options.
         /// </summary>
-        public static string NotificationAreaTimerOptionsMenuItem {
+        public static string NotificationAreaOptionsMenuItem {
             get {
-                return ResourceManager.GetString("NotificationAreaTimerOptionsMenuItem", resourceCulture);
+                return ResourceManager.GetString("NotificationAreaOptionsMenuItem", resourceCulture);
             }
         }
         
