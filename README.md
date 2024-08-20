@@ -6,7 +6,7 @@
 
 This project is the modified [simple countdown timer for Windows](https://github.com/dziemborowicz/hourglass). The changes were made to the original **Hourglass** can be found [here](#hourglass-changes). The latest **Hourglass** installer or portable distribution can be downloaded [here](https://github.com/i2van/hourglass/releases/latest).
 
-Visit the [original Hourglass site](https://chris.dziemborowicz.com/apps/hourglass) to learn more. **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#faq).
+Visit the [original Hourglass site](https://chris.dziemborowicz.com/apps/hourglass) to learn more. **Hourglass FAQ** can be found [here](https://github.com/i2van/hourglass/blob/develop/FAQ.md).
 
 ## Hourglass Command-line Example
 
@@ -74,7 +74,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 
 - The `Esc` shortcut minimizes the timer window.
 - The `F11` shortcut makes the timer window full screen and back.
-- The `Ctrl+N` shortcut creates a new timer window.
+- The `Ctrl`+`N` shortcut creates a new timer window.
 
 #### Context Menu
 
@@ -109,7 +109,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 
 If the **Hourglass** does not start or fails silently, delete the **Hourglass** settings.
 
-The **Hourglass** settings can be located by the following command (to run it press `Win+R` and copy-paste command below):
+The **Hourglass** settings can be located by the following command (to run it press `Win`+`R` and copy-paste command below):
 
 ```shell
 cmd /k dir "C:\Users\%USERNAME%\AppData\Local\Chris_Dziemborowicz*"

@@ -1404,7 +1404,7 @@ $</value>
     <comment>Notification area text if no timers</comment>
   </data>
   <data name="FAQUrl" xml:space="preserve">
-    <value>https://chris.dziemborowicz.com/apps/hourglass/#faq</value>
+    <value>https://github.com/i2van/hourglass/blob/develop/FAQ.md</value>
     <comment>FAQ URL</comment>
   </data>
   <data name="UsageUrl" xml:space="preserve">
