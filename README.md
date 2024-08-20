@@ -48,7 +48,7 @@ Run `hourglass -h` to display the **Hourglass** [command-line reference](https:/
 - New option `--activate-next`, `-an`, `/an`
 - New option `--show-trigger-time`, `-st`, `/st`
 
-See [usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
+See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
 
 ### UI
 
@@ -62,9 +62,10 @@ See [usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/
 - The red circle is shown over the notification area icon if at least one timer is expired.
 - The pause sign is shown over the notification area icon if at least one timer is paused.
 - The digits from `0` to `9` are the hotkeys for the timers in the notification area icon context menu.
-- The **Timer options** menu command opens the timer window options menu. The shortcut is the holding the `Shift` during right click on the notification area icon.
 - The **Pause all** menu command pauses all the running timers.
 - The **Resume all** menu command resumes all the paused timers.
+- The **Options** menu command opens the timer options menu. The shortcut is the holding the `Shift` during right click on the notification area icon.
+- The **Silent mode** disables all the timers notifications. It is not preserved between runs.
 - The **Exit** menu command asks to close all the running timer windows if the **Prompt on exit** option is on.
 
 ### Timer Windows
