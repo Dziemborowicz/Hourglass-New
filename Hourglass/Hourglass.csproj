@@ -33,10 +33,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
+    <DisableDiagnosticTracing>true</DisableDiagnosticTracing>
     <Optimize>true</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release Portable|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
+    <DisableDiagnosticTracing>true</DisableDiagnosticTracing>
     <Optimize>true</Optimize>
     <DefineConstants>PORTABLE</DefineConstants>
   </PropertyGroup>
