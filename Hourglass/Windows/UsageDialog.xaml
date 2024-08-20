@@ -58,13 +58,13 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Grid.Column="1" Style="{StaticResource HyperlinkStyle}">
-                    <Hyperlink NavigateUri="{x:Static local:Consts.FAQUri}" RequestNavigate="HyperlinkRequestNavigate">
+                    <Hyperlink NavigateUri="{x:Static local:Urls.FAQ}" RequestNavigate="HyperlinkRequestNavigate">
                         <Run Text="{x:Static properties:Resources.UsageDialogFAQHyperlinkText}"/>
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Grid.Column="2" Style="{StaticResource HyperlinkStyle}">
-                    <Hyperlink NavigateUri="{x:Static local:Consts.UsageUri}" RequestNavigate="HyperlinkRequestNavigate">
-                        <Run Text="{x:Static properties:Resources.UsageDialogCommandLineUsageHyperlinkText}"/>
+                    <Hyperlink NavigateUri="{x:Static local:Urls.Usage}" RequestNavigate="HyperlinkRequestNavigate">
+                        <Run Text="{x:Static properties:Resources.UsageDialogCommandLineUsageOnWebHyperlinkText}"/>
                     </Hyperlink>
                 </TextBlock>
                 <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">

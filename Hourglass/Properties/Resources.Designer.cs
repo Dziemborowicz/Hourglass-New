@@ -70,29 +70,20 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contribute on GitHub:.
+        ///   Looks up a localized string similar to Hourglass on Web.
         /// </summary>
-        public static string AboutDialogContributeOnGitHub {
+        public static string AboutDialogHourglassOnWeb {
             get {
-                return ResourceManager.GetString("AboutDialogContributeOnGitHub", resourceCulture);
+                return ResourceManager.GetString("AboutDialogHourglassOnWeb", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to License:.
+        ///   Looks up a localized string similar to Report a bug.
         /// </summary>
-        public static string AboutDialogLicense {
+        public static string AboutDialogReportBug {
             get {
-                return ResourceManager.GetString("AboutDialogLicense", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to More information:.
-        /// </summary>
-        public static string AboutDialogMoreInformation {
-            get {
-                return ResourceManager.GetString("AboutDialogMoreInformation", resourceCulture);
+                return ResourceManager.GetString("AboutDialogReportBug", resourceCulture);
             }
         }
         
@@ -1170,6 +1161,15 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://github.com/i2van/hourglass/issues/new.
+        /// </summary>
+        public static string NewIssueUrl {
+            get {
+                return ResourceManager.GetString("NewIssueUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1}.
         /// </summary>
         public static string NormalDateTokenDayAndMonthFormatString {
@@ -1576,6 +1576,15 @@ namespace Hourglass.Properties {
         public static string NoTimersNotificationAreaText {
             get {
                 return ResourceManager.GetString("NoTimersNotificationAreaText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/i2van/hourglass#readme.
+        /// </summary>
+        public static string ReadmeUrl {
+            get {
+                return ResourceManager.GetString("ReadmeUrl", resourceCulture);
             }
         }
         
@@ -2708,16 +2717,16 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hourglass command-line usage.
+        ///   Looks up a localized string similar to Hourglass command-line usage on Web.
         /// </summary>
-        public static string UsageDialogCommandLineUsageHyperlinkText {
+        public static string UsageDialogCommandLineUsageOnWebHyperlinkText {
             get {
-                return ResourceManager.GetString("UsageDialogCommandLineUsageHyperlinkText", resourceCulture);
+                return ResourceManager.GetString("UsageDialogCommandLineUsageOnWebHyperlinkText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Command-line usage.
+        ///   Looks up a localized string similar to Hourglass command-line usage.
         /// </summary>
         public static string UsageDialogDefaultMessageText {
             get {
@@ -2735,7 +2744,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hourglass.
+        ///   Looks up a localized string similar to Hourglass Command-line Usage.
         /// </summary>
         public static string UsageDialogTitle {
             get {

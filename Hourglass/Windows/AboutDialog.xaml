@@ -22,6 +22,11 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
+
+        <Style TargetType="{x:Type Separator}">
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
     </Window.Resources>
     <StackPanel>
         <TextBlock Background="Gray"
@@ -43,11 +48,10 @@
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>
+            <Separator/>
             <TextBlock Text="{x:Static local:AboutDialog.Copyright}"/>
-            <Separator Height="10" Background="Transparent"/>
-            <TextBlock Text="{x:Static properties:Resources.AboutDialogLicense}"/>
-            <Separator Height="10" Background="Transparent"/>
-            <Border BorderThickness="1" BorderBrush="#DDDDDD" MaxHeight="240">
+            <Separator/>
+            <Border BorderThickness="1" BorderBrush="#DDDDDD">
                 <TextBox BorderThickness="0"
                          Margin="0"
                          Padding="13 0 13 0"
@@ -59,16 +63,19 @@
                          Width="480"
                          Text="{Binding Source={x:Static local:AboutDialog.License}, Mode=OneTime}"/>
             </Border>
-            <Separator Height="10" Background="Transparent"/>
-            <TextBlock>
-                <Run Text="{x:Static properties:Resources.AboutDialogMoreInformation}"/><LineBreak/>
-                <Hyperlink NavigateUri="https://github.com/i2van/hourglass#readme" RequestNavigate="HyperlinkRequestNavigate">https://github.com/i2van/hourglass#readme</Hyperlink>
-            </TextBlock>
-            <Separator Height="10" Background="Transparent"/>
-            <TextBlock>
-                <Run Text="{x:Static properties:Resources.AboutDialogContributeOnGitHub}"/><LineBreak/>
-                <Hyperlink NavigateUri="https://github.com/i2van/hourglass" RequestNavigate="HyperlinkRequestNavigate">https://github.com/i2van/hourglass</Hyperlink>
-            </TextBlock>
+            <Separator Height="8"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <Hyperlink NavigateUri="{x:Static hourglass:Urls.Readme}" RequestNavigate="HyperlinkRequestNavigate">
+                        <Run Text="{x:Static properties:Resources.AboutDialogHourglassOnWeb}"/>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Style="{StaticResource HyperlinkStyle}">
+                    <Hyperlink NavigateUri="{x:Static hourglass:Urls.NewIssue}" RequestNavigate="HyperlinkRequestNavigate">
+                        <Run Text="{x:Static properties:Resources.AboutDialogReportBug}"/>
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
         </StackPanel>
         <Border Background="#F9F9F9" BorderBrush="#DDDDDD" BorderThickness="0 1 0 0">
             <Grid>
@@ -83,7 +90,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Grid.Column="1" Style="{StaticResource HyperlinkStyle}">
-                    <Hyperlink NavigateUri="{x:Static hourglass:Consts.FAQUri}" RequestNavigate="HyperlinkRequestNavigate">
+                    <Hyperlink NavigateUri="{x:Static hourglass:Urls.FAQ}" RequestNavigate="HyperlinkRequestNavigate">
                         <Run Text="{x:Static properties:Resources.UsageDialogFAQHyperlinkText}"/>
                     </Hyperlink>
                 </TextBlock>

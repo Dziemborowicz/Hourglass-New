@@ -953,12 +953,12 @@ $</value>
     <comment>The text for the close button in the command-line usage dialog, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="UsageDialogDefaultMessageText" xml:space="preserve">
-    <value>Command-line usage</value>
-    <comment>The default message displayed in the command-line usage dialog</comment>
+    <value>Hourglass command-line usage</value>
+    <comment>The default message displayed in the Hourglass command-line usage dialog</comment>
   </data>
   <data name="UsageDialogTitle" xml:space="preserve">
-    <value>Hourglass</value>
-    <comment>The window title for the command-line usage dialog</comment>
+    <value>Hourglass Command-line Usage</value>
+    <comment>The window title for the Hourglass command-line usage dialog</comment>
   </data>
   <data name="TimerTimerExpired" xml:space="preserve">
     <value>Timer expired</value>
@@ -1367,21 +1367,17 @@ $</value>
     <value>_Close</value>
     <comment>The text for the close button in the about dialog, where the character following the optional underscore (_) is the access key</comment>
   </data>
-  <data name="AboutDialogContributeOnGitHub" xml:space="preserve">
-    <value>Contribute on GitHub:</value>
-    <comment>The label used as a heading above the app GitHub address in the about dialog</comment>
-  </data>
   <data name="AboutDialogUpdateAvailableText" xml:space="preserve">
     <value>Update available</value>
     <comment>The text for update available link in the about dialog</comment>
   </data>
-  <data name="AboutDialogLicense" xml:space="preserve">
-    <value>License:</value>
-    <comment>The label used as a heading above the app license text box in the about dialog</comment>
+  <data name="AboutDialogHourglassOnWeb" xml:space="preserve">
+    <value>Hourglass on Web</value>
+    <comment>The text for Hourglass on Web link in the about dialog</comment>
   </data>
-  <data name="AboutDialogMoreInformation" xml:space="preserve">
-    <value>More information:</value>
-    <comment>The label used as a heading above the app website address in the about dialog</comment>
+  <data name="AboutDialogReportBug" xml:space="preserve">
+    <value>Report a bug</value>
+    <comment>The text for report a bug link in the about dialog</comment>
   </data>
   <data name="AboutDialogTitle" xml:space="preserve">
     <value>About Hourglass</value>
@@ -1397,11 +1393,11 @@ $</value>
   </data>
   <data name="UsageDialogFAQHyperlinkText" xml:space="preserve">
     <value>Hourglass FAQ</value>
-    <comment>The text for the hyperlink that launches the FAQ from the usage dialog</comment>
+    <comment>The text for the hyperlink that opens the Hourglass FAQ from the usage dialog</comment>
   </data>
-  <data name="UsageDialogCommandLineUsageHyperlinkText" xml:space="preserve">
-    <value>Hourglass command-line usage</value>
-    <comment>The text for the hyperlink that launches the Hourglass command-line usage from the usage dialog</comment>
+  <data name="UsageDialogCommandLineUsageOnWebHyperlinkText" xml:space="preserve">
+    <value>Hourglass command-line usage on Web</value>
+    <comment>The text for the hyperlink that opens the Hourglass command-line usage on Web from the usage dialog</comment>
   </data>
   <data name="NoTimersNotificationAreaText" xml:space="preserve">
     <value>There are currently no timers</value>
@@ -1413,7 +1409,15 @@ $</value>
   </data>
   <data name="UsageUrl" xml:space="preserve">
     <value>https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt</value>
-    <comment>Usage URL</comment>
+    <comment>Command-line usage URL</comment>
+  </data>
+  <data name="ReadmeUrl" xml:space="preserve">
+    <value>https://github.com/i2van/hourglass#readme</value>
+    <comment>Readme URL</comment>
+  </data>
+  <data name="NewIssueUrl" xml:space="preserve">
+    <value>https://github.com/i2van/hourglass/issues/new</value>
+    <comment>New issue URL</comment>
   </data>
   <data name="CompactTimeSpanWithDaysFormat" xml:space="preserve">
     <value>d'.'hh':'mm':'ss</value>
