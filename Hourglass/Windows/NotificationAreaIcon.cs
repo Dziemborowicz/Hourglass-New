@@ -569,20 +569,20 @@ public class NotificationAreaIcon : IDisposable
                 menuItem = new(Resources.NotificationAreaOptionsMenuItem);
                 menuItem.Click += delegate { OpenTimerContextMenuFor(firstWindow); };
                 yield return menuItem;
+
+                menuItem = new(Resources.NotificationAreaIconSilentModeMenuItem)
+                {
+                    Checked = TimerManager.SilentMode
+                };
+                menuItem.Click += delegate
+                {
+                    TimerManager.ToggleSilentMode();
+                    RefreshIcon();
+                };
+                yield return menuItem;
+
+                yield return NewSeparatorMenuItem();
             }
-
-            menuItem = new(Resources.NotificationAreaIconSilentModeMenuItem)
-            {
-                Checked = TimerManager.SilentMode
-            };
-            menuItem.Click += delegate
-            {
-                TimerManager.ToggleSilentMode();
-                RefreshIcon();
-            };
-            yield return menuItem;
-
-            yield return NewSeparatorMenuItem();
 
             menuItem = new(Resources.NotificationAreaIconAboutMenuItem);
             menuItem.Click += static delegate { AboutDialog.ShowOrActivate(); };
