@@ -809,7 +809,7 @@ $</value>
     <comment>The text for the loop timer menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="ContextMenuNewTimerMenuItem" xml:space="preserve">
-    <value>New time_r</value>
+    <value>_New timer</value>
     <comment>The text for the new timer menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="ContextMenuNoRecentInputsMenuItem" xml:space="preserve">
@@ -1324,9 +1324,9 @@ $</value>
     <value>Ma_ximize</value>
     <comment>The text for the maximize menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
-  <data name="ContextMenuResetMenuItem" xml:space="preserve">
-    <value>Reset position and _bounds</value>
-    <comment>The text for the reset position and bounds menu item, where the character following the optional underscore (_) is the access key</comment>
+  <data name="ContextMenuResetPositionAndSizeMenuItem" xml:space="preserve">
+    <value>_Reset position and size</value>
+    <comment>The text for the reset position and size menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="ContextMenuMinimizeMenuItem" xml:space="preserve">
     <value>Mi_nimize</value>

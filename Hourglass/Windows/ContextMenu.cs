@@ -909,7 +909,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         // Reset
         MenuItem resetMenuItem = new()
         {
-            Header = Properties.Resources.ContextMenuResetMenuItem
+            Header = Properties.Resources.ContextMenuResetPositionAndSizeMenuItem
         };
         resetMenuItem.Click += ResetMenuItemClick;
         Items.Add(resetMenuItem);

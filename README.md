@@ -81,7 +81,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - All the timer window commands are available in the timer window context menu.
 - The shortcuts are displayed in the timer window context menu.
 - The **Window title** submenu is available directly from the timer window context menu.
-- The **Reset bounds** menu command sets the timer window default position and size.
+- The **Reset position and size** menu command sets the timer window default position and size.
 - The **Restore**, **Minimize** and **Maximize** timer window commands are always present in the timer window context menu.
 - The **Advanced options** / **Display time in the digital clock format** timer window context menu option toggles the displayed time digital clock time format. The command-line option is `--digital-clock-time`, `-c`, `/c`
 - The **Advanced options** / **Show trigger time** timer window context menu option shows the trigger time in the timer window and in the notification area context menu. The command-line option is `--show-trigger-time`, `-st`, `/st`

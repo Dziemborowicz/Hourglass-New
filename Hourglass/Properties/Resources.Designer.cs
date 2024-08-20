@@ -431,7 +431,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New time_r.
+        ///   Looks up a localized string similar to _New timer.
         /// </summary>
         public static string ContextMenuNewTimerMenuItem {
             get {
@@ -539,11 +539,11 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset position and _bounds.
+        ///   Looks up a localized string similar to _Reset position and size.
         /// </summary>
-        public static string ContextMenuResetMenuItem {
+        public static string ContextMenuResetPositionAndSizeMenuItem {
             get {
-                return ResourceManager.GetString("ContextMenuResetMenuItem", resourceCulture);
+                return ResourceManager.GetString("ContextMenuResetPositionAndSizeMenuItem", resourceCulture);
             }
         }
         
