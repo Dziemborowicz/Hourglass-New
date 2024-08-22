@@ -16,7 +16,7 @@ public abstract class Manager : IDisposable
     /// <summary>
     /// Gets a value indicating whether this object has been disposed.
     /// </summary>
-    protected bool Disposed { get; private set; }
+    public bool Disposed { get; private set; }
 
     /// <summary>
     /// Initializes the class.

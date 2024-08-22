@@ -20,7 +20,6 @@ using Windows;
 
 using Microsoft.VisualBasic.ApplicationServices;
 
-using ExitEventArgs = System.Windows.ExitEventArgs;
 using StartupEventArgs = Microsoft.VisualBasic.ApplicationServices.StartupEventArgs;
 
 /// <summary>
@@ -39,7 +38,7 @@ public sealed class AppEntry : WindowsFormsApplicationBase
     /// <summary>
     /// Initializes a new instance of the <see cref="AppEntry"/> class.
     /// </summary>
-    public AppEntry()
+    private AppEntry()
     {
         IsSingleInstance = true;
     }
@@ -77,19 +76,21 @@ public sealed class AppEntry : WindowsFormsApplicationBase
 
         Application app = new();
         app.Startup += delegate { ShowTimerWindowsForArguments(arguments); };
-        app.Exit += AppExit;
+        app.SessionEnding += ExitEventHandler;
+        app.Exit += ExitEventHandler;
 
         app.Run();
 
         return false;
-    }
 
-    /// <inheritdoc />
-    protected override void OnRun()
-    {
-        base.OnRun();
-
-        PersistSettings();
+        static void ExitEventHandler(object sender, EventArgs e)
+        {
+            if (!AppManager.Instance.Disposed)
+            {
+                AppManager.Instance.Persist();
+                AppManager.Instance.Dispose();
+            }
+        }
     }
 
     /// <summary>
@@ -204,31 +205,5 @@ public sealed class AppEntry : WindowsFormsApplicationBase
         Settings.Default.OpenSavedTimersOnStartup = arguments.OpenSavedTimers;
         Settings.Default.Prefer24HourTime = arguments.Prefer24HourTime;
         Settings.Default.ActivateNextWindow = arguments.ActivateNextWindow;
-    }
-
-    /// <summary>
-    /// Invoked just before the application shuts down, and cannot be canceled.
-    /// </summary>
-    /// <param name="sender">The application.</param>
-    /// <param name="e">The event data.</param>
-    private static void AppExit(object sender, ExitEventArgs e) =>
-        PersistSettings();
-
-    private static bool _settingsPersisted;
-
-    /// <summary>
-    /// Persists settings.
-    /// </summary>
-    private static void PersistSettings()
-    {
-        if (_settingsPersisted)
-        {
-            return;
-        }
-
-        _settingsPersisted = true;
-
-        AppManager.Instance.Persist();
-        AppManager.Instance.Dispose();
     }
 }
