@@ -691,8 +691,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             string GetTimerStartTime() =>
                 Timer.TimerStart?.OriginalInput ??
                 Timer.TimerStart?.ToString() ??
-                LastTimerStart.OriginalInput ??
-                LastTimerStart.ToString();
+                LastTimerStart.OriginalInput;
         }
     }
 
