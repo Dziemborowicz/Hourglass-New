@@ -1,6 +1,6 @@
 ﻿# Hourglass Frequently Asked Questions
 
-Original **Hourglass FAQ** can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#faq).
+Original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#faq).
 
 - [How do I start, stop, pause or resume a timer?](#how-do-i-start-stop-pause-or-resume-a-timer)
 - [What formats are supported when entering a duration or date and time?](#what-formats-are-supported-when-entering-a-duration-or-date-and-time)
@@ -189,7 +189,7 @@ Right-click on any empty space in the timer window and check **Always on top**.
 
 ## How do I run a timer in full screen mode?
 
-To enter full-screen mode, press `Alt`+`Enter` or `F11`; double-click on any empty space in the timer window or right-click on any empty space in the Hourglass window and check **Full screen**.
+To enter full-screen mode, press `Alt`+`Enter` or `F11`; double-click on any empty space in the timer window or right-click on any empty space in the **Hourglass** window and check **Full screen**.
 
 To exit full-screen mode, press `Alt`+`Enter` or `F11` again; double-click on any empty space in the timer window or right-click on any empty space in the timer window and uncheck **Full screen**.
 
@@ -199,9 +199,9 @@ Right-click on any empty space in the timer window and uncheck **Prompt on exit
 
 ## How do I minimize the timer window to the notification area?
 
-Right-click on any empty space in the timer window and check **Show in notification area**. Now when you minimize the timer window, it will be hidden in the notification area. To restore a hidden timer window, double-click on the Hourglass icon in the notification area.
+Right-click on any empty space in the timer window and check **Show in notification area**. Now when you minimize the timer window, it will be hidden in the notification area. To restore all the timer windows, double-click on the **Hourglass** icon in the notification area.
 
-To remove the Hourglass icon from the notification area and restore any hidden timer windows, right-click on any empty space in the timer window and uncheck **Show in notification area**.
+To remove the **Hourglass** icon from the notification area and restore any hidden timer windows, right-click on any empty space in the timer window and uncheck **Show in notification area**.
 
 ## How do I repeat the timer automatically when it expires?
 
@@ -221,7 +221,7 @@ Right-click on any empty space in the timer window and check **Shut down when e
 
 ## How do I start a timer for a duration or until a date and time that I recently entered?
 
-When you relaunch Hourglass, the last duration or date and time that you entered will be automatically populated in the input text field. To start a countdown for that duration or until that date and time, simply press `Enter`.
+When you relaunch **Hourglass**, the last duration or date and time that you entered will be automatically populated in the input text field. To start a countdown for that duration or until that date and time, simply press `Enter`.
 
 To start a timer for another duration or until another date and time that you recently entered, right-click on any empty space in the timer window and select the duration or date and time from the **Recent inputs** submenu.
 
@@ -231,11 +231,11 @@ Right-click on any empty space in the timer window and select **Clear recent in
 
 ## How do I resume a timer that I accidentally closed?
 
-Hourglass keeps track of running timers that you close. To resume a saved timer, right-click on any empty space in the timer window and select the timer from the **Saved timers** submenu.
+**Hourglass** keeps track of running timers that you have closed. To resume a saved timer, right-click on any empty space in the timer window and select the timer from the **Saved timers** submenu.
 
 You can also resume all saved timers by checking **Open all saved timers** in the **Saved timers** submenu.
 
-And you can set Hourglass to automatically open saved timers when it starts up by checking **Open saved timers** on startup in the **Advanced options** submenu.
+And you can set **Hourglass** to automatically open saved timers when it starts up by checking **Open saved timers** on startup in the **Advanced options** submenu.
 
 ## How do I clear saved timers?
 
@@ -285,15 +285,15 @@ Right-click on any empty space in the timer window and select a sound from the 
 
 ## How do I add a custom notification sound?
 
-Save the sound file to the folder where you installed Hourglass (typically `%PROGRAMFILES%\Hourglass`) or to the `%LOCALAPPDATA%\Hourglass` directory or to the `Sounds` subdirectory.
+Save the sound file to the folder where you installed **Hourglass** (typically `%PROGRAMFILES%\Hourglass`) or to the `%LOCALAPPDATA%\Hourglass` directory or to the `Sounds` subdirectory.
 
-Your sound file should then appear when you right-click on any empty space in the Hourglass window and select the **Sound** submenu.
+Your sound file should then appear when you right-click on any empty space in the **Hourglass** window and select the **Sound** submenu.
 
 The supported formats are `.aac`, `.m4a`, `.mid`, `.midi`, `.mp3`, `.wav` and `.wma`. If your sound file is not in one of the supported formats, you should convert it first.
 
 ## How do I remove a custom notification sound?
 
-Delete the sound file from the folder where you installed Hourglass (typically `%PROGRAMFILES%\Hourglass`). Be careful not to delete any other files.
+Delete the sound file from the folder where you installed **Hourglass** (typically `%PROGRAMFILES%\Hourglass`). Be careful not to delete any other files.
 
 ## How do I loop the notification sound?
 
@@ -301,11 +301,11 @@ Right-click on any empty space in the timer window and check **Loop sound** fr
 
 ## How do I stop the timer keeping the computer from going to sleep?
 
-By default, Hourglass keeps the computer from going to sleep so that progress can be displayed and the notification sound can be played.
+By default, **Hourglass** keeps the computer from going to sleep so that progress can be displayed and the notification sound can be played.
 
-To stop Hourglass keeping the computer from going to sleep, right-click on any empty space in the timer window and check **Do not keep computer awake** in the **Advanced options** submenu.
+To stop **Hourglass** keeping the computer from going to sleep, right-click on any empty space in the timer window and check **Do not keep computer awake** in the **Advanced options** submenu.
 
-If the computer goes to sleep while a timer is running, Hourglass will try to wake the computer around the time the timer will expire so the notification sound can be played.
+If the computer goes to sleep while a timer is running, **Hourglass** will try to wake the computer around the time the timer will expire so the notification sound can be played.
 
 ## How do I show the time elapsed rather than the time left?
 
@@ -313,7 +313,7 @@ Right-click on any empty space in the timer window and check **Show elapsed tim
 
 ## How do I create a shortcut that automatically starts a timer with Hourglass?
 
-To create a shortcut, right-click on your Desktop or the folder where you want to create the shortcut and select **Shortcut** from the **New** submenu. Enter the location where you installed `Hourglass.exe` (typically `%PROGRAMFILES%\Hourglass\Hourglass.exe`) followed by the duration or date and time for your countdown in quotes.
+To create a shortcut, right-click on your Desktop or the folder where you want to create the shortcut and select **Shortcut** from the **New** submenu. Enter the location where `Hourglass.exe` is (typically `%PROGRAMFILES%\Hourglass\Hourglass.exe`) followed by the duration or date and time for your countdown in quotes.
 
 Then click **Next**, give your shortcut a name and click **Finish** to create the shortcut.
 
@@ -321,7 +321,7 @@ You can also specify additional [command-line](https://github.com/i2van/hourglas
 
 ## What command-line arguments does Hourglass accept?
 
-You can launch Hourglass and immediately start a timer by running `Hourglass.exe "<duration or date and time>"`. For example, to launch Hourglass and start a 5-minute timer, run `Hourglass.exe "5 minutes"`.
+You can launch **Hourglass** and immediately start a timer by running `Hourglass.exe "<duration or date and time>"`. For example, to launch **Hourglass** and start a 5-minute timer, run `Hourglass.exe "5 minutes"`.
 
 You can also set any option that you can set using the user interface by specifying additional command-line arguments. To view a full list of command-line arguments, run `Hourglass.exe --help` or click [here](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt).
 
