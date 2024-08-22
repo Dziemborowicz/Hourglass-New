@@ -6,7 +6,7 @@
 
 This project is the modified [simple countdown timer for Windows](https://github.com/dziemborowicz/hourglass). The changes were made to the original **Hourglass** can be found [here](#hourglass-changes). The latest **Hourglass** installer or portable distribution can be downloaded [here](https://github.com/i2van/hourglass/releases/latest).
 
-Visit the [original Hourglass site](https://chris.dziemborowicz.com/apps/hourglass) to learn more. **Hourglass** FAQ can be found [here](https://github.com/i2van/hourglass/blob/develop/FAQ.md).
+Visit the [original Hourglass site](https://chris.dziemborowicz.com/apps/hourglass) to learn more. The **Hourglass** FAQ can be found [here](https://github.com/i2van/hourglass/blob/develop/FAQ.md).
 
 ## Hourglass Command-line Example
 
@@ -38,6 +38,24 @@ Run `hourglass -h` to display the **Hourglass** [command-line reference](https:/
 ### Installer
 
 - Adds the **Hourglass** executable path to the [Windows App Paths](https://learn.microsoft.com/en-us/windows/win32/shell/app-registration#using-the-app-paths-subkey), so the **Hourglass** [command-line](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) is available out of the box.
+
+### Portable
+
+#### Ngen Support
+
+Processing the **Hourglass** with the [Native Image Generator (Ngen.exe)](https://learn.microsoft.com/en-us/dotnet/framework/tools/ngen-exe-native-image-generator) speeds up the **Hourglass** startup.
+
+- Generate the **Hourglass** native image and its dependencies and install in the native image cache:
+
+```shell
+ngen-Hourglass.bat install
+```
+
+- Delete the native images of the **Hourglass** and its dependencies from the native image cache:
+
+```shell
+ngen-Hourglass.bat uninstall
+```
 
 ### Command-line
 

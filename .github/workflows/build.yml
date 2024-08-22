@@ -67,4 +67,5 @@ jobs:
         path: |
           ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/net48/${{env.PROJECT}}.exe
           ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/net48/${{env.PROJECT}}.exe.config
+          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/net48/ngen-${{env.PROJECT}}.bat
         retention-days: ${{env.RETENTION_DAYS}}
