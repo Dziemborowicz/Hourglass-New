@@ -51,7 +51,7 @@ public sealed class DateTimeToken : TimerStartToken
     /// <summary>
     /// Gets a value indicating whether the token is valid.
     /// </summary>
-    public override bool IsValid => DateToken?.IsValid == true && TimeToken?.IsValid == true;
+    protected override bool IsValid => DateToken?.IsValid == true && TimeToken?.IsValid == true;
 
     /// <summary>
     /// Returns the end time for a timer started with this token at a specified time.
@@ -85,7 +85,7 @@ public sealed class DateTimeToken : TimerStartToken
     /// </summary>
     /// <param name="provider">An <see cref="IFormatProvider"/> to use.</param>
     /// <returns>A string that represents the current object.</returns>
-    public override string ToString(IFormatProvider provider)
+    protected override string ToString(IFormatProvider provider)
     {
         try
         {

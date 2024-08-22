@@ -57,7 +57,7 @@ public sealed class TimeSpanToken : TimerStartToken
     /// <summary>
     /// Gets a value indicating whether the token is valid.
     /// </summary>
-    public override bool IsValid =>
+    protected override bool IsValid =>
         Years >= 0
         && Months >= 0
         && Weeks >= 0
@@ -99,7 +99,7 @@ public sealed class TimeSpanToken : TimerStartToken
     /// </summary>
     /// <param name="provider">An <see cref="IFormatProvider"/> to use.</param>
     /// <returns>A string that represents the current object.</returns>
-    public override string ToString(IFormatProvider provider)
+    protected override string ToString(IFormatProvider provider)
     {
         try
         {

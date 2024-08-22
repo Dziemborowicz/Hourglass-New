@@ -27,7 +27,7 @@ public abstract class TimerStartToken
     /// <summary>
     /// Gets a value indicating whether the token is valid.
     /// </summary>
-    public abstract bool IsValid { get; }
+    protected abstract bool IsValid { get; }
 
     /// <summary>
     /// Returns a <see cref="TimerStartToken"/> for the specified string, or <c>null</c> if the string is not a
@@ -49,14 +49,14 @@ public abstract class TimerStartToken
     /// <param name="provider">An <see cref="IFormatProvider"/>.</param>
     /// <returns>A <see cref="TimerStartToken"/> for the specified string, or <c>null</c> if the string is not a
     /// supported representation of a <see cref="TimerStartToken"/>.</returns>
-    public static TimerStartToken? FromString(string str, IFormatProvider provider)
+    private static TimerStartToken? FromString(string? str, IFormatProvider provider)
     {
-        str = str.Trim();
-
         if (string.IsNullOrWhiteSpace(str))
         {
             return null;
         }
+
+        str = str!.Trim();
 
         string preferDateTimePattern = Resources.ResourceManager.GetString(nameof(Resources.TimerStartTokenUseDateTimeParserPattern), provider);
         if (Regex.IsMatch(str, preferDateTimePattern, Parser.RegexOptions))
@@ -110,7 +110,7 @@ public abstract class TimerStartToken
     /// </summary>
     /// <param name="provider">An <see cref="IFormatProvider"/> to use.</param>
     /// <returns>A string that represents the current object.</returns>
-    public abstract string ToString(IFormatProvider provider);
+    protected abstract string ToString(IFormatProvider provider);
 
     /// <summary>
     /// Throws an <see cref="InvalidOperationException"/> if <see cref="IsValid"/> is <c>false</c>.
