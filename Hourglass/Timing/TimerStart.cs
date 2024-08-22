@@ -39,6 +39,11 @@ public sealed class TimerStart
     private readonly TimerStartToken _timerStartToken;
 
     /// <summary>
+    /// The original timer input.
+    /// </summary>
+    public string OriginalInput => _timerStartToken.OriginalInput;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="TimerStart"/> class.
     /// </summary>
     /// <param name="timerStartToken">A <see cref="TimerStartToken"/>.</param>

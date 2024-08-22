@@ -30,6 +30,11 @@ public abstract class TimerStartToken
     protected abstract bool IsValid { get; }
 
     /// <summary>
+    /// The original timer input.
+    /// </summary>
+    public string OriginalInput { get; set; } = null!;
+
+    /// <summary>
     /// Returns a <see cref="TimerStartToken"/> for the specified string, or <c>null</c> if the string is not a
     /// supported representation of a <see cref="TimerStartToken"/>.
     /// </summary>
@@ -198,6 +203,8 @@ public abstract class TimerStartToken
             {
                 throw new FormatException();
             }
+
+            timerStartToken.OriginalInput = str;
 
             return timerStartToken;
         }
