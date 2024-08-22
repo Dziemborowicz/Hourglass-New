@@ -285,7 +285,7 @@ Right-click on any empty space in the timer window and select a sound from the 
 
 ## How do I add a custom notification sound?
 
-Save the sound file to the folder where you installed **Hourglass** (typically `%PROGRAMFILES%\Hourglass`) or to the `%LOCALAPPDATA%\Hourglass` directory or to the `Sounds` subdirectory.
+Save the sound file to the folder where you installed **Hourglass** (typically `%PROGRAMFILES(x86)%\Hourglass`) or to the `%LOCALAPPDATA%\Hourglass` directory or to the `Sounds` subdirectory.
 
 Your sound file should then appear when you right-click on any empty space in the **Hourglass** window and select the **Sound** submenu.
 
@@ -293,7 +293,7 @@ The supported formats are `.aac`, `.m4a`, `.mid`, `.midi`, `.mp3`, `.wav` and `.
 
 ## How do I remove a custom notification sound?
 
-Delete the sound file from the folder where you installed **Hourglass** (typically `%PROGRAMFILES%\Hourglass`). Be careful not to delete any other files.
+Delete the sound file from the folder where you installed **Hourglass** (typically `%PROGRAMFILES(x86)%\Hourglass`). Be careful not to delete any other files.
 
 ## How do I loop the notification sound?
 
@@ -313,7 +313,7 @@ Right-click on any empty space in the timer window and check **Show elapsed tim
 
 ## How do I create a shortcut that automatically starts a timer with Hourglass?
 
-To create a shortcut, right-click on your Desktop or the folder where you want to create the shortcut and select **Shortcut** from the **New** submenu. Enter the location where `Hourglass.exe` is (typically `%PROGRAMFILES%\Hourglass\Hourglass.exe`) followed by the duration or date and time for your countdown in quotes.
+To create a shortcut, right-click on your Desktop or the folder where you want to create the shortcut and select **Shortcut** from the **New** submenu. Enter the location where `Hourglass.exe` is (typically `%PROGRAMFILES(x86)%\Hourglass\Hourglass.exe`) followed by the duration or date and time for your countdown in quotes.
 
 Then click **Next**, give your shortcut a name and click **Finish** to create the shortcut.
 
