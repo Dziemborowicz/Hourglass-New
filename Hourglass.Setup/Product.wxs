@@ -17,7 +17,7 @@
                 <Directory Id="APPLICATIONFOLDER" Name="Hourglass">
                     <Component Id="ApplicationExecutableComponent" Guid="e34f576c-a189-4e71-a417-34fe00a557b0">
                         <File Id="ApplicationExecutableFile" Source="$(var.Hourglass.TargetPath)" Checksum="yes" KeyPath="yes">
-                            <netfx:NativeImage Id="ApplicationExecutableNativeImage" Platform="all" Priority="0" AppBaseDirectory="APPLICATIONFOLDER"/>
+                            <netfx:NativeImage Id="ngen_Hourglass.exe" Platform="all" Priority="0" AppBaseDirectory="APPLICATIONFOLDER"/>
                             <Shortcut Id="ApplicationShortcut" Directory="ApplicationShortcutFolder" Name="Hourglass" Description="A simple countdown timer" Advertise="yes" Icon="AppIcon.exe" WorkingDirectory="APPLICATIONFOLDER"/>
                         </File>
                         <RegistryKey Root="HKMU" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\[ApplicationExe]">
