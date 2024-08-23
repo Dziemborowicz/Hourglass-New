@@ -1,10 +1,10 @@
 ﻿# Hourglass Frequently Asked Questions
 
-Original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#faq).
+The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#faq).
 
 - [How do I start, stop, pause or resume a timer?](#how-do-i-start-stop-pause-or-resume-a-timer)
 - [What formats are supported when entering a duration or date and time?](#what-formats-are-supported-when-entering-a-duration-or-date-and-time)
-- [How do I start a second timer with Hourglass?](#how-do-i-start-a-second-timer-with-hourglass)
+- [How do I start a second timer with the Hourglass?](#how-do-i-start-a-second-timer-with-the-hourglass)
 - [How do I keep the timer window on top of other windows?](#how-do-i-keep-the-timer-window-on-top-of-other-windows)
 - [How do I run a timer in full screen mode?](#how-do-i-run-a-timer-in-full-screen-mode)
 - [How do I stop the timer from prompting me when I close the window?](#how-do-i-stop-the-timer-from-prompting-me-when-i-close-the-window)
@@ -30,8 +30,10 @@ Original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/a
 - [How do I loop the notification sound?](#how-do-i-loop-the-notification-sound)
 - [How do I stop the timer keeping the computer from going to sleep?](#how-do-i-stop-the-timer-keeping-the-computer-from-going-to-sleep)
 - [How do I show the time elapsed rather than the time left?](#how-do-i-show-the-time-elapsed-rather-than-the-time-left)
-- [How do I create a shortcut that automatically starts a timer with Hourglass?](#how-do-i-create-a-shortcut-that-automatically-starts-a-timer-with-hourglass)
-- [What command-line arguments does Hourglass accept?](#what-command-line-arguments-does-hourglass-accept)
+- [How do I create a shortcut that automatically starts a timer with the Hourglass?](#how-do-i-create-a-shortcut-that-automatically-starts-a-timer-with-the-hourglass)
+- [What command-line arguments does the Hourglass accept?](#what-command-line-arguments-does-the-hourglass-accept)
+- [How to speed up the Portable Hourglass startup?](#how-to-speed-up-the-portable-hourglass-startup)
+- [What should I do if the Hourglass does not start?](#what-should-i-do-if-the-hourglass-does-not-start)
 
 ## How do I start, stop, pause or resume a timer?
 
@@ -179,7 +181,7 @@ You can omit the `at` or `on` separating the date, weekday or tomorrow and t
 - `tomorrow 2 pm` - count down until 2 pm tomorrow
 - `2 pm tomorrow` - count down until 2 pm tomorrow
 
-## How do I start a second timer with Hourglass?
+## How do I start a second timer with the Hourglass?
 
 Right-click on any empty space in the timer window and select **New timer**.
 
@@ -311,7 +313,7 @@ If the computer goes to sleep while a timer is running, the **Hourglass** will t
 
 Right-click on any empty space in the timer window and check **Show elapsed time instead of time left** in the **Advanced options** submenu.
 
-## How do I create a shortcut that automatically starts a timer with Hourglass?
+## How do I create a shortcut that automatically starts a timer with the Hourglass?
 
 To create a shortcut, right-click on your Desktop or the folder where you want to create the shortcut and select **Shortcut** from the **New** submenu. Enter the location where `Hourglass.exe` is (typically `%PROGRAMFILES(x86)%\Hourglass\Hourglass.exe`) followed by the duration or date and time for your countdown in quotes.
 
@@ -319,9 +321,40 @@ Then click **Next**, give your shortcut a name and click **Finish** to create
 
 You can also specify additional [command-line](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) arguments to set other options for the timer.
 
-## What command-line arguments does Hourglass accept?
+## What command-line arguments does the Hourglass accept?
 
 You can launch the **Hourglass** and immediately start a timer by running `Hourglass.exe "<duration or date and time>"`. For example, to launch the **Hourglass** and start a 5-minute timer, run `Hourglass.exe "5 minutes"`.
 
 You can also set any option that you can set using the user interface by specifying additional command-line arguments. To view a full list of command-line arguments, run `Hourglass.exe --help` or click [here](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt).
 
+## How to speed up the Portable Hourglass startup?
+
+Processing the **Hourglass** with the [Native Image Generator (Ngen.exe)](https://learn.microsoft.com/en-us/dotnet/framework/tools/ngen-exe-native-image-generator) speeds up the **Hourglass** startup.
+
+To run script as an **Administrator** press `Win`+`X` and select the **Windows PowerShell (Admin)** or **Command Prompt (Admin)**. Copy script full path to the console opened and execute one of the following:
+
+- Generate the **Hourglass** native image and its dependencies and install in the native image cache:
+
+```shell
+ngen-Hourglass.bat install
+```
+
+- Delete the native images of the **Hourglass** and its dependencies from the native image cache:
+
+```shell
+ngen-Hourglass.bat uninstall
+```
+
+## What should I do if the Hourglass does not start?
+
+If the **Hourglass** does not start or fails silently, delete the **Hourglass** settings.
+
+The **Hourglass** settings can be located by the following command (to run it press `Win`+`R` and copy-paste command below):
+
+```shell
+cmd /k dir "C:\Users\%USERNAME%\AppData\Local\Chris_Dziemborowicz*"
+```
+
+The settings are stored into the corresponding `hourglass.EXE` subdirectories.
+
+The **Hourglass Portable** keeps settings next to the executable.

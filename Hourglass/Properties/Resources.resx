@@ -808,6 +808,10 @@ $</value>
     <value>_Loop timer</value>
     <comment>The text for the loop timer menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
+  <data name="ContextMenuPauseAfterEachLoopTimerMenuItem" xml:space="preserve">
+    <value>Pause after each _loop</value>
+    <comment>The text for the pause after each loop menu item, where the character following the optional underscore (_) is the access key</comment>
+  </data>
   <data name="ContextMenuNewTimerMenuItem" xml:space="preserve">
     <value>_New timer</value>
     <comment>The text for the new timer menu item, where the character following the optional underscore (_) is the access key</comment>

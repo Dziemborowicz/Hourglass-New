@@ -1,4 +1,5 @@
 :: Installs/uninstalls Hourglass and its dependencies in/from the native image cache.
+:: Run as an Administrator.
 
 @echo off
 

@@ -45,6 +45,8 @@ Run `hourglass -h` to display the **Hourglass** [command-line reference](https:/
 
 Processing the **Hourglass** with the [Native Image Generator (Ngen.exe)](https://learn.microsoft.com/en-us/dotnet/framework/tools/ngen-exe-native-image-generator) speeds up the **Hourglass** startup.
 
+To run script as an **Administrator** press `Win`+`X` and select the **Windows PowerShell (Admin)** or **Command Prompt (Admin)**. Copy script full path to the console opened and execute one of the following:
+
 - Generate the **Hourglass** native image and its dependencies and install in the native image cache:
 
 ```shell
@@ -65,6 +67,7 @@ ngen-Hourglass.bat uninstall
 - New option `--multi-timers`, `-mt`, `/mt`
 - New option `--activate-next`, `-an`, `/an`
 - New option `--show-trigger-time`, `-st`, `/st`
+- New option `--pause-after-loop-timer`, `-pl`, `/pl`
 
 See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
 
@@ -106,6 +109,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The **Advanced options** / **Activate next window when minimized or closed** timer window context menu option enables the next timer window activation when the current timer window is minimized or closed. The command-line option is `--activate-next`, `-an`, `/an`
 - The **Pause all** timer window context menu command pauses all the running timers. Command-line command is `pause`
 - The **Resume all** timer window context menu command resumes all the paused timers. Command-line command is `resume`
+- The **Pause after each loop** timer window context menu command pauses the loop timer when it expires. Command-line command is `--pause-after-loop-timer`, `-pl`, `/pl`
 
 #### Other
 
@@ -122,17 +126,3 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 ### Misc
 
 - The **Hourglass** is built deterministically using the [GitHub Actions](https://github.com/i2van/hourglass/actions).
-
-## Troubleshooting
-
-If the **Hourglass** does not start or fails silently, delete the **Hourglass** settings.
-
-The **Hourglass** settings can be located by the following command (to run it press `Win`+`R` and copy-paste command below):
-
-```shell
-cmd /k dir "C:\Users\%USERNAME%\AppData\Local\Chris_Dziemborowicz*"
-```
-
-The settings are stored into the corresponding `hourglass.EXE` subdirectories.
-
-The **Hourglass Portable** keeps settings next to the executable.

@@ -485,6 +485,15 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pause after each _loop.
+        /// </summary>
+        public static string ContextMenuPauseAfterEachLoopTimerMenuItem {
+            get {
+                return ResourceManager.GetString("ContextMenuPauseAfterEachLoopTimerMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pause _all.
         /// </summary>
         public static string ContextMenuPauseAllMenuItem {

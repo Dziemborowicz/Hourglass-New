@@ -141,6 +141,13 @@ Options:
         Default value   last
         Alias           -l, /l
 
+  --pause-after-loop-timer on|off|last
+        Pauses the loop timer when it expires.
+
+        Required        no
+        Default value   last
+        Alias           -pl, /pl
+
   --pop-up-when-expired on|off|last
         Pops up the timer window when the timer expires.
 
@@ -315,6 +322,7 @@ Options:
             --show-trigger-time           -st off
             --multi-timers                -mt off
             --loop-timer                  -l  off
+            --pause-after-loop-timer      -pl off
             --pop-up-when-expired         -p  on
             --close-when-expired          -e  off
             --shut-down-when-expired      -x  off

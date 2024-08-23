@@ -25,14 +25,6 @@ public sealed class Timer : TimerBase
     /// <summary>
     /// Initializes a new instance of the <see cref="Timer"/> class.
     /// </summary>
-    public Timer()
-        : this(new TimerOptions())
-    {
-    }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Timer"/> class.
-    /// </summary>
     /// <param name="options">Configuration data for this timer.</param>
     /// <exception cref="ArgumentNullException"><paramref name="options"/> is <see langword="null"/></exception>
     public Timer(TimerOptions? options)
@@ -174,9 +166,8 @@ public sealed class Timer : TimerBase
     /// <summary>
     /// Restarts the timer.
     /// </summary>
-    /// <returns>A value indicating whether the timer was restarted successfully.</returns>
     /// <exception cref="ObjectDisposedException">If the timer has been disposed.</exception>
-    public bool Restart()
+    public void Restart()
     {
         ThrowIfDisposed();
 
@@ -184,10 +175,8 @@ public sealed class Timer : TimerBase
         if (actualTimerStart?.Type == TimerStartType.TimeSpan)
         {
             Stop();
-            return Start(actualTimerStart);
+            Start(actualTimerStart);
         }
-
-        return false;
     }
 
     /// <summary>
@@ -336,6 +325,10 @@ public sealed class Timer : TimerBase
         if (end > now)
         {
             Start(start, end);
+            if (Options.PauseBeforeLoopTimer)
+            {
+                Pause();
+            }
         }
     }
 

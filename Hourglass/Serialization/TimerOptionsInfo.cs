@@ -65,6 +65,11 @@ public sealed class TimerOptionsInfo
     public bool LoopTimer { get; set; }
 
     /// <summary>
+    /// Gets or sets a value indicating whether to pause before loop the timer continuously.
+    /// </summary>
+    public bool PauseBeforeLoopTimer { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether the timer window should be brought to the top of other windows when
     /// the timer expires.
     /// </summary>

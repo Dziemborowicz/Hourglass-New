@@ -118,6 +118,11 @@ public sealed class TimerOptions : INotifyPropertyChanged
     private bool _loopTimer;
 
     /// <summary>
+    /// A value indicating whether to pause before loop the timer continuously.
+    /// </summary>
+    private bool _pauseBeforeLoopTimer;
+
+    /// <summary>
     /// A value indicating whether the timer window should be brought to the top of other windows when the timer
     /// expires.
     /// </summary>
@@ -189,6 +194,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
         _showTimeElapsed = false;
         _showTriggerTime = false;
         _loopTimer = false;
+        _pauseBeforeLoopTimer = false;
         _popUpWhenExpired = true;
         _closeWhenExpired = false;
         _shutDownWhenExpired = false;
@@ -424,6 +430,25 @@ public sealed class TimerOptions : INotifyPropertyChanged
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether to pause before loop the timer continuously.
+    /// </summary>
+    public bool PauseBeforeLoopTimer
+    {
+        get => _pauseBeforeLoopTimer;
+
+        set
+        {
+            if (_pauseBeforeLoopTimer == value)
+            {
+                return;
+            }
+
+            _pauseBeforeLoopTimer = value;
+            PropertyChanged.Notify(this);
+        }
+    }
+
+    /// <summary>
     /// Gets or sets a value indicating whether the timer window should be brought to the top of other windows when
     /// the timer expires.
     /// </summary>
@@ -647,6 +672,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
         _showTimeElapsed = options._showTimeElapsed;
         _showTriggerTime = options._showTriggerTime;
         _loopTimer = options._loopTimer;
+        _pauseBeforeLoopTimer = options._pauseBeforeLoopTimer;
         _popUpWhenExpired = options._popUpWhenExpired;
         _closeWhenExpired = options._closeWhenExpired;
         _shutDownWhenExpired = options._shutDownWhenExpired;
@@ -669,6 +695,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
             nameof(DigitalClockTime),
             nameof(ShowTimeElapsed),
             nameof(LoopTimer),
+            nameof(PauseBeforeLoopTimer),
             nameof(PopUpWhenExpired),
             nameof(CloseWhenExpired),
             nameof(ShutDownWhenExpired),
@@ -700,6 +727,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
         _showTimeElapsed = info.ShowTimeElapsed;
         _showTriggerTime = info.ShowTriggerTime;
         _loopTimer = info.LoopTimer;
+        _pauseBeforeLoopTimer = info.PauseBeforeLoopTimer;
         _popUpWhenExpired = info.PopUpWhenExpired;
         _closeWhenExpired = info.CloseWhenExpired;
         _shutDownWhenExpired = info.ShutDownWhenExpired;
@@ -722,6 +750,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
             nameof(DigitalClockTime),
             nameof(ShowTimeElapsed),
             nameof(LoopTimer),
+            nameof(PauseBeforeLoopTimer),
             nameof(PopUpWhenExpired),
             nameof(CloseWhenExpired),
             nameof(ShutDownWhenExpired),
@@ -749,6 +778,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
             ShowTimeElapsed = _showTimeElapsed,
             ShowTriggerTime = _showTriggerTime,
             LoopTimer = _loopTimer,
+            PauseBeforeLoopTimer = _pauseBeforeLoopTimer,
             PopUpWhenExpired = _popUpWhenExpired,
             CloseWhenExpired = _closeWhenExpired,
             ShutDownWhenExpired = _shutDownWhenExpired,

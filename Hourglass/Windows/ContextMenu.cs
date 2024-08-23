@@ -84,6 +84,11 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     private MenuItem _loopTimerMenuItem = null!;
 
     /// <summary>
+    /// The "Pause before looping" <see cref="MenuItem"/>.
+    /// </summary>
+    private MenuItem _pauseBeforeLoopTimerMenuItem = null!;
+
+    /// <summary>
     /// The "Pop up when expired" <see cref="MenuItem"/>.
     /// </summary>
     private MenuItem _popUpWhenExpiredMenuItem = null!;
@@ -349,15 +354,20 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _showInNotificationAreaMenuItem.IsChecked = Settings.Default.ShowInNotificationArea;
 
         // Loop timer
+        // Pause before looping
         if (_timerWindow.Timer.SupportsLooping)
         {
             _loopTimerMenuItem.IsEnabled = true;
             _loopTimerMenuItem.IsChecked = _timerWindow.Options.LoopTimer;
+            _pauseBeforeLoopTimerMenuItem.IsEnabled = _timerWindow.Options.LoopTimer;
+            _pauseBeforeLoopTimerMenuItem.IsChecked = _pauseBeforeLoopTimerMenuItem.IsEnabled && _timerWindow.Options.PauseBeforeLoopTimer;
         }
         else
         {
             _loopTimerMenuItem.IsEnabled = false;
             _loopTimerMenuItem.IsChecked = false;
+            _pauseBeforeLoopTimerMenuItem.IsEnabled = false;
+            _pauseBeforeLoopTimerMenuItem.IsChecked = false;
         }
 
         // Pop up when expired
@@ -477,6 +487,12 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         if (_loopTimerMenuItem.IsEnabled)
         {
             _timerWindow.Options.LoopTimer = _loopTimerMenuItem.IsChecked;
+        }
+
+        // Pause before looping
+        if (_pauseBeforeLoopTimerMenuItem.IsEnabled)
+        {
+            _timerWindow.Options.PauseBeforeLoopTimer = _pauseBeforeLoopTimerMenuItem.IsChecked;
         }
 
         // Pop up when expired
@@ -752,14 +768,6 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
 
         Items.Add(new Separator());
 
-        // Loop timer
-        _loopTimerMenuItem = new CheckableMenuItem
-        {
-            Header = Properties.Resources.ContextMenuLoopTimerMenuItem
-        };
-        _loopTimerMenuItem.Click += CheckableMenuItemClick;
-        Items.Add(_loopTimerMenuItem);
-
         // Pop up when expired
         _popUpWhenExpiredMenuItem = new CheckableMenuItem
         {
@@ -775,6 +783,24 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         };
         _closeWhenExpiredMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_closeWhenExpiredMenuItem);
+
+        Items.Add(new Separator());
+
+        // Loop timer
+        _loopTimerMenuItem = new CheckableMenuItem
+        {
+            Header = Properties.Resources.ContextMenuLoopTimerMenuItem
+        };
+        _loopTimerMenuItem.Click += CheckableMenuItemClick;
+        Items.Add(_loopTimerMenuItem);
+
+        // Pause before looping
+        _pauseBeforeLoopTimerMenuItem = new CheckableMenuItem
+        {
+            Header = Properties.Resources.ContextMenuPauseAfterEachLoopTimerMenuItem
+        };
+        _pauseBeforeLoopTimerMenuItem.Click += CheckableMenuItemClick;
+        Items.Add(_pauseBeforeLoopTimerMenuItem);
 
         Items.Add(new Separator());
 

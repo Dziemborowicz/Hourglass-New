@@ -122,6 +122,11 @@ public sealed class CommandLineArguments
     public bool LoopTimer { get; private set; }
 
     /// <summary>
+    /// Gets a value indicating whether to pause before loop the timer continuously.
+    /// </summary>
+    public bool PauseBeforeLoopTimer { get; private set; }
+
+    /// <summary>
     /// Gets a value indicating whether the timer window should be brought to the top of other windows when the
     /// timer expires.
     /// </summary>
@@ -261,6 +266,7 @@ public sealed class CommandLineArguments
             ShowTimeElapsed = ShowTimeElapsed,
             ShowTriggerTime = ShowTriggerTime,
             LoopTimer = LoopTimer,
+            PauseBeforeLoopTimer = PauseBeforeLoopTimer,
             PopUpWhenExpired = PopUpWhenExpired,
             CloseWhenExpired = CloseWhenExpired,
             ShutDownWhenExpired = ShutDownWhenExpired,
@@ -313,6 +319,7 @@ public sealed class CommandLineArguments
             ShowTriggerTime = options.ShowTriggerTime,
             ShowInNotificationArea = Settings.Default.ShowInNotificationArea,
             LoopTimer = options.LoopTimer,
+            PauseBeforeLoopTimer = options.PauseBeforeLoopTimer,
             PopUpWhenExpired = options.PopUpWhenExpired,
             CloseWhenExpired = options.CloseWhenExpired,
             ShutDownWhenExpired = options.ShutDownWhenExpired,
@@ -356,6 +363,7 @@ public sealed class CommandLineArguments
             ShowTriggerTime = defaultOptions.ShowTriggerTime,
             ShowInNotificationArea = false,
             LoopTimer = defaultOptions.LoopTimer,
+            PauseBeforeLoopTimer = defaultOptions.PauseBeforeLoopTimer,
             PopUpWhenExpired = defaultOptions.PopUpWhenExpired,
             CloseWhenExpired = defaultOptions.CloseWhenExpired,
             ShutDownWhenExpired = defaultOptions.ShutDownWhenExpired,
@@ -587,6 +595,20 @@ public sealed class CommandLineArguments
 
                     argumentsBasedOnMostRecentOptions.LoopTimer = loopTimer;
                     argumentsBasedOnFactoryDefaults.LoopTimer = loopTimer;
+                    break;
+
+                case "--pause-after-loop-timer":
+                case "-pl":
+                case "/pl":
+                    ThrowIfDuplicateSwitch(specifiedSwitches, "--pause-after-loop-timer");
+
+                    bool pauseBeforeLoopTimer = GetBoolValue(
+                        arg,
+                        remainingArgs,
+                        argumentsBasedOnMostRecentOptions.PauseBeforeLoopTimer);
+
+                    argumentsBasedOnMostRecentOptions.PauseBeforeLoopTimer = pauseBeforeLoopTimer;
+                    argumentsBasedOnFactoryDefaults.PauseBeforeLoopTimer = pauseBeforeLoopTimer;
                     break;
 
                 case "--pop-up-when-expired":
