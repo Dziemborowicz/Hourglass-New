@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UpdateInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <LatestVersion>1.15.32.0</LatestVersion>
+  <LatestVersion>1.15.33.0</LatestVersion>
   <UpdateUrl>https://github.com/i2van/hourglass/releases/latest</UpdateUrl>
 </UpdateInfo>
