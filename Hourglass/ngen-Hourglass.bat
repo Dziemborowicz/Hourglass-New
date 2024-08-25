@@ -21,7 +21,7 @@ exit /b 1
 
 :EXECUTE
 
-:: .NET Framework directory under %WINDIR%\Microsoft.NET\Framework or %WINDIR%\Microsoft.NET\Framework64
+:: .NET Framework version.
 set netVersion=4.0.30319
 
 set netPath=%WINDIR%\Microsoft.NET\Framework
