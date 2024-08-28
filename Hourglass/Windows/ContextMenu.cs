@@ -1411,10 +1411,10 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             Height = 8
         };
 
-        TextBlock textBlock = new()
+        Label label = new()
         {
-            Text = string.IsNullOrWhiteSpace(theme.Name) ? Properties.Resources.ContextMenuUnnamedTheme : theme.Name,
-            Margin = new(5, 0, 0, 0)
+            Content = $"_{(string.IsNullOrWhiteSpace(theme.Name) ? Properties.Resources.ContextMenuUnnamedTheme : theme.Name)}",
+            Margin = new(0)
         };
 
         StackPanel stackPanel = new()
@@ -1422,7 +1422,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             Orientation = Orientation.Horizontal
         };
         stackPanel.Children.Add(border);
-        stackPanel.Children.Add(textBlock);
+        stackPanel.Children.Add(label);
         return stackPanel;
     }
 
