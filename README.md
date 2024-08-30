@@ -75,6 +75,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 
 - Uses a [Windows Task Dialog](https://learn.microsoft.com/en-us/windows/win32/controls/task-dialogs-overview) instead of a message box ([GitHub](https://github.com/kpreisser/TaskDialog)).
 - The **Command-line usage** dialog can be accessed from the **About** dialog and vice versa.
+- New **Accent** theme which uses [Windows accent color](https://www.google.com/search?q=Windows+accent+color). This theme is a default one.
 
 ### Notification Area
 

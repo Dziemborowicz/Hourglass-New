@@ -177,6 +177,7 @@ Options:
 
         The built-in themes are:
 
+            accent          accent-dark
             red             red-dark
             orange          orange-dark
             yellow          yellow-dark
@@ -326,7 +327,7 @@ Options:
             --pop-up-when-expired         -p  on
             --close-when-expired          -e  off
             --shut-down-when-expired      -x  off
-            --theme                       -m  blue
+            --theme                       -m  accent
             --sound                       -s  normal beep
             --loop-sound                  -r  off
             --open-saved-timers           -v  off

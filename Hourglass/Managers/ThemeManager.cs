@@ -20,7 +20,7 @@ using Timing;
 /// </summary>
 public sealed class ThemeManager : Manager
 {
-    private const string DefaultThemeIdentifier = "blue";
+    private const string DefaultThemeIdentifier = "accent";
     private const string DefaultDarkThemeIdentifier = $"{DefaultThemeIdentifier}-dark";
 
     /// <summary>
