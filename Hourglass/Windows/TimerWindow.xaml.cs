@@ -1269,31 +1269,13 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                 break;
 
             case TimerState.Running:
-                if (Timer.SupportsProgress)
-                {
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Normal;
-                    TaskbarItemInfo.ProgressValue = GetProgressBarValue() / 100.0;
-                }
-                else
-                {
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.None;
-                    TaskbarItemInfo.ProgressValue = 0.0;
-                }
-
+                TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Normal;
+                TaskbarItemInfo.ProgressValue = GetProgressBarValue() / 100.0;
                 break;
 
             case TimerState.Paused:
-                if (Timer.SupportsProgress)
-                {
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Paused;
-                    TaskbarItemInfo.ProgressValue = GetProgressBarValue() / 100.0;
-                }
-                else
-                {
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Paused;
-                    TaskbarItemInfo.ProgressValue = 0.0;
-                }
-
+                TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Paused;
+                TaskbarItemInfo.ProgressValue = GetProgressBarValue() / 100.0;
                 break;
 
             case TimerState.Expired:

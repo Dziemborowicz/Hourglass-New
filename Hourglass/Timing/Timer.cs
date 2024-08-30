@@ -72,18 +72,11 @@ public sealed class Timer : TimerBase
     /// <summary>
     /// Gets the percentage of time left until the timer expires.
     /// </summary>
-    /// <remarks>
-    /// This property is <c>null</c> if <see cref="SupportsProgress"/> is <c>false</c>.
-    /// </remarks>
     public double? TimeLeftAsPercentage { get; private set; }
 
     /// <summary>
     /// Gets the percentage of time elapsed since the timer was started.
     /// </summary>
-    /// <remarks>
-    /// This property is <c>null</c> if <see cref="SupportsProgress"/> or <see cref="SupportsTimeElapsed"/> is
-    /// <c>false</c>.
-    /// </remarks>
     public double? TimeElapsedAsPercentage { get; private set; }
 
     /// <summary>
@@ -94,9 +87,6 @@ public sealed class Timer : TimerBase
     /// <summary>
     /// Gets the string representation of the time elapsed since the timer was started.
     /// </summary>
-    /// <remarks>
-    /// This property is <c>null</c> if <see cref="SupportsTimeElapsed"/> is <c>false</c>.
-    /// </remarks>
     public string? TimeElapsedAsString { get; private set; }
 
     /// <summary>
@@ -115,19 +105,9 @@ public sealed class Timer : TimerBase
     public bool SupportsLooping => TimerStart is null || TimerStart.Type == TimerStartType.TimeSpan;
 
     /// <summary>
-    /// Gets a value indicating whether the timer supports displaying a progress value.
-    /// </summary>
-    public bool SupportsProgress => true;
-
-    /// <summary>
     /// Gets a value indicating whether the timer supports restarting.
     /// </summary>
     public bool SupportsRestart => TimerStart?.Type == TimerStartType.TimeSpan;
-
-    /// <summary>
-    /// Gets a value indicating whether the timer supports displaying the elapsed time since the timer was started.
-    /// </summary>
-    public bool SupportsTimeElapsed => true;
 
     #endregion
 
@@ -359,8 +339,7 @@ public sealed class Timer : TimerBase
     /// <returns>The percentage of time left until the timer expires.</returns>
     private double? GetTimeLeftAsPercentage()
     {
-        if (!SupportsProgress ||
-            State == TimerState.Stopped ||
+        if (State == TimerState.Stopped ||
             !TimeElapsed.HasValue ||
             !TotalTime.HasValue)
         {
@@ -389,9 +368,7 @@ public sealed class Timer : TimerBase
     /// <returns>The percentage of time elapsed since the timer was started.</returns>
     private double? GetTimeElapsedAsPercentage()
     {
-        if (!SupportsProgress ||
-            !SupportsTimeElapsed ||
-            State == TimerState.Stopped ||
+        if (State == TimerState.Stopped ||
             !TimeLeft.HasValue ||
             !TotalTime.HasValue)
         {
@@ -435,7 +412,6 @@ public sealed class Timer : TimerBase
     private string? GetTimeElapsedAsString(bool compact) =>
         State switch
         {
-            _ when !SupportsTimeElapsed => null,
             TimerState.Stopped => Resources.TimerTimerStopped,
             TimerState.Expired => Resources.TimerTimerExpired,
             _ => TimeElapsed.ToNaturalString(compact)
