@@ -280,7 +280,7 @@ public class NotificationAreaIcon : IDisposable
     /// <summary>
     /// Restores all <see cref="TimerWindow"/>s.
     /// </summary>
-    private void RestoreAllTimerWindows()
+    private static void RestoreAllTimerWindows()
     {
         if (Application.Current is null)
         {
@@ -296,7 +296,7 @@ public class NotificationAreaIcon : IDisposable
     /// <summary>
     /// Restores all <see cref="TimerWindow"/>s that show expired timers.
     /// </summary>
-    private void RestoreAllExpiredTimerWindows()
+    private static void RestoreAllExpiredTimerWindows()
     {
         if (Application.Current is null)
         {
@@ -641,7 +641,7 @@ public class NotificationAreaIcon : IDisposable
     /// </summary>
     /// <param name="sender">The <see cref="MenuItem"/> where the event handler is attached.</param>
     /// <param name="e">The event data.</param>
-    private void NewTimerMenuItemClick(object sender, EventArgs e)
+    private static void NewTimerMenuItemClick(object sender, EventArgs e)
     {
         TimerWindow window = new();
         window.RestoreFromSibling();
@@ -653,7 +653,7 @@ public class NotificationAreaIcon : IDisposable
     /// </summary>
     /// <param name="sender">The <see cref="MenuItem"/> where the event handler is attached.</param>
     /// <param name="e">The event data.</param>
-    private void WindowMenuItemClick(object sender, EventArgs e)
+    private static void WindowMenuItemClick(object sender, EventArgs e)
     {
         MenuItem windowMenuItem = (MenuItem)sender;
         TimerWindow window = (TimerWindow)windowMenuItem.Tag;

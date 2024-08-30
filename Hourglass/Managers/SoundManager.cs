@@ -186,7 +186,7 @@ public sealed class SoundManager : Manager
     /// </summary>
     /// <param name="path">A path to a directory.</param>
     /// <returns>A collection of sounds stored in the file system at the specified path.</returns>
-    private IEnumerable<Sound> GetUserProvidedSounds(string path)
+    private static IEnumerable<Sound> GetUserProvidedSounds(string path)
     {
         try
         {

@@ -266,7 +266,7 @@ public sealed class InterfaceScaler
     /// <param name="baseScaleFactor">The base scale factor.</param>
     /// <param name="reductionFactor">The reduction factor.</param>
     /// <returns>The reduced scale factor.</returns>
-    private double GetReducedScaleFactor(double baseScaleFactor, double reductionFactor)
+    private static double GetReducedScaleFactor(double baseScaleFactor, double reductionFactor)
     {
         double difference = baseScaleFactor - 1.0;
         return 1.0 + difference * reductionFactor;

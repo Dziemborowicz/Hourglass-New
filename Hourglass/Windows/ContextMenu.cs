@@ -1063,7 +1063,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// </summary>
     /// <param name="sender">The <see cref="MenuItem"/> where the event handler is attached.</param>
     /// <param name="e">The event data.</param>
-    private void ClearRecentInputsMenuItemClick(object sender, RoutedEventArgs e)
+    private static void ClearRecentInputsMenuItemClick(object sender, RoutedEventArgs e)
     {
         TimerStartManager.Instance.Clear();
     }
@@ -1155,7 +1155,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// </summary>
     /// <param name="timer">A <see cref="Timer"/>.</param>
     /// <returns>An object that can be set for the <see cref="MenuItem.Header"/>.</returns>
-    private object GetHeaderForTimer(Timer timer)
+    private static object GetHeaderForTimer(Timer timer)
     {
         return timer.ToString();
     }
@@ -1166,7 +1166,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// </summary>
     /// <param name="timer">A <see cref="Timer"/>.</param>
     /// <returns>An object that can be set for the <see cref="MenuItem.Icon"/>.</returns>
-    private object GetIconForTimer(Timer timer)
+    private static object GetIconForTimer(Timer timer)
     {
         Border outerBorder = new()
         {
@@ -1297,7 +1297,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// </summary>
     /// <param name="sender">The <see cref="MenuItem"/> where the event handler is attached.</param>
     /// <param name="e">The event data.</param>
-    private void ClearSavedTimersMenuItemClick(object sender, RoutedEventArgs e)
+    private static void ClearSavedTimersMenuItemClick(object sender, RoutedEventArgs e)
     {
         TimerManager.Instance.ClearResumableTimers();
     }
@@ -1401,7 +1401,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// </summary>
     /// <param name="theme">A <see cref="Theme"/>.</param>
     /// <returns>An object that can be set for the <see cref="MenuItem.Header"/>.</returns>
-    private object GetHeaderForTheme(Theme theme)
+    private static object GetHeaderForTheme(Theme theme)
     {
         Border border = new()
         {
@@ -1589,7 +1589,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// </summary>
     /// <param name="sender">The <see cref="MenuItem"/> where the event handler is attached.</param>
     /// <param name="e">The event data.</param>
-    private void AboutMenuItemClick(object sender, RoutedEventArgs e)
+    private static void AboutMenuItemClick(object sender, RoutedEventArgs e)
     {
         AboutDialog.ShowOrActivate();
     }

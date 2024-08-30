@@ -54,7 +54,7 @@ public sealed partial class AboutDialog
     {
         get
         {
-            Version version = UpdateManager.Instance.CurrentVersion;
+            Version version = UpdateManager.CurrentVersion;
 
             return version.Revision != 0
                     ? version.ToString()

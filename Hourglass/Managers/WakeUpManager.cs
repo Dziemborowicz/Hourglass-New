@@ -94,7 +94,7 @@ public sealed class WakeUpManager : Manager
     /// </summary>
     /// <returns>The next expiry time for any running timer, or <c>null</c> if there are no running timers.
     /// </returns>
-    private DateTime? GetNextTimerExpiry()
+    private static DateTime? GetNextTimerExpiry()
     {
         return TimerManager.Instance.RunningTimers
             .Where(static t => t.EndTime.HasValue)

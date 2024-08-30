@@ -405,7 +405,7 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     /// <param name="theme">A <see cref="Theme"/>.</param>
     /// <returns>The cloned theme.</returns>
-    private Theme CloneThemeForEditing(Theme theme)
+    private static Theme CloneThemeForEditing(Theme theme)
     {
         string identifier = Guid.NewGuid().ToString();
         return Theme.FromTheme(ThemeType.UserProvided, identifier, theme.Name, theme);

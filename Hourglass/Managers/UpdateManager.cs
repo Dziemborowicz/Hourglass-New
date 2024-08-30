@@ -53,12 +53,12 @@ public sealed class UpdateManager : Manager, INotifyPropertyChanged
     /// <summary>
     /// Gets the name of the app.
     /// </summary>
-    public string AppName => Assembly.GetExecutingAssembly().GetName().Name;
+    public static string AppName => Assembly.GetExecutingAssembly().GetName().Name;
 
     /// <summary>
     /// Gets the current version of the app.
     /// </summary>
-    public Version CurrentVersion => Assembly.GetExecutingAssembly().GetName().Version;
+    public static Version CurrentVersion => Assembly.GetExecutingAssembly().GetName().Version;
 
     /// <summary>
     /// Gets a value indicating whether a newer version of the app is available.
@@ -73,7 +73,7 @@ public sealed class UpdateManager : Manager, INotifyPropertyChanged
     /// <summary>
     /// Gets the unique identifier of this instance of the app.
     /// </summary>
-    public Guid UniqueId
+    public static Guid UniqueId
     {
         get
         {

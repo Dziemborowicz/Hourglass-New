@@ -52,7 +52,7 @@ public sealed class ErrorManager : Manager
     /// Reports an error by displaying an error dialog and logging the error to a text file.
     /// </summary>
     /// <param name="errorMessage">An error message.</param>
-    public void ReportError(string errorMessage)
+    public static void ReportError(string errorMessage)
     {
         // Dump the error to a file
         if (TryDumpError(errorMessage, out var dumpPath))
@@ -87,7 +87,7 @@ public sealed class ErrorManager : Manager
     {
         try
         {
-            Instance.ReportError(e.ExceptionObject.ToString());
+            ReportError(e.ExceptionObject.ToString());
         }
         finally
         {
