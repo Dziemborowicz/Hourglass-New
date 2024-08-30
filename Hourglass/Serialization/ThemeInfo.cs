@@ -76,6 +76,11 @@ public sealed class ThemeInfo
     public Color ButtonHoverColor { get; set; }
 
     /// <summary>
+    /// Gets or sets whether the user theme is the dark one.
+    /// </summary>
+    public bool IsUserThemeDark { get; set; }
+
+    /// <summary>
     /// Returns a <see cref="ThemeInfo"/> for the specified <see cref="Theme"/>.
     /// </summary>
     /// <param name="options">A <see cref="Theme"/>.</param>

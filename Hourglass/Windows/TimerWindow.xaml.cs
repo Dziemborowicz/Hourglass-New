@@ -1358,7 +1358,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
     private void SetImmersiveDarkMode()
     {
-        this.SetImmersiveDarkMode(Options.Theme?.Type == ThemeType.BuiltInDark);
+        this.SetImmersiveDarkMode(Options.Theme?.Type == ThemeType.BuiltInDark || Options.Theme?.IsUserThemeDark == true);
     }
 
     /// <summary>

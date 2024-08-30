@@ -149,6 +149,11 @@ public sealed class Theme : INotifyPropertyChanged
     /// </summary>
     private Brush? _buttonHoverBrush;
 
+    /// <summary>
+    /// Is the user theme the dark one.
+    /// </summary>
+    private bool _isUserThemeDark;
+
     #endregion
 
     #region Constructors
@@ -169,6 +174,7 @@ public sealed class Theme : INotifyPropertyChanged
     /// <param name="secondaryHintColor">The color of the watermark in any secondary text box.</param>
     /// <param name="buttonColor">The color of the button text.</param>
     /// <param name="buttonHoverColor">The color of the button text when the user hovers over the button.</param>
+    /// <param name="isUserThemeDark">Is the user theme the dark one.</param>
     public Theme(
         ThemeType type,
         string identifier,
@@ -182,7 +188,8 @@ public sealed class Theme : INotifyPropertyChanged
         Color secondaryTextColor,
         Color secondaryHintColor,
         Color buttonColor,
-        Color buttonHoverColor)
+        Color buttonHoverColor,
+        bool isUserThemeDark = false)
     {
         Type = type;
         Identifier = identifier;
@@ -198,6 +205,7 @@ public sealed class Theme : INotifyPropertyChanged
         _secondaryHintColor = secondaryHintColor;
         _buttonColor = buttonColor;
         _buttonHoverColor = buttonHoverColor;
+        _isUserThemeDark = isUserThemeDark;
     }
 
     /// <summary>
@@ -268,7 +276,8 @@ public sealed class Theme : INotifyPropertyChanged
             theme._secondaryTextColor,
             theme._secondaryHintColor,
             theme._buttonColor,
-            theme._buttonHoverColor)
+            theme._buttonHoverColor,
+            theme.Type == ThemeType.BuiltInDark || theme._isUserThemeDark)
     {
     }
 
@@ -290,7 +299,8 @@ public sealed class Theme : INotifyPropertyChanged
             info.SecondaryTextColor,
             info.SecondaryHintColor,
             info.ButtonColor,
-            info.ButtonHoverColor)
+            info.ButtonHoverColor,
+            info.IsUserThemeDark)
     {
     }
 
@@ -593,6 +603,25 @@ public sealed class Theme : INotifyPropertyChanged
     }
 
     /// <summary>
+    /// Gets or sets whether the user theme is the dark one.
+    /// </summary>
+    public bool IsUserThemeDark
+    {
+        get => _isUserThemeDark;
+
+        set
+        {
+            if (_isUserThemeDark == value)
+            {
+                return;
+            }
+
+            _isUserThemeDark = value;
+            PropertyChanged.Notify(this);
+        }
+    }
+
+    /// <summary>
     /// Gets the brush used to paint the color of the button text when the user hovers over the button.
     /// </summary>
     public Brush ButtonHoverBrush => _buttonHoverBrush ??= new SolidColorBrush(_buttonHoverColor);
@@ -691,6 +720,7 @@ public sealed class Theme : INotifyPropertyChanged
         SecondaryHintColor = theme.SecondaryHintColor;
         ButtonColor = theme.ButtonColor;
         ButtonHoverColor = theme.ButtonHoverColor;
+        IsUserThemeDark = theme.IsUserThemeDark;
     }
 
     /// <summary>
@@ -712,7 +742,8 @@ public sealed class Theme : INotifyPropertyChanged
             SecondaryTextColor = _secondaryTextColor,
             SecondaryHintColor = _secondaryHintColor,
             ButtonColor = _buttonColor,
-            ButtonHoverColor = _buttonHoverColor
+            ButtonHoverColor = _buttonHoverColor,
+            IsUserThemeDark = _isUserThemeDark
         };
     }
 
