@@ -8,6 +8,8 @@ namespace Hourglass.Managers;
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Linq;
 
 using Properties;
@@ -223,15 +225,71 @@ public sealed class ThemeManager : Manager
         _themes.Remove(theme);
     }
 
+    // https://learn.microsoft.com/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup-themes-windowcolor#values
+    private static readonly Color DefaultWindowsAccentColor = Color.FromArgb(0xff, 0x00, 0x78, 0xd7);
+
+    private static string GetWindowsAccentColor()
+    {
+        Color color;
+
+        try
+        {
+            DwmGetColorizationParameters(out var colors);
+            color = Color.FromArgb((int)colors.ColorizationColor);
+        }
+        catch
+        {
+            color = DefaultWindowsAccentColor;
+        }
+
+        return ColorTranslator.ToHtml(color);
+
+        // Undocumented. Gets DWM colorization parameters.
+        [DllImport("dwmapi.dll", EntryPoint = "#127", PreserveSig = false, CharSet = CharSet.Unicode)]
+        static extern void DwmGetColorizationParameters([Out] out DWMCOLORIZATIONPARAMS dwParameters);
+    }
+
+    /// <summary>
+    /// Represents the current DWM color accent settings.
+    /// </summary>
+    /// <remarks><a href="https://github.com/lepoco/wpfui/blob/main/src/Wpf.Ui/Interop/Dwmapi.cs"/></remarks>
+    [StructLayout(LayoutKind.Sequential)]
+#pragma warning disable S101
+    private struct DWMCOLORIZATIONPARAMS
+#pragma warning restore S101
+    {
+        public uint ColorizationColor;
+        public uint ColorizationAfterglow;
+        public uint ColorizationColorBalance;
+        public uint ColorizationAfterglowBalance;
+        public uint ColorizationBlurBalance;
+        public uint ColorizationGlassReflectionIntensity;
+        public bool ColorizationOpaqueBlend;
+    }
+
     /// <summary>
     /// Loads the collection of themes defined in the assembly.
     /// </summary>
     /// <returns>A collection of themes defined in the assembly.</returns>
-    private IList<Theme> GetBuiltInThemes()
+    private static IList<Theme> GetBuiltInThemes()
     {
         return
         [
             // Light themes
+            new(
+                ThemeType.BuiltInLight,
+                "accent" /* identifier */,
+                Resources.ThemeManagerAccentLightTheme /* name */,
+                "#FFFFFF" /* backgroundColor */,
+                GetWindowsAccentColor() /* progressBarColor */,
+                "#EEEEEE" /* progressBackgroundColor */,
+                "#C75050" /* expirationFlashColor */,
+                "#000000" /* mainTextColor */,
+                "#808080" /* mainHintColor */,
+                "#808080" /* secondaryTextColor */,
+                "#808080" /* secondaryHintColor */,
+                "#0066CC" /* buttonColor */,
+                "#FF0000" /* buttonHoverColor */),
             new(
                 ThemeType.BuiltInLight,
                 "red" /* identifier */,
@@ -346,6 +404,20 @@ public sealed class ThemeManager : Manager
                 "#FF0000" /* buttonHoverColor */),
 
             // Dark themes
+            new(
+                ThemeType.BuiltInDark,
+                "accent-dark" /* identifier */,
+                Resources.ThemeManagerAccentDarkTheme /* name */,
+                "#1E1E1E" /* backgroundColor */,
+                GetWindowsAccentColor() /* progressBarColor */,
+                "#2D2D30" /* progressBackgroundColor */,
+                "#C75050" /* expirationFlashColor */,
+                "#808080" /* mainTextColor */,
+                "#505050" /* mainHintColor */,
+                "#505050" /* secondaryTextColor */,
+                "#505050" /* secondaryHintColor */,
+                "#0066CC" /* buttonColor */,
+                "#FF0000" /* buttonHoverColor */),
             new(
                 ThemeType.BuiltInDark,
                 "red-dark" /* identifier */,
@@ -465,7 +537,7 @@ public sealed class ThemeManager : Manager
     /// Loads the collection of themes defined by the user.
     /// </summary>
     /// <returns>A collection of sounds defined by the user.</returns>
-    private IEnumerable<Theme> GetUserProvidedThemes()
+    private static IEnumerable<Theme> GetUserProvidedThemes()
     {
         return Settings.Default.UserProvidedThemes;
     }

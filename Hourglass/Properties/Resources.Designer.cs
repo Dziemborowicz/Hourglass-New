@@ -1760,6 +1760,24 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accent.
+        /// </summary>
+        public static string ThemeManagerAccentDarkTheme {
+            get {
+                return ResourceManager.GetString("ThemeManagerAccentDarkTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accent.
+        /// </summary>
+        public static string ThemeManagerAccentLightTheme {
+            get {
+                return ResourceManager.GetString("ThemeManagerAccentLightTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Black.
         /// </summary>
         public static string ThemeManagerBlackDarkTheme {

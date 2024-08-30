@@ -1196,9 +1196,17 @@ $</value>
     <value>Purple</value>
     <comment>The name of the purple theme with a light background</comment>
   </data>
+  <data name="ThemeManagerAccentDarkTheme" xml:space="preserve">
+    <value>Accent</value>
+    <comment>The name of the accent theme with a dark background</comment>
+  </data>
   <data name="ThemeManagerRedDarkTheme" xml:space="preserve">
     <value>Red</value>
     <comment>The name of the red theme with a dark background</comment>
+  </data>
+  <data name="ThemeManagerAccentLightTheme" xml:space="preserve">
+    <value>Accent</value>
+    <comment>The name of the accent theme with a light background</comment>
   </data>
   <data name="ThemeManagerRedLightTheme" xml:space="preserve">
     <value>Red</value>
