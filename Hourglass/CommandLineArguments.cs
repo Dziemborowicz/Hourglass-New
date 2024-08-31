@@ -472,9 +472,10 @@ public sealed class CommandLineArguments
                     break;
 
                 case "--prompt-on-exit":
+                case "--prompt-on-close":
                 case "-o":
                 case "/o":
-                    ThrowIfDuplicateSwitch(specifiedSwitches, "--prompt-on-exit");
+                    ThrowIfDuplicateSwitch(specifiedSwitches, "--prompt-on-close");
 
                     bool promptOnExit = GetBoolValue(
                         arg,

@@ -57,7 +57,7 @@ Options:
         Default value   last
         Alias           -f, /f
 
-  --prompt-on-exit on|off|last
+  --prompt-on-close on|off|last
         Displays a prompt before closing the timer window.
 
         Required        no
@@ -312,7 +312,7 @@ Options:
             --title                       -t  (none)
             --always-on-top               -a  off
             --full-screen                 -f  off
-            --prompt-on-exit              -o  on
+            --prompt-on-close             -o  on
             --show-progress-in-taskbar    -y  on
             --do-not-keep-awake           -k  off
             --show-in-notification-area   -n  off

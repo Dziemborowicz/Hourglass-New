@@ -732,7 +732,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         // Prompt on exit
         _promptOnExitMenuItem = new CheckableMenuItem
         {
-            Header = Properties.Resources.ContextMenuPromptOnExitMenuItem
+            Header = Properties.Resources.ContextMenuPromptOnCloseMenuItem
         };
         _promptOnExitMenuItem.Click += CheckableMenuItemClick;
         Items.Add(_promptOnExitMenuItem);

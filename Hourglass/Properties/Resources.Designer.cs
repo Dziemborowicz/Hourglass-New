@@ -521,11 +521,11 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pro_mpt on exit.
+        ///   Looks up a localized string similar to Pro_mpt on close.
         /// </summary>
-        public static string ContextMenuPromptOnExitMenuItem {
+        public static string ContextMenuPromptOnCloseMenuItem {
             get {
-                return ResourceManager.GetString("ContextMenuPromptOnExitMenuItem", resourceCulture);
+                return ResourceManager.GetString("ContextMenuPromptOnCloseMenuItem", resourceCulture);
             }
         }
         

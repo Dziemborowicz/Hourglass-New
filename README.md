@@ -68,6 +68,7 @@ ngen-Hourglass.bat uninstall
 - New option `--activate-next`, `-an`, `/an`
 - New option `--show-trigger-time`, `-st`, `/st`
 - New option `--pause-after-loop-timer`, `-pl`, `/pl`
+- Renamed option `--prompt-on-exit` to `--prompt-on-close`
 
 See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
 
@@ -88,7 +89,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The **Resume all** menu command resumes all the paused timers.
 - The **Options** menu command opens the timer options menu. The shortcut is the holding the `Shift` during right click on the notification area icon.
 - The **Silent mode** disables all the timers notifications. It is not preserved between runs.
-- The **Exit** menu command asks to close all the running timer windows if the **Prompt on exit** option is on.
+- The **Exit** menu command prompts for closing all the running timer windows if the **Prompt on close** option is set.
 
 ### Timer Windows
 

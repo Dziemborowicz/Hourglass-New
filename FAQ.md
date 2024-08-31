@@ -197,7 +197,7 @@ To exit full-screen mode, press `Alt`+`Enter` or `F11` again; double-click on 
 
 ## How do I stop the timer from prompting me when I close the window?
 
-Right-click on any empty space in the timer window and uncheck **Prompt on exit**.
+Right-click on any empty space in the timer window and uncheck **Prompt on close**.
 
 ## How do I minimize the timer window to the notification area?
 
