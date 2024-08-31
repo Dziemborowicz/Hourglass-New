@@ -18,8 +18,7 @@ public static class WindowsExtensions
     /// <summary>
     /// Shuts down the computer.
     /// </summary>
-    /// <returns><c>true</c> if the computer was shut down successfully, or <c>false</c> otherwise.</returns>
-    public static bool ShutDown()
+    public static void ShutDown()
     {
         try
         {
@@ -35,12 +34,10 @@ public static class WindowsExtensions
             {
                 obj.InvokeMethod("Win32Shutdown", parameters, null /* options */);
             }
-
-            return true;
         }
         catch (Exception ex) when (ex.CanBeHandled())
         {
-            return false;
+            // Ignored.
         }
     }
 }

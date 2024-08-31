@@ -90,21 +90,20 @@ public class SoundPlayer : IDisposable
     /// </summary>
     /// <param name="sound">A <see cref="Sound"/>.</param>
     /// <param name="loop">A value indicating whether playback should be looped.</param>
-    /// <returns><c>true</c> if the <see cref="Sound"/> plays successfully, or <c>false</c> otherwise.</returns>
-    public bool Play(Sound? sound, bool loop)
+    public void Play(Sound? sound, bool loop)
     {
         ThrowIfDisposed();
 
         // Stop all playback
         if (!Stop())
         {
-            return false;
+            return;
         }
 
         // Do not play anything
         if (sound is null)
         {
-            return true;
+            return;
         }
 
         try
@@ -144,10 +143,8 @@ public class SoundPlayer : IDisposable
         }
         catch (Exception ex) when (ex.CanBeHandled())
         {
-            return false;
+            // Ignored.
         }
-
-        return true;
     }
 
     /// <summary>

@@ -138,21 +138,17 @@ public sealed partial class ThemeManagerWindow
     /// <summary>
     /// Brings the window to the front.
     /// </summary>
-    /// <returns><c>true</c> if the window is brought to the foreground, or <c>false</c> if the window cannot be
-    /// brought to the foreground for any reason.</returns>
-    public bool BringToFront()
+    public void BringToFront()
     {
         try
         {
             Show();
             Topmost = true;
             Topmost = false;
-            return true;
         }
         catch (InvalidOperationException)
         {
-            // This happens if the window is closing when this method is called
-            return false;
+            // This happens if the window is closing when this method is called.
         }
     }
 
@@ -169,17 +165,12 @@ public sealed partial class ThemeManagerWindow
     /// Sets the <see cref="TimerWindow"/> that will be updated when a theme is selected in this window.
     /// </summary>
     /// <param name="newTimerWindow">The <see cref="TimerWindow"/> to set.</param>
-    /// <returns><c>true</c> if the <see cref="TimerWindow"/> was set, or <c>false</c> if the user canceled the
-    /// change because there were unsaved changes to the selected theme.</returns>
-    public bool SetTimerWindow(TimerWindow newTimerWindow)
+    public void SetTimerWindow(TimerWindow newTimerWindow)
     {
-        if (!PromptToSaveIfRequired())
+        if (PromptToSaveIfRequired())
         {
-            return false;
+            TimerWindow = newTimerWindow;
         }
-
-        TimerWindow = newTimerWindow;
-        return true;
     }
 
     /// <summary>
