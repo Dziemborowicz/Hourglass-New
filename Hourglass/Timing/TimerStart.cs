@@ -41,7 +41,10 @@ public sealed class TimerStart
     /// <summary>
     /// The original timer input.
     /// </summary>
-    public string OriginalInput => _timerStartToken.OriginalInput;
+    public string OriginalInput =>
+        string.IsNullOrWhiteSpace(_timerStartToken.OriginalInput)
+            ? _timerStartToken.ToString()
+            : _timerStartToken.OriginalInput!;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TimerStart"/> class.

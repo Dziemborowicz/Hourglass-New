@@ -32,7 +32,7 @@ public abstract class TimerStartToken
     /// <summary>
     /// The original timer input.
     /// </summary>
-    public string OriginalInput { get; set; } = null!;
+    public string? OriginalInput { get; set; }
 
     /// <summary>
     /// Returns a <see cref="TimerStartToken"/> for the specified string, or <c>null</c> if the string is not a
