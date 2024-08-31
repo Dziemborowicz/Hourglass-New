@@ -986,7 +986,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             MenuItem noRecentInputsMenuItem = new()
             {
                 Header = Properties.Resources.ContextMenuNoRecentInputsMenuItem,
-                Foreground = Brushes.DarkGray
+                IsEnabled = false
             };
 
             _recentInputsMenuItem.Items.Add(noRecentInputsMenuItem);
@@ -997,7 +997,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             {
                 MenuItem timerMenuItem = new()
                 {
-                    Header = timerStart.ToString(),
+                    Header = timerStart.OriginalInput,
                     Tag = timerStart
                 };
                 timerMenuItem.Click += RecentInputMenuItemClick;
@@ -1073,7 +1073,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             MenuItem noRunningTimersMenuItem = new()
             {
                 Header = Properties.Resources.ContextMenuNoSavedTimersMenuItem,
-                Foreground = Brushes.DarkGray
+                IsEnabled = false
             };
 
             _savedTimersMenuItem.Items.Add(noRunningTimersMenuItem);
