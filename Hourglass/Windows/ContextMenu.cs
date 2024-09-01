@@ -997,7 +997,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             {
                 MenuItem timerMenuItem = new()
                 {
-                    Header = timerStart.OriginalInput,
+                    Header = MakeFirstCharHotkey(timerStart.OriginalInput),
                     Tag = timerStart
                 };
                 timerMenuItem.Click += RecentInputMenuItemClick;
@@ -1137,14 +1137,13 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     }
 
     /// <summary>
-    /// Returns an object that can be set for the <see cref="MenuItem.Header"/> of a <see cref="MenuItem"/> that
-    /// displays a <see cref="Timer"/>.
+    /// Returns an object that can be set for the <see cref="MenuItem.Header"/> of a <see cref="MenuItem"/> that displays a <see cref="Timer"/>.
     /// </summary>
     /// <param name="timer">A <see cref="Timer"/>.</param>
-    /// <returns>An object that can be set for the <see cref="MenuItem.Header"/>.</returns>
-    private static object GetHeaderForTimer(Timer timer)
+    /// <returns>Timer string representation.</returns>
+    private static string GetHeaderForTimer(Timer timer)
     {
-        return timer.ToString();
+        return MakeFirstCharHotkey(timer.ToString());
     }
 
     /// <summary>
@@ -1400,7 +1399,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
 
         Label label = new()
         {
-            Content = $"_{(string.IsNullOrWhiteSpace(theme.Name) ? Properties.Resources.ContextMenuUnnamedTheme : theme.Name)}",
+            Content = MakeFirstCharHotkey($"{(string.IsNullOrWhiteSpace(theme.Name) ? Properties.Resources.ContextMenuUnnamedTheme : theme.Name)}"),
             Margin = new(0)
         };
 
@@ -1494,6 +1493,20 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             themeManagerWindow.SetTimerWindow(_timerWindow);
             themeManagerWindow.BringToFrontAndActivate();
         }
+    }
+
+    /// <summary>
+    /// Makes first character a hotkey.
+    /// </summary>
+    /// <param name="text">Text.</param>
+    /// <returns>Text where fist character is a hotkey.</returns>
+    private static string MakeFirstCharHotkey(string text)
+    {
+        const char hotkeyChar = '_';
+
+        return string.IsNullOrWhiteSpace(text) || text[0] == hotkeyChar
+            ? text
+            : $"{hotkeyChar}{text}";
     }
 
     #endregion
@@ -1677,7 +1690,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         _timerWindow.IsFullScreen = false;
     }
 
-    internal sealed class CheckableMenuItem : MenuItem
+    private sealed class CheckableMenuItem : MenuItem
     {
         public CheckableMenuItem() =>
             (IsCheckable, StaysOpenOnClick) = (true, true);
