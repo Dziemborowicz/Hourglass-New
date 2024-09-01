@@ -385,7 +385,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             _closeWhenExpiredMenuItem.IsEnabled = false;
         }
 
-        UpdateBuiltInThemeTypeMenuItems();
+        UpdateThemesMenuItems();
 
         // Sound
         foreach (var menuItem in _selectableSoundMenuItems)
@@ -1414,10 +1414,10 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     }
 
     /// <summary>
-    /// Update build-in themes types menu items.
+    /// Update themes menu items.
     /// </summary>
     /// <param name="updateBuiltInThemes">Indicates whether built-in themes menu items should be updated.</param>
-    private void UpdateBuiltInThemeTypeMenuItems(bool updateBuiltInThemes = true)
+    private void UpdateThemesMenuItems(bool updateBuiltInThemes = true)
     {
         var themeType = _timerWindow.Options.Theme?.Type;
 
@@ -1429,9 +1429,10 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
                 menuItem.IsChecked = menuItemTheme == _timerWindow.Options.Theme;
                 menuItem.Visibility = (
                     themeType == ThemeType.UserProvided
-                        ? menuItemTheme.Type is ThemeType.BuiltInLight or ThemeType.UserProvided
-                        : menuItemTheme.Type == themeType ||
-                          menuItemTheme.Type == ThemeType.UserProvided
+                        ? _timerWindow.Options.Theme?.IsUserThemeDark == true
+                            ? menuItemTheme.Type is ThemeType.BuiltInDark  or ThemeType.UserProvided
+                            : menuItemTheme.Type is ThemeType.BuiltInLight or ThemeType.UserProvided
+                        : menuItemTheme.Type == themeType || menuItemTheme.Type == ThemeType.UserProvided
                 ).ToVisibility();
             }
         }
@@ -1454,7 +1455,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
             ? _timerWindow.Options.Theme?.DarkVariant
             : _timerWindow.Options.Theme?.LightVariant;
 
-        UpdateBuiltInThemeTypeMenuItems();
+        UpdateThemesMenuItems();
     }
 
     /// <summary>
@@ -1472,7 +1473,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         var selectedMenuItem = (MenuItem)sender;
         _timerWindow.Options.Theme = (Theme)selectedMenuItem.Tag;
 
-        UpdateBuiltInThemeTypeMenuItems(false);
+        UpdateThemesMenuItems(false);
     }
 
     /// <summary>
