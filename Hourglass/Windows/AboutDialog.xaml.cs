@@ -28,6 +28,16 @@ public sealed partial class AboutDialog
     private static AboutDialog? _instance;
 
     /// <summary>
+    /// The application name.
+    /// </summary>
+    public static readonly string AppName =
+#if PORTABLE
+        Properties.Resources.AppNamePortable;
+#else
+        Properties.Resources.AppName;
+#endif
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="AboutDialog"/> class.
     /// </summary>
     public AboutDialog()
@@ -37,18 +47,17 @@ public sealed partial class AboutDialog
     }
 
     /// <summary>
-    /// A string describing the app's copyright.
+    /// The application license.
     /// </summary>
-    public static string Copyright =>
-        Regex.Match(License, @"Copyright[^\r\n]+").Value;
+    public static readonly string License = $"{Environment.NewLine}{Properties.Resources.License}{Environment.NewLine}";
 
     /// <summary>
-    /// A string containing the app's license.
+    /// The application copyright.
     /// </summary>
-    public static string License => $"{Environment.NewLine}{Properties.Resources.License}{Environment.NewLine}";
+    public static readonly string Copyright = Regex.Match(License, @"Copyright[^\r\n]+").Value;
 
     /// <summary>
-    /// A string describing the app's version.
+    /// The application version.
     /// </summary>
     public static string Version
     {

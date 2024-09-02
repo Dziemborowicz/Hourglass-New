@@ -35,16 +35,16 @@
                    FontSize="20"
                    Foreground="#F5F5F5"
                    Padding="15 20 80 20"
-                   Text="{x:Static properties:Resources.AboutDialogTitle}"/>
+                   Text="{x:Static local:AboutDialog.AppName}"/>
         <StackPanel Margin="15">
             <StackPanel Orientation="Horizontal">
                 <TextBlock>
-                    <Run FontWeight="Bold" Text="{x:Static properties:Resources.AppName}"/>
+                    <Run FontWeight="Bold" Text="{x:Static local:AboutDialog.AppName}"/>
                     <Run Text="{x:Static local:AboutDialog.Version}"/>
                 </TextBlock>
-                <TextBlock DataContext="{x:Static managers:UpdateManager.Instance}" Margin="10 0 0 0" Visibility="{Binding Path=HasUpdates, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock DataContext="{x:Static managers:UpdateManager.Instance}" Style="{StaticResource HyperlinkStyle}" Visibility="{Binding Path=HasUpdates, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Hyperlink Focusable="{Binding Path=HasUpdates, Mode=OneWay}" NavigateUri="{Binding Path=UpdateUri, Mode=OneWay}" RequestNavigate="HyperlinkRequestNavigate">
-                        <Run Text="{x:Static properties:Resources.AboutDialogUpdateAvailableText}"/>
+                        <Run Text="{x:Static properties:Resources.AboutDialogUpdateIsAvailableText}"/>
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>

@@ -97,11 +97,11 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update available.
+        ///   Looks up a localized string similar to Update is available.
         /// </summary>
-        public static string AboutDialogUpdateAvailableText {
+        public static string AboutDialogUpdateIsAvailableText {
             get {
-                return ResourceManager.GetString("AboutDialogUpdateAvailableText", resourceCulture);
+                return ResourceManager.GetString("AboutDialogUpdateIsAvailableText", resourceCulture);
             }
         }
         
@@ -121,6 +121,15 @@ namespace Hourglass.Properties {
         public static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hourglass Portable.
+        /// </summary>
+        public static string AppNamePortable {
+            get {
+                return ResourceManager.GetString("AppNamePortable", resourceCulture);
             }
         }
         

@@ -1371,9 +1371,9 @@ $</value>
     <value>_Close</value>
     <comment>The text for the close button in the about dialog, where the character following the optional underscore (_) is the access key</comment>
   </data>
-  <data name="AboutDialogUpdateAvailableText" xml:space="preserve">
-    <value>Update available</value>
-    <comment>The text for update available link in the about dialog</comment>
+  <data name="AboutDialogUpdateIsAvailableText" xml:space="preserve">
+    <value>Update is available</value>
+    <comment>The text for update is available link in the about dialog</comment>
   </data>
   <data name="AboutDialogHourglassOnWeb" xml:space="preserve">
     <value>Hourglass on Web</value>
@@ -1390,6 +1390,10 @@ $</value>
   <data name="AppName" xml:space="preserve">
     <value>Hourglass</value>
     <comment>The name of the app</comment>
+  </data>
+  <data name="AppNamePortable" xml:space="preserve">
+    <value>Hourglass Portable</value>
+    <comment>The name of the portable app</comment>
   </data>
   <data name="UsageDialogAboutHourglassHyperlinkText" xml:space="preserve">
     <value>About Hourglass</value>
