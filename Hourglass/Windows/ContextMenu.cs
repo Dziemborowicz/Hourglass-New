@@ -981,29 +981,24 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     {
         _recentInputsMenuItem.Items.Clear();
 
-        if (TimerStartManager.Instance.TimerStarts.Count == 0)
-        {
-            MenuItem noRecentInputsMenuItem = new()
-            {
-                Header = Properties.Resources.ContextMenuNoRecentInputsMenuItem,
-                IsEnabled = false
-            };
+        IList<TimerStart> timerStarts = TimerStartManager.Instance.TimerStarts;
 
-            _recentInputsMenuItem.Items.Add(noRecentInputsMenuItem);
+        _recentInputsMenuItem.IsEnabled = timerStarts.Any();
+        if (!_recentInputsMenuItem.IsEnabled)
+        {
+            return;
         }
-        else
-        {
-            foreach (var timerStart in TimerStartManager.Instance.TimerStarts)
-            {
-                MenuItem timerMenuItem = new()
-                {
-                    Header = MakeFirstCharHotkey(timerStart.OriginalInput),
-                    Tag = timerStart
-                };
-                timerMenuItem.Click += RecentInputMenuItemClick;
 
-                _recentInputsMenuItem.Items.Add(timerMenuItem);
-            }
+        foreach (var timerStart in timerStarts)
+        {
+            MenuItem timerMenuItem = new()
+            {
+                Header = MakeFirstCharHotkey(timerStart.OriginalInput),
+                Tag = timerStart
+            };
+            timerMenuItem.Click += RecentInputMenuItemClick;
+
+            _recentInputsMenuItem.Items.Add(timerMenuItem);
         }
 
         _recentInputsMenuItem.Items.Add(new Separator());
@@ -1066,34 +1061,27 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     {
         _savedTimersMenuItem.Items.Clear();
 
-        var savedTimers = TimerManager.Instance.ResumableTimers;
+        IList<Timer> resumableTimers = TimerManager.Instance.ResumableTimers;
 
-        if (savedTimers.Count == 0)
+        _savedTimersMenuItem.IsEnabled = resumableTimers.Any();
+        if (!_savedTimersMenuItem.IsEnabled)
         {
-            MenuItem noRunningTimersMenuItem = new()
-            {
-                Header = Properties.Resources.ContextMenuNoSavedTimersMenuItem,
-                IsEnabled = false
-            };
-
-            _savedTimersMenuItem.Items.Add(noRunningTimersMenuItem);
+            return;
         }
-        else
+
+        foreach (var timer in resumableTimers)
         {
-            foreach (var savedTimer in savedTimers)
+            timer.Update();
+
+            MenuItem timerMenuItem = new()
             {
-                savedTimer.Update();
+                Header = GetHeaderForTimer(timer),
+                Icon = GetIconForTimer(timer),
+                Tag = timer
+            };
+            timerMenuItem.Click += SavedTimerMenuItemClick;
 
-                MenuItem timerMenuItem = new()
-                {
-                    Header = GetHeaderForTimer(savedTimer),
-                    Icon = GetIconForTimer(savedTimer),
-                    Tag = savedTimer
-                };
-                timerMenuItem.Click += SavedTimerMenuItemClick;
-
-                _savedTimersMenuItem.Items.Add(timerMenuItem);
-            }
+            _savedTimersMenuItem.Items.Add(timerMenuItem);
         }
 
         _savedTimersMenuItem.Items.Add(new Separator());

@@ -816,14 +816,6 @@ $</value>
     <value>_New timer</value>
     <comment>The text for the new timer menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
-  <data name="ContextMenuNoRecentInputsMenuItem" xml:space="preserve">
-    <value>No recent inputs</value>
-    <comment>The text for the no recent inputs placeholder menu item, where the character following the optional underscore (_) is the access key</comment>
-  </data>
-  <data name="ContextMenuNoSavedTimersMenuItem" xml:space="preserve">
-    <value>No saved timers</value>
-    <comment>The text for the no saved timers placeholder menu item, where the character following the optional underscore (_) is the access key</comment>
-  </data>
   <data name="ContextMenuNoSoundMenuItem" xml:space="preserve">
     <value>_No sound</value>
     <comment>The text for the no sound menu item, where the character following the optional underscore (_) is the access key</comment>

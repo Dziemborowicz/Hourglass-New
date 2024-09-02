@@ -431,24 +431,6 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No recent inputs.
-        /// </summary>
-        public static string ContextMenuNoRecentInputsMenuItem {
-            get {
-                return ResourceManager.GetString("ContextMenuNoRecentInputsMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No saved timers.
-        /// </summary>
-        public static string ContextMenuNoSavedTimersMenuItem {
-            get {
-                return ResourceManager.GetString("ContextMenuNoSavedTimersMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to _No sound.
         /// </summary>
         public static string ContextMenuNoSoundMenuItem {
