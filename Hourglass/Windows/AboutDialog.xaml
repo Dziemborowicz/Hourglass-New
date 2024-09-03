@@ -35,7 +35,7 @@
                    FontSize="20"
                    Foreground="#F5F5F5"
                    Padding="15 20 80 20"
-                   Text="{x:Static local:AboutDialog.AppName}"/>
+                   Text="{x:Static properties:Resources.AboutDialogTitle}"/>
         <StackPanel Margin="15">
             <StackPanel Orientation="Horizontal">
                 <TextBlock>
