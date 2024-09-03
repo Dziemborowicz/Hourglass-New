@@ -237,7 +237,7 @@ The **Hourglass** keeps track of running timers that you have closed. To resume 
 
 You can also resume all saved timers by checking **Open all saved timers** in the **Saved timers** submenu.
 
-And you can set the **Hourglass** to automatically open saved timers when it starts up by checking **Open saved timers** on startup in the **Advanced options** submenu.
+And you can set the **Hourglass** to automatically open saved timers when it starts up by checking **Open saved timers on startup** in the **Advanced options** submenu.
 
 ## How do I clear saved timers?
 
