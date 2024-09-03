@@ -51,7 +51,7 @@ public sealed class CommandLineArguments
     public string? ParseErrorMessage { get; private set; }
 
     /// <summary>
-    /// Gets a value indicating whether command-line usage information should be showed to the user.
+    /// Gets a value indicating whether command-line usage information should be shown to the user.
     /// </summary>
     public bool ShouldShowUsage { get; private set; }
 
@@ -471,10 +471,11 @@ public sealed class CommandLineArguments
                     argumentsBasedOnFactoryDefaults.IsFullScreen = isFullScreen;
                     break;
 
-                case "--prompt-on-exit":
+                case "--prompt-on-exit": // Backward compatibility.
                 case "--prompt-on-close":
                 case "-o":
                 case "/o":
+                    ThrowIfDuplicateSwitch(specifiedSwitches, "--prompt-on-exit"); // Backward compatibility.
                     ThrowIfDuplicateSwitch(specifiedSwitches, "--prompt-on-close");
 
                     bool promptOnExit = GetBoolValue(
@@ -1218,14 +1219,14 @@ public sealed class CommandLineArguments
     /// Unescapes a command-line value.
     /// </summary>
     /// <remarks>
-    /// A value is any command-line argument not beginning with '-'. If the user must specify a command-line value
-    /// that begins with '-', the user must escape the '-' with '''.
+    /// A value is any command-line argument not beginning with `-`. If the user must specify a command-line value
+    /// that begins with `-`, the user must escape the `-` with `'`.
     /// </remarks>
     /// <param name="value">An escaped value string.</param>
     /// <returns>The unescaped value.</returns>
     private static string UnescapeValue(string value)
     {
-        return !value.StartsWith("'") ? value : value.Substring(1);
+        return value.StartsWith("'") ? value.Substring(1) : value;
     }
 
     /// <summary>
