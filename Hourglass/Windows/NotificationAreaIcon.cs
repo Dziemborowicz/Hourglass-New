@@ -545,7 +545,7 @@ public class NotificationAreaIcon : IDisposable
                 {
                     shouldAddSeparator = true;
                     menuItem = new(Resources.NotificationAreaIconPauseAllMenuItem);
-                    menuItem.Click += delegate { TimerManager.PauseAll(); };
+                    menuItem.Click += static delegate { TimerManager.PauseAll(); };
                     yield return menuItem;
                 }
 
@@ -553,7 +553,7 @@ public class NotificationAreaIcon : IDisposable
                 {
                     shouldAddSeparator = true;
                     menuItem = new(Resources.NotificationAreaIconResumeAllMenuItem);
-                    menuItem.Click += delegate { TimerManager.ResumeAll(); };
+                    menuItem.Click += static delegate { TimerManager.ResumeAll(); };
                     yield return menuItem;
                 }
             }
@@ -567,21 +567,26 @@ public class NotificationAreaIcon : IDisposable
             if (firstWindow is not null)
             {
                 menuItem = new(Resources.NotificationAreaOptionsMenuItem);
-                menuItem.Click += delegate { OpenTimerContextMenuFor(firstWindow); };
+                menuItem.Click += OpenOptionsMenuItemEventHandler;
                 yield return menuItem;
 
                 menuItem = new(Resources.NotificationAreaIconSilentModeMenuItem)
                 {
                     Checked = TimerManager.SilentMode
                 };
-                menuItem.Click += delegate
-                {
-                    TimerManager.ToggleSilentMode();
-                    RefreshIcon();
-                };
+                menuItem.Click += MenuItemClickEventHandler;
                 yield return menuItem;
 
                 yield return NewSeparatorMenuItem();
+
+                void MenuItemClickEventHandler(object sender1, EventArgs e1)
+                {
+                    TimerManager.ToggleSilentMode();
+                    RefreshIcon();
+                }
+
+                void OpenOptionsMenuItemEventHandler(object sender1, EventArgs e1) =>
+                    OpenTimerContextMenuFor(firstWindow);
             }
 
             menuItem = new(Resources.NotificationAreaIconAboutMenuItem);

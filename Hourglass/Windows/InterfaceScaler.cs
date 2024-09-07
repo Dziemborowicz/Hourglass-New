@@ -170,10 +170,13 @@ public sealed class InterfaceScaler
         _timeExpiredLabel = _timerWindow.TimeExpiredLabel;
 
         // Hook up events
-        _timerWindow.Loaded += delegate { Scale(); };
-        _timerWindow.SizeChanged += delegate { Scale(); };
-        _timerWindow.PropertyChanged += delegate { Scale(); };
-        _timerTextBox.TextChanged += delegate { Scale(); };
+        _timerWindow.Loaded += ScaleEventHandler;
+        _timerWindow.SizeChanged += ScaleEventHandler;
+        _timerWindow.PropertyChanged += ScaleEventHandler;
+        _timerTextBox.TextChanged += ScaleEventHandler;
+
+        void ScaleEventHandler(object sender, EventArgs e) =>
+            Scale();
     }
 
     /// <summary>

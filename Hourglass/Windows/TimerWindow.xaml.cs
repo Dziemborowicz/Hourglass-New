@@ -43,10 +43,12 @@ public sealed class TimerCommand
 {
     private readonly Button _button;
     private readonly MenuItem _menuItem;
+    private readonly IInvokeProvider? _invokeProvider;
 
     public TimerCommand(Button button, KeyGesture? keyGesture = null)
     {
         _button = button;
+        _invokeProvider = new ButtonAutomationPeer(button).GetPattern(PatternInterface.Invoke) as IInvokeProvider;
 
         _menuItem = new()
         {
@@ -58,22 +60,19 @@ public sealed class TimerCommand
             _menuItem.InputGestureText = keyGesture.ToInputGestureText();
         }
 
-        _menuItem.Click += delegate
-        {
-            (new ButtonAutomationPeer(_button).GetPattern(PatternInterface.Invoke) as IInvokeProvider)?.Invoke();
-        };
+        _menuItem.Click += MenuItemClickEventHandler;
 
         Update();
     }
 
-    public void Update()
-    {
-        _menuItem.IsEnabled = _button.IsEnabled;
-        _menuItem.Visibility = _button.Visibility;
-    }
+    public void Update() =>
+        (_menuItem.IsEnabled, _menuItem.Visibility) = (_button.IsEnabled, _button.Visibility);
 
     public static implicit operator MenuItem (TimerCommand timerCommand) =>
         timerCommand._menuItem;
+
+    private void MenuItemClickEventHandler(object sender, RoutedEventArgs e) =>
+        _invokeProvider?.Invoke();
 }
 
 /// <summary>
@@ -566,22 +565,20 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             Topmost = true;
             Topmost = Options.AlwaysOnTop;
 
-            if(ShowActivated)
+            if (!ShowActivated)
             {
-                Dispatcher.BeginInvoke(Sleep);
-                Dispatcher.BeginInvoke(Activate);
-
-                if (contextMenu)
-                {
-                    Dispatcher.BeginInvoke(UnfocusAll);
-                    Dispatcher.BeginInvoke(this.OpenContextMenu);
-                }
-
-                static void Sleep()
-                {
-                    System.Threading.Thread.Sleep(10);
-                }
+                return;
             }
+
+            Activate();
+
+            if (!contextMenu)
+            {
+                return;
+            }
+
+            UnfocusAll();
+            this.OpenContextMenu();
         }
         catch (InvalidOperationException)
         {

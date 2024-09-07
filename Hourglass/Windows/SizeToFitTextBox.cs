@@ -6,6 +6,7 @@
 
 namespace Hourglass.Windows;
 
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,9 +44,12 @@ public sealed class SizeToFitTextBox : TextBox
     /// </summary>
     public SizeToFitTextBox()
     {
-        Loaded += delegate { UpdateFontSize(); };
-        SizeChanged += delegate { UpdateFontSize(); };
-        TextChanged += delegate { UpdateFontSize(); };
+        Loaded += UpdateFontSizeEventHandler;
+        SizeChanged += UpdateFontSizeEventHandler;
+        TextChanged += UpdateFontSizeEventHandler;
+
+        void UpdateFontSizeEventHandler(object sender, EventArgs e) =>
+            UpdateFontSize();
     }
 
     /// <summary>
