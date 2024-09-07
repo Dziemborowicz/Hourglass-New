@@ -3,6 +3,7 @@
 The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.com/apps/hourglass/#faq).
 
 - [How do I start, stop, pause or resume a timer?](#how-do-i-start-stop-pause-or-resume-a-timer)
+- [What do symbols ⏸⏹⏏🔁 mean?](#what-do-symbols--mean)
 - [What formats are supported when entering a duration or date and time?](#what-formats-are-supported-when-entering-a-duration-or-date-and-time)
 - [How do I start a second timer with the Hourglass?](#how-do-i-start-a-second-timer-with-the-hourglass)
 - [How do I keep the timer window on top of other windows?](#how-do-i-keep-the-timer-window-on-top-of-other-windows)
@@ -44,6 +45,17 @@ To stop a timer click **Stop** or press `Ctrl`+`S` or simply close the timer w
 To pause or resume a timer, click **Pause** or **Resume** or press `Ctrl`+`P`.
 
 Note that the **Pause** and **Stop** buttons only appear when you move your mouse cursor onto the timer window.
+
+## What do symbols ⏸⏹⏏🔁 mean?
+
+| Symbol | Meaning |
+|:------:| ------- |
+|   ⏸    | Paused  |
+|   ⏹    | Stopped |
+|   ⏏    | Expired |
+|   🔁    | Looped  |
+
+Taken from [here](https://en.wikipedia.org/wiki/Media_control_symbols#Symbols).
 
 ## What formats are supported when entering a duration or date and time?
 

@@ -969,35 +969,35 @@ $</value>
     <comment>Timer unknown trigger time</comment>
   </data>
   <data name="TimerExpiredFormatString" xml:space="preserve">
-    <value>{1} (Expired)</value>
+    <value>{1} · ⏏</value>
     <comment>A format string for the string representation of a expired timer, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerExpiredLoopedFormatString" xml:space="preserve">
-    <value>{1} (Expired) (Looped)</value>
+    <value>{1} · ⏏ 🔁</value>
     <comment>A format string for the string representation of a expired timer that is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerExpiredWithTitleFormatString" xml:space="preserve">
-    <value>{1} · {2} (Expired)</value>
+    <value>{1} · {2} · ⏏</value>
     <comment>A format string for the string representation of a expired timer that has a title, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerExpiredWithTitleLoopedFormatString" xml:space="preserve">
-    <value>{1} · {2} (Expired) (Looped)</value>
+    <value>{1} · {2} · ⏏ 🔁</value>
     <comment>A format string for the string representation of a expired timer that has a title and is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerPausedFormatString" xml:space="preserve">
-    <value>{0} 🡒 {1} (Paused)</value>
+    <value>{0} 🡒 {1} · ⏸</value>
     <comment>A format string for the string representation of a paused timer, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerPausedLoopedFormatString" xml:space="preserve">
-    <value>{0} 🡒 {1} (Paused) (Looped)</value>
+    <value>{0} 🡒 {1} · ⏸ 🔁</value>
     <comment>A format string for the string representation of a paused timer that is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerPausedWithTitleFormatString" xml:space="preserve">
-    <value>{0} 🡒 {1} · {2} (Paused)</value>
+    <value>{0} 🡒 {1} · {2} · ⏸</value>
     <comment>A format string for the string representation of a paused timer that has a title, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerPausedWithTitleLoopedFormatString" xml:space="preserve">
-    <value>{0} 🡒 {1} · {2} (Paused) (Looped)</value>
+    <value>{0} 🡒 {1} · {2} · ⏸ 🔁</value>
     <comment>A format string for the string representation of a paused timer that has a title and is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerRunningFormatString" xml:space="preserve">
@@ -1005,7 +1005,7 @@ $</value>
     <comment>A format string for the string representation of a running timer, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerRunningLoopedFormatString" xml:space="preserve">
-    <value>{0} 🡒 {1} (Looped)</value>
+    <value>{0} 🡒 {1} · 🔁</value>
     <comment>A format string for the string representation of a running timer that is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerRunningWithTitleFormatString" xml:space="preserve">
@@ -1013,31 +1013,31 @@ $</value>
     <comment>A format string for the string representation of a running timer that has a title, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerRunningWithTitleLoopedFormatString" xml:space="preserve">
-    <value>{0} 🡒 {1} · {2} (Looped)</value>
+    <value>{0} 🡒 {1} · {2} · 🔁</value>
     <comment>A format string for the string representation of a running timer that has a title and is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerStoppedFormatString" xml:space="preserve">
-    <value>Stopped</value>
+    <value>⏹</value>
     <comment>A format string for the string representation of a stopped timer, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerStoppedLoopedFormatString" xml:space="preserve">
-    <value>Stopped (Looped)</value>
+    <value>⏹ · 🔁</value>
     <comment>A format string for the string representation of a stopped timer that is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerStoppedWithTitleFormatString" xml:space="preserve">
-    <value>Stopped · {2}</value>
+    <value>⏹ · {2}</value>
     <comment>A format string for the string representation of a stopped timer that has a title, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerStoppedWithTitleLoopedFormatString" xml:space="preserve">
-    <value>Stopped · {2} (Looped)</value>
+    <value>⏹ · {2} · 🔁</value>
     <comment>A format string for the string representation of a stopped timer that has a title and is looped, where {0} is the time left, {1} is the timer target, and {2} is the timer title</comment>
   </data>
   <data name="TimerPausedToolTipFormatString" xml:space="preserve">
-    <value>{0} (Paused)</value>
+    <value>{0} · ⏸</value>
     <comment>A paused timer string tooltip format</comment>
   </data>
   <data name="TimerStoppedToolTipFormatString" xml:space="preserve">
-    <value>{0} (Stopped)</value>
+    <value>{0} · ⏹</value>
     <comment>A stopped timer string tooltip format</comment>
   </data>
   <data name="NormalTimeTokenMilitaryTimePattern" xml:space="preserve">

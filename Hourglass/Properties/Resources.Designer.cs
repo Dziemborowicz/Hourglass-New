@@ -1994,7 +1994,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} (Expired).
+        ///   Looks up a localized string similar to {1} · ⏏.
         /// </summary>
         public static string TimerExpiredFormatString {
             get {
@@ -2003,7 +2003,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} (Expired) (Looped).
+        ///   Looks up a localized string similar to {1} · ⏏ 🔁.
         /// </summary>
         public static string TimerExpiredLoopedFormatString {
             get {
@@ -2012,7 +2012,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} · {2} (Expired).
+        ///   Looks up a localized string similar to {1} · {2} · ⏏.
         /// </summary>
         public static string TimerExpiredWithTitleFormatString {
             get {
@@ -2021,7 +2021,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1} · {2} (Expired) (Looped).
+        ///   Looks up a localized string similar to {1} · {2} · ⏏ 🔁.
         /// </summary>
         public static string TimerExpiredWithTitleLoopedFormatString {
             get {
@@ -2030,7 +2030,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} 🡒 {1} (Paused).
+        ///   Looks up a localized string similar to {0} 🡒 {1} · ⏸.
         /// </summary>
         public static string TimerPausedFormatString {
             get {
@@ -2039,7 +2039,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} 🡒 {1} (Paused) (Looped).
+        ///   Looks up a localized string similar to {0} 🡒 {1} · ⏸ 🔁.
         /// </summary>
         public static string TimerPausedLoopedFormatString {
             get {
@@ -2048,7 +2048,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} (Paused).
+        ///   Looks up a localized string similar to {0} · ⏸.
         /// </summary>
         public static string TimerPausedToolTipFormatString {
             get {
@@ -2057,7 +2057,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} 🡒 {1} · {2} (Paused).
+        ///   Looks up a localized string similar to {0} 🡒 {1} · {2} · ⏸.
         /// </summary>
         public static string TimerPausedWithTitleFormatString {
             get {
@@ -2066,7 +2066,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} 🡒 {1} · {2} (Paused) (Looped).
+        ///   Looks up a localized string similar to {0} 🡒 {1} · {2} · ⏸ 🔁.
         /// </summary>
         public static string TimerPausedWithTitleLoopedFormatString {
             get {
@@ -2084,7 +2084,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} 🡒 {1} (Looped).
+        ///   Looks up a localized string similar to {0} 🡒 {1} · 🔁.
         /// </summary>
         public static string TimerRunningLoopedFormatString {
             get {
@@ -2102,7 +2102,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} 🡒 {1} · {2} (Looped).
+        ///   Looks up a localized string similar to {0} 🡒 {1} · {2} · 🔁.
         /// </summary>
         public static string TimerRunningWithTitleLoopedFormatString {
             get {
@@ -2138,7 +2138,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped.
+        ///   Looks up a localized string similar to ⏹.
         /// </summary>
         public static string TimerStoppedFormatString {
             get {
@@ -2147,7 +2147,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped (Looped).
+        ///   Looks up a localized string similar to ⏹ · 🔁.
         /// </summary>
         public static string TimerStoppedLoopedFormatString {
             get {
@@ -2156,7 +2156,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} (Stopped).
+        ///   Looks up a localized string similar to {0} · ⏹.
         /// </summary>
         public static string TimerStoppedToolTipFormatString {
             get {
@@ -2165,7 +2165,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped · {2}.
+        ///   Looks up a localized string similar to ⏹ · {2}.
         /// </summary>
         public static string TimerStoppedWithTitleFormatString {
             get {
@@ -2174,7 +2174,7 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped · {2} (Looped).
+        ///   Looks up a localized string similar to ⏹ · {2} · 🔁.
         /// </summary>
         public static string TimerStoppedWithTitleLoopedFormatString {
             get {

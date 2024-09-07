@@ -90,6 +90,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The **Options** menu command opens the timer options menu. The shortcut is the holding the `Shift` during right click on the notification area icon.
 - The **Silent mode** disables all the timers notifications. It is not preserved between runs.
 - The **Exit** menu command prompts for closing all the running timer windows if the **Prompt on close** option is set.
+- ⏸⏹⏏🔁 symbols are used for **Paused**, **Stopped**, **Expired**, **Looped**.
 
 ### Timer Windows
 
