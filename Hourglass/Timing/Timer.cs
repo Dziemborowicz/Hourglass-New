@@ -186,7 +186,7 @@ public sealed class Timer : TimerBase
 
         object? GetStartOrTriggerTime() =>
             Options.ShowTriggerTime
-                ? FormatEndTime()
+                ? FormatEndTime(true)
                 : TimerStart;
     }
 
@@ -424,7 +424,7 @@ public sealed class Timer : TimerBase
     /// <returns>The string representation of the time since the timer expired.</returns>
     private string GetTimeExpiredAsString(bool compact) =>
         State != TimerState.Expired
-            ? FormatEndTime()
+            ? FormatEndTime(compact)
             : string.Format(
                 Resources.ResourceManager.GetEffectiveProvider(),
                 Resources.TimerTimeExpiredFormatString,
@@ -449,11 +449,11 @@ public sealed class Timer : TimerBase
         Other
     }
 
-    private string FormatEndTime()
+    private string FormatEndTime(bool compact = false)
     {
         if (!Options.ShowTriggerTime || EndTime is null)
         {
-            return string.Empty;
+            return compact ? Resources.TimerUnknownTriggerTime : string.Empty;
         }
 
         DateTime endTime = EndTime.Value;
