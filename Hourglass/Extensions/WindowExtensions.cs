@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 using KPreisser.UI;
 
@@ -586,6 +587,15 @@ public static class WindowExtensions
         // Center the rect as a fallback
         return rect.CenterOnScreen();
     }
+
+    private static readonly Action EmptyAction = delegate { };
+
+    /// <summary>
+    /// Force window layout update.
+    /// </summary>
+    /// <param name="window">The window.</param>
+    public static void ForceUpdateLayout(this Window window) =>
+        window.Dispatcher.Invoke(EmptyAction, DispatcherPriority.Render);
 
     /// <summary>
     /// Open window context menu.

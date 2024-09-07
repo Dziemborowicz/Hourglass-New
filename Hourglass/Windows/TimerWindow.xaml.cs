@@ -565,6 +565,8 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             Topmost = true;
             Topmost = Options.AlwaysOnTop;
 
+            this.ForceUpdateLayout();
+
             if (!ShowActivated)
             {
                 return;
