@@ -2087,5 +2087,12 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         this.AddWindowProcHook();
     }
 
+    protected override void OnActivated(EventArgs e)
+    {
+        this.ForceUpdateLayout();
+
+        base.OnActivated(e);
+    }
+
     #endregion
 }
