@@ -127,6 +127,8 @@ Options:
   --multi-timers on|off
         Treats each <input> command-line argument as an individual timer.
 
+        An each timer containing spaces must be surrounded by double quotes.
+
         This option is never remembered. It must be specified as a command-line
         argument each time the timer is started.
 
