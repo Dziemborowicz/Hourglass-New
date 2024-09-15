@@ -580,7 +580,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             }
 
             UnfocusAll();
-            this.OpenContextMenu();
+            Dispatcher.BeginInvoke(this.OpenContextMenu);
         }
         catch (InvalidOperationException)
         {
@@ -1673,27 +1673,31 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     /// <param name="sender">The <see cref="TimerWindow"/>.</param>
     /// <param name="e">The event data.</param>
+#pragma warning disable S2325
     private void UpdateCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+#pragma warning restore S2325
     {
         Uri updateUri = UpdateManager.Instance.UpdateUri;
-        if (updateUri.Scheme == Uri.UriSchemeHttp || updateUri.Scheme == Uri.UriSchemeHttps)
+        if (updateUri.Scheme != Uri.UriSchemeHttp && updateUri.Scheme != Uri.UriSchemeHttps)
         {
-            try
-            {
-                updateUri.Navigate();
-            }
-            catch (Exception ex) when (ex.CanBeHandled())
-            {
-                string message = string.Format(
-                    Properties.Resources.TimerWindowCouldNotLaunchWebBrowserErrorMessage,
-                    updateUri);
+            return;
+        }
 
-                ErrorDialog dialog = new();
-                dialog.ShowDialog(
-                    title: Properties.Resources.TimerWindowCouldNotLaunchWebBrowserErrorTitle,
-                    message: message,
-                    details: ex.ToString());
-            }
+        try
+        {
+            updateUri.Navigate();
+        }
+        catch (Exception ex) when (ex.CanBeHandled())
+        {
+            string message = string.Format(
+                Properties.Resources.TimerWindowCouldNotLaunchWebBrowserErrorMessage,
+                updateUri);
+
+            ErrorDialog dialog = new();
+            dialog.ShowDialog(
+                title: Properties.Resources.TimerWindowCouldNotLaunchWebBrowserErrorTitle,
+                message: message,
+                details: ex.ToString());
         }
     }
 
