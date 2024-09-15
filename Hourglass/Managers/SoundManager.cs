@@ -62,14 +62,14 @@ public sealed class SoundManager : Manager
     /// Gets a collection of the sounds stored in the assembly.
     /// </summary>
 #pragma warning disable S2365
-    public IList<Sound> BuiltInSounds => _sounds.Where(static s => s.IsBuiltIn).ToList();
+    public IReadOnlyCollection<Sound> BuiltInSounds => _sounds.Where(static s => s.IsBuiltIn).ToArray();
 #pragma warning restore S2365
 
     /// <summary>
     /// Gets a collection of the sounds stored in the file system.
     /// </summary>
 #pragma warning disable S2365
-    public IList<Sound> UserProvidedSounds => _sounds.Where(static s => !s.IsBuiltIn).ToList();
+    public IReadOnlyCollection<Sound> UserProvidedSounds => _sounds.Where(static s => !s.IsBuiltIn).ToArray();
 #pragma warning restore S2365
 
     /// <summary>
@@ -153,7 +153,7 @@ public sealed class SoundManager : Manager
     /// Loads the collection of sounds stored in the file system.
     /// </summary>
     /// <returns>A collection of sounds stored in the file system.</returns>
-    private IEnumerable<Sound> GetUserProvidedSounds()
+    private static IEnumerable<Sound> GetUserProvidedSounds()
     {
         const string soundsDirectory = "Sounds";
 

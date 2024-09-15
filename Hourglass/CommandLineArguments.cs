@@ -839,7 +839,7 @@ public sealed class CommandLineArguments
                     List<string> inputArgs = [arg, ..remainingArgs];
                     remainingArgs.Clear();
 
-                    IEnumerable<TimerStart> timerStart = GetTimerStartValue(inputArgs, argumentsBasedOnMostRecentOptions.MultiTimers).ToList();
+                    IEnumerable<TimerStart> timerStart = GetTimerStartValue(inputArgs, argumentsBasedOnMostRecentOptions.MultiTimers).ToArray();
 
                     argumentsBasedOnMostRecentOptions.TimerStart = timerStart;
                     argumentsBasedOnFactoryDefaults.TimerStart = timerStart;

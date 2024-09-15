@@ -48,7 +48,7 @@ public static class TimerWindowExtensions
                 return null;
             }
 
-            var allWindows = Application.Current.Windows.OfType<TimerWindow>().Arrange().ToList();
+            var allWindows = Application.Current.Windows.OfType<TimerWindow>().Arrange().ToArray();
 
             return GetNextApplicableWindow(allWindows.SkipWhile(NotThisWindow).Skip(1)) ??
                    GetNextApplicableWindow(allWindows.TakeWhile(NotThisWindow));

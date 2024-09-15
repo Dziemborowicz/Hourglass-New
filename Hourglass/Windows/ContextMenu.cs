@@ -981,7 +981,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     {
         _recentInputsMenuItem.Items.Clear();
 
-        IList<TimerStart> timerStarts = TimerStartManager.Instance.TimerStarts;
+        IReadOnlyCollection<TimerStart> timerStarts = TimerStartManager.Instance.TimerStarts;
 
         _recentInputsMenuItem.IsEnabled = timerStarts.Any();
         if (!_recentInputsMenuItem.IsEnabled)
@@ -1061,7 +1061,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     {
         _savedTimersMenuItem.Items.Clear();
 
-        IList<Timer> resumableTimers = TimerManager.Instance.ResumableTimers;
+        IReadOnlyCollection<Timer> resumableTimers = TimerManager.Instance.ResumableTimers;
 
         _savedTimersMenuItem.IsEnabled = resumableTimers.Any();
         if (!_savedTimersMenuItem.IsEnabled)
@@ -1341,7 +1341,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// Creates a <see cref="MenuItem"/> for each <see cref="Theme"/> in the collection.
     /// </summary>
     /// <param name="themes">A collection of <see cref="Theme"/>s.</param>
-    private void CreateThemeMenuItemsFromList(IList<Theme> themes)
+    private void CreateThemeMenuItemsFromList(IReadOnlyCollection<Theme> themes)
     {
         _themeMenuItem.Items.Add(new Separator());
 
@@ -1551,15 +1551,17 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// Creates a <see cref="MenuItem"/> for each <see cref="Sound"/> in the collection.
     /// </summary>
     /// <param name="sounds">A collection of <see cref="Sound"/>s.</param>
-    private void CreateSoundMenuItemsFromList(IList<Sound> sounds)
+    private void CreateSoundMenuItemsFromList(IReadOnlyCollection<Sound> sounds)
     {
-        if (sounds.Count > 0)
+        if (sounds.Count <= 0)
         {
-            _soundMenuItem.Items.Add(new Separator());
-            foreach (var sound in sounds)
-            {
-                CreateSoundMenuItem(sound);
-            }
+            return;
+        }
+
+        _soundMenuItem.Items.Add(new Separator());
+        foreach (var sound in sounds)
+        {
+            CreateSoundMenuItem(sound);
         }
     }
 

@@ -54,21 +54,21 @@ public sealed class ThemeManager : Manager
     /// Gets a collection of the themes stored in the assembly.
     /// </summary>
 #pragma warning disable S2365
-    public IList<Theme> BuiltInThemes => _themes.Where(static t => t.Type != ThemeType.UserProvided).ToList();
+    public IReadOnlyCollection<Theme> BuiltInThemes => _themes.Where(static t => t.Type != ThemeType.UserProvided).ToArray();
 #pragma warning restore S2365
 
     /// <summary>
     /// Gets a collection of the light themes stored in the assembly.
     /// </summary>
 #pragma warning disable S2365
-    public IList<Theme> BuiltInLightThemes => _themes.Where(static t => t.Type == ThemeType.BuiltInLight).ToList();
+    public IReadOnlyCollection<Theme> BuiltInLightThemes => _themes.Where(static t => t.Type == ThemeType.BuiltInLight).ToArray();
 #pragma warning restore S2365
 
     /// <summary>
     /// Gets a collection of the dark themes stored in the assembly.
     /// </summary>
 #pragma warning disable S2365
-    public IList<Theme> BuiltInDarkThemes => _themes.Where(static t => t.Type == ThemeType.BuiltInDark).ToList();
+    public IReadOnlyCollection<Theme> BuiltInDarkThemes => _themes.Where(static t => t.Type == ThemeType.BuiltInDark).ToArray();
 #pragma warning restore S2365
 
     /// <summary>
@@ -76,7 +76,7 @@ public sealed class ThemeManager : Manager
     /// </summary>
 #pragma warning disable S2365
 #pragma warning disable IDE0305
-    public IList<Theme> UserProvidedThemes => _themes.Where(static t => t.Type == ThemeType.UserProvided).OrderBy(t => t.Name).ToList();
+    public IReadOnlyCollection<Theme> UserProvidedThemes => _themes.Where(static t => t.Type == ThemeType.UserProvided).OrderBy(t => t.Name).ToArray();
 #pragma warning restore IDE0305
 #pragma warning restore S2365
 
@@ -95,7 +95,7 @@ public sealed class ThemeManager : Manager
     /// </summary>
     public override void Persist()
     {
-        Settings.Default.UserProvidedThemes = UserProvidedThemes;
+        Settings.Default.UserProvidedThemes = UserProvidedThemes.ToList();
     }
 
     /// <summary>

@@ -57,7 +57,7 @@ public sealed class TimerManager : Manager
     /// <see cref="TimerState.Stopped"/>.
     /// </summary>
 #pragma warning disable S2365
-    public IList<Timer> ResumableTimers => _timers.Where(static t => t.State != TimerState.Stopped && !IsBoundToWindow(t)).ToList();
+    public IReadOnlyCollection<Timer> ResumableTimers => _timers.Where(static t => t.State != TimerState.Stopped && !IsBoundToWindow(t)).ToArray();
 #pragma warning restore S2365
 
     /// <summary>
@@ -65,7 +65,7 @@ public sealed class TimerManager : Manager
     /// cref="TimerState.Running"/>.
     /// </summary>
 #pragma warning disable S2365
-    public IList<Timer> RunningTimers => _timers.Where(static t => t.State == TimerState.Running && IsBoundToWindow(t)).ToList();
+    public IReadOnlyCollection<Timer> RunningTimers => _timers.Where(static t => t.State == TimerState.Running && IsBoundToWindow(t)).ToArray();
 #pragma warning restore S2365
 
     /// <summary>

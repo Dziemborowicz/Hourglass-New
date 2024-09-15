@@ -197,11 +197,11 @@ public static class DateTimeExtensions
     /// <exception cref="FormatException">If <paramref name="str"/> is not a supported representation of a month. </exception>
     public static int ParseMonth(string str, IFormatProvider provider)
     {
-        IList<KeyValuePair<int, string>> matches = GetMonthStrings(provider)
+        KeyValuePair<int, string>[] matches = GetMonthStrings(provider)
             .Where(e => e.Value.StartsWith(str, true /* ignoreCase */, (CultureInfo)provider))
-            .ToList();
+            .ToArray();
 
-        if (matches.Count != 1)
+        if (matches.Length != 1)
         {
             throw new FormatException();
         }

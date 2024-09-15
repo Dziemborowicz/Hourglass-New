@@ -43,7 +43,7 @@ public sealed class TimerStartManager : Manager
     /// Gets a list of the most recent <see cref="TimerStart"/> objects in reverse chronological order.
     /// </summary>
 #pragma warning disable S2365
-    public IList<TimerStart> TimerStarts => _timerStarts.Where(static e => e.IsCurrent).ToList();
+    public IReadOnlyCollection<TimerStart> TimerStarts => _timerStarts.Where(static e => e.IsCurrent).ToArray();
 #pragma warning restore S2365
 
     /// <summary>

@@ -298,7 +298,7 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     /// <param name="title">The section title.</param>
     /// <param name="themes">The themes to add to the <see cref="ThemesComboBox"/>.</param>
-    private void AddThemesToComboBox(string title, IList<Theme> themes)
+    private void AddThemesToComboBox(string title, IReadOnlyCollection<Theme> themes)
     {
         if (themes.Count == 0)
         {

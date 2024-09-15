@@ -27,11 +27,11 @@ public static class DayOfWeekExtensions
     /// <exception cref="FormatException">If <paramref name="str"/> is not a supported representation of a day of the week.</exception>
     public static DayOfWeek ParseDayOfWeek(string str, IFormatProvider provider)
     {
-        IList<KeyValuePair<DayOfWeek, string>> matches = GetDayOfWeekStrings(provider)
+        KeyValuePair<DayOfWeek, string>[] matches = GetDayOfWeekStrings(provider)
             .Where(e => e.Value.StartsWith(str, true /* ignoreCase */, (CultureInfo)provider))
-            .ToList();
+            .ToArray();
 
-        if (matches.Count != 1)
+        if (matches.Length != 1)
         {
             throw new FormatException();
         }
