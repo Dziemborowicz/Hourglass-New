@@ -780,11 +780,14 @@ public class NotificationAreaIcon : IDisposable
     /// Shows the timer context menu.
     /// </summary>
     /// <returns><c>true</c> if the timer context menu is shown, <c>false</c> otherwise.</returns>
-    static bool ShowTimerContextMenu()
+    private static bool ShowTimerContextMenu()
     {
-        var windows = ArrangedWindows.ToArray();
+        TimerWindow[] windows = ArrangedWindows.ToArray();
 
-        TimerWindow? window = Array.Find(windows, static window => window.IsVisible) ?? windows.FirstOrDefault();
+        TimerWindow? window =
+            Array.Find(windows, static window => window.ID == TimerWindow.LastActivatedID) ??
+            Array.Find(windows, static window => window.IsVisible) ??
+            windows.FirstOrDefault();
         if (window is null)
         {
             return false;

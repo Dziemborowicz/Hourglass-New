@@ -147,13 +147,15 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     public static readonly KeyGesture RestartKeyGesture    = new(Key.R, ModifierKeys.Control);
     public static readonly KeyGesture FullScreenKeyGesture = new(Key.F11, ModifierKeys.None);
 
+    public static int LastActivatedID { get; private set; }
+
     #endregion
 
     #region Private Members
 
     private static int _id;
 
-    public readonly int ID = System.Threading.Interlocked.Increment(ref _id);
+    public int ID { get; } = System.Threading.Interlocked.Increment(ref _id);
 
     /// <summary>
     /// The <see cref="InterfaceScaler"/> for the window.
@@ -2093,6 +2095,8 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
     protected override void OnActivated(EventArgs e)
     {
+        LastActivatedID = ID;
+
         this.ForceUpdateLayout();
 
         base.OnActivated(e);
