@@ -99,6 +99,11 @@ public class NotificationAreaIcon : IDisposable
     private DateTime _lastClickTime;
 
     /// <summary>
+    /// Gets arranged windows.
+    /// </summary>
+    private static IEnumerable<TimerWindow> ArrangedWindows => Application.Current?.Windows.OfType<TimerWindow>().Arrange() ?? [];
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="NotificationAreaIcon"/> class.
     /// </summary>
     public NotificationAreaIcon()
@@ -362,6 +367,8 @@ public class NotificationAreaIcon : IDisposable
 
         if (!IsDoubleClick(e))
         {
+            ProcessClick();
+
             return;
         }
 
@@ -381,6 +388,25 @@ public class NotificationAreaIcon : IDisposable
         }
 
         RestoreAllTimerWindows();
+
+        void ProcessClick()
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                return;
+            }
+
+            if (IsKeyDown(ModifierKeys.Shift))
+            {
+                ArrangedWindows.FirstOrDefault()?.BringToFrontAndActivate();
+                return;
+            }
+
+            if (IsKeyDown(ModifierKeys.Control))
+            {
+                NewTimer();
+            }
+        }
     }
 
     /// <summary>
@@ -396,8 +422,7 @@ public class NotificationAreaIcon : IDisposable
             return;
         }
 
-        string[] windowStrings = Application.Current.Windows.OfType<TimerWindow>()
-            .Arrange()
+        string[] windowStrings = ArrangedWindows
             .Select(static window => window.ToString())
             .Where(static windowString => !string.IsNullOrWhiteSpace(windowString))
             .ToArray();
@@ -447,7 +472,7 @@ public class NotificationAreaIcon : IDisposable
     /// </summary>
     /// <param name="sender">The <see cref="NotifyIcon"/>.</param>
     /// <param name="e">The event data.</param>
-    private void BalloonTipClicked(object sender, EventArgs e)
+    private static void BalloonTipClicked(object sender, EventArgs e)
     {
         RestoreAllExpiredTimerWindows();
     }
@@ -468,7 +493,7 @@ public class NotificationAreaIcon : IDisposable
     {
         _notifyIcon.ContextMenu.MenuItems.Clear();
 
-        IEnumerable<TimerWindow>? windows = Application.Current?.Windows.OfType<TimerWindow>().Arrange().ToList();
+        IEnumerable<TimerWindow> windows = ArrangedWindows.ToArray();
 
         bool hasApplication = Application.Current is not null;
 
@@ -494,13 +519,13 @@ public class NotificationAreaIcon : IDisposable
 
         bool OpenTimerContextMenu()
         {
-            if (!Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
+            if (!IsKeyDown(ModifierKeys.Shift))
             {
                 return false;
             }
 
-            TimerWindow? window = windows!.FirstOrDefault(static window => window.IsVisible) ??
-                                  windows!.FirstOrDefault();
+            TimerWindow? window = windows.FirstOrDefault(static window => window.IsVisible) ??
+                                  windows.FirstOrDefault();
             if (window is null)
             {
                 return false;
@@ -523,7 +548,7 @@ public class NotificationAreaIcon : IDisposable
 
             bool shouldAddSeparator = false;
 
-            foreach (TimerWindow window in windows!)
+            foreach (TimerWindow window in windows)
             {
                 shouldAddSeparator = true;
 
@@ -648,9 +673,7 @@ public class NotificationAreaIcon : IDisposable
     /// <param name="e">The event data.</param>
     private static void NewTimerMenuItemClick(object sender, EventArgs e)
     {
-        TimerWindow window = new();
-        window.RestoreFromSibling();
-        window.Show();
+        NewTimer();
     }
 
     /// <summary>
@@ -670,7 +693,7 @@ public class NotificationAreaIcon : IDisposable
     /// </summary>
     /// <param name="sender">The <see cref="MenuItem"/> where the event handler is attached.</param>
     /// <param name="e">The event data.</param>
-    private void ExitMenuItemClick(object sender, EventArgs e)
+    private static void ExitMenuItemClick(object sender, EventArgs e)
     {
         if (Application.Current is null)
         {
@@ -685,8 +708,7 @@ public class NotificationAreaIcon : IDisposable
             return;
         }
 
-        TimerWindow? firstTimerWindow = Application.Current.Windows.OfType<TimerWindow>()
-            .Arrange()
+        TimerWindow? firstTimerWindow = ArrangedWindows
             .FirstOrDefault(static window => window.Options.PromptOnExit && IsTimerRunningFor(window));
 
         if (firstTimerWindow is not null)
@@ -746,5 +768,23 @@ public class NotificationAreaIcon : IDisposable
 
         Icon GetIcon(Lazy<Icon> silentIcon, Lazy<Icon> normalIcon) =>
             (silent ? silentIcon : normalIcon).Value;
+    }
+
+    /// <summary>
+    /// Checks whether modifier keys are down.
+    /// </summary>
+    /// <param name="modifierKeys">Modifier keys.</param>
+    /// <returns><c>true</c> if keys are down, <c>false</c> otherwise.</returns>
+    private static bool IsKeyDown(ModifierKeys modifierKeys) =>
+        (Keyboard.Modifiers ^ modifierKeys) == 0;
+
+    /// <summary>
+    /// Creates new timer.
+    /// </summary>
+    private static void NewTimer()
+    {
+        TimerWindow window = new();
+        window.RestoreFromSibling();
+        window.Show();
     }
 }
