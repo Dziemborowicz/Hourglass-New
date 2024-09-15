@@ -397,13 +397,7 @@ public class NotificationAreaIcon : IDisposable
                 return;
             }
 
-            TimerWindow? window = ArrangedWindows.FirstOrDefault();
-            if (window is null)
-            {
-                return;
-            }
-
-            OpenTimerContextMenuFor(window);
+            ShowTimerContextMenu();
         }
 
         void ProcessLeftClick()
@@ -510,13 +504,13 @@ public class NotificationAreaIcon : IDisposable
     {
         _notifyIcon.ContextMenu.MenuItems.Clear();
 
-        IEnumerable<TimerWindow> windows = ArrangedWindows.ToArray();
+        TimerWindow[] windows = ArrangedWindows.ToArray();
 
         bool hasApplication = Application.Current is not null;
 
         if (hasApplication)
         {
-            if (OpenTimerContextMenu())
+            if (IsKeyDown(ModifierKeys.Shift) && ShowTimerContextMenu())
             {
                 return;
             }
@@ -533,25 +527,6 @@ public class NotificationAreaIcon : IDisposable
             _dispatcherTimer.Start();
         }
 
-
-        bool OpenTimerContextMenu()
-        {
-            if (!IsKeyDown(ModifierKeys.Shift))
-            {
-                return false;
-            }
-
-            TimerWindow? window = windows.FirstOrDefault(static window => window.IsVisible) ??
-                                  windows.FirstOrDefault();
-            if (window is null)
-            {
-                return false;
-            }
-
-            OpenTimerContextMenuFor(window);
-
-            return true;
-        }
 
         IEnumerable<MenuItem> GetApplicationMenuItems()
         {
@@ -605,8 +580,7 @@ public class NotificationAreaIcon : IDisposable
                 yield return NewSeparatorMenuItem();
             }
 
-            TimerWindow? firstWindow = windows.FirstOrDefault();
-            if (firstWindow is not null)
+            if (windows.Any())
             {
                 menuItem = new(Resources.NotificationAreaOptionsMenuItem);
                 menuItem.Click += OpenOptionsMenuItemEventHandler;
@@ -628,7 +602,7 @@ public class NotificationAreaIcon : IDisposable
                 }
 
                 void OpenOptionsMenuItemEventHandler(object sender1, EventArgs e1) =>
-                    OpenTimerContextMenuFor(firstWindow);
+                    ShowTimerContextMenu();
             }
 
             menuItem = new(Resources.NotificationAreaIconAboutMenuItem);
@@ -803,9 +777,21 @@ public class NotificationAreaIcon : IDisposable
     }
 
     /// <summary>
-    /// Opens the timer window context menu.
+    /// Shows the timer context menu.
     /// </summary>
-    /// <param name="window">The window to open context menu for.</param>
-    private static void OpenTimerContextMenuFor(TimerWindow window) =>
+    /// <returns><c>true</c> if the timer context menu is shown, <c>false</c> otherwise.</returns>
+    static bool ShowTimerContextMenu()
+    {
+        var windows = ArrangedWindows.ToArray();
+
+        TimerWindow? window = Array.Find(windows, static window => window.IsVisible) ?? windows.FirstOrDefault();
+        if (window is null)
+        {
+            return false;
+        }
+
         window.BringToFrontAndActivate(true, true);
+
+        return true;
+    }
 }
