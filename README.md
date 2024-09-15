@@ -87,10 +87,10 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The `Double Click` shows/hides all the timer windows.
 - The `Ctrl`+`Click` creates a new timer.
 - The `Shift`+`Click` shows the first timer.
-- The `Shift`+`Right Click` opens the timer options menu.
+- The `Middle Click` or `Shift`+`Right Click` opens the timer options menu.
 - The **Pause all** menu command pauses all the running timers.
 - The **Resume all** menu command resumes all the paused timers.
-- The **Options** menu command opens the timer options menu. The shortcut is the `Shift`+`Right Click` on the notification area icon.
+- The **Options** menu command opens the timer options menu. The shortcut is the `Middle Click` or `Shift`+`Right Click` on the notification area icon.
 - The **Silent mode** disables all the timers notifications. It is not preserved between runs.
 - The **Exit** menu command prompts for closing all the running timer windows if the **Prompt on close** option is set.
 - ⏸⏹⏏🔁 symbols are used for **Paused**, **Stopped**, **Expired**, **Looped**.

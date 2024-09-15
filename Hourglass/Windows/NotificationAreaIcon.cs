@@ -367,7 +367,8 @@ public class NotificationAreaIcon : IDisposable
 
         if (!IsDoubleClick(e))
         {
-            ProcessClick();
+            ProcessMiddleClick();
+            ProcessLeftClick();
 
             return;
         }
@@ -389,7 +390,23 @@ public class NotificationAreaIcon : IDisposable
 
         RestoreAllTimerWindows();
 
-        void ProcessClick()
+        void ProcessMiddleClick()
+        {
+            if (e.Button != MouseButtons.Middle)
+            {
+                return;
+            }
+
+            TimerWindow? window = ArrangedWindows.FirstOrDefault();
+            if (window is null)
+            {
+                return;
+            }
+
+            OpenTimerContextMenuFor(window);
+        }
+
+        void ProcessLeftClick()
         {
             if (e.Button != MouseButtons.Left)
             {
@@ -623,9 +640,6 @@ public class NotificationAreaIcon : IDisposable
             static MenuItem NewSeparatorMenuItem() =>
                 new("-");
         }
-
-        static void OpenTimerContextMenuFor(TimerWindow window) =>
-            window.BringToFrontAndActivate(true, true);
     }
 
     /// <summary>
@@ -787,4 +801,11 @@ public class NotificationAreaIcon : IDisposable
         window.RestoreFromSibling();
         window.Show();
     }
+
+    /// <summary>
+    /// Opens the timer window context menu.
+    /// </summary>
+    /// <param name="window">The window to open context menu for.</param>
+    private static void OpenTimerContextMenuFor(TimerWindow window) =>
+        window.BringToFrontAndActivate(true, true);
 }
