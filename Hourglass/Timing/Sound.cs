@@ -8,11 +8,11 @@ namespace Hourglass.Timing;
 
 using System;
 using System.IO;
-using System.Reflection;
 
 using static System.IO.Path;
 
 using Managers;
+using Extensions;
 
 // ReSharper disable ExceptionNotDocumented
 
@@ -33,22 +33,22 @@ public sealed class Sound
     /// <exception cref="ArgumentNullException"><paramref name="path"/> is <see langword="null"/></exception>
     public Sound(string path)
     {
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
-
-            Name = GetNameFromPath(path);
-            Identifier = GetIdentifierFromPath(path);
-            IsBuiltIn = false;
-            Path = path;
-            Duration = null;
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            throw new ArgumentNullException(nameof(path));
         }
+
+        Name = GetNameFromPath(path);
+        Identifier = GetIdentifierFromPath(path);
+        IsBuiltIn = false;
+        Path = path;
+        Duration = null;
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Sound"/> class for a sound stored in the assembly.
     /// </summary>
-    /// <param name="invariantName">The culture-insensitive name of the color. (Optional.)</param>
+    /// <param name="invariantName">The culture-insensitive name of the sound.</param>
     /// <param name="name">The friendly name for the sound.</param>
     /// <param name="streamProvider">A method that returns a stream to the sound data.</param>
     /// <param name="duration">The length of the sound.</param>
@@ -56,28 +56,28 @@ public sealed class Sound
     /// <exception cref="ArgumentOutOfRangeException">If <paramref name="duration"/> is negative.</exception>
     public Sound(string invariantName, string name, Func<UnmanagedMemoryStream> streamProvider, TimeSpan duration)
     {
-            if (string.IsNullOrWhiteSpace(invariantName))
-            {
-                throw new ArgumentNullException(nameof(invariantName));
-            }
-
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
-
-            if (duration < TimeSpan.Zero)
-            {
-                throw new ArgumentOutOfRangeException(nameof(duration));
-            }
-
-            Name = name;
-            Identifier = "resource:" + invariantName;
-            IsBuiltIn = true;
-            Duration = duration;
-
-            _streamProvider = streamProvider ?? throw new ArgumentNullException(nameof(streamProvider));
+        if (string.IsNullOrWhiteSpace(invariantName))
+        {
+            throw new ArgumentNullException(nameof(invariantName));
         }
+
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentNullException(nameof(name));
+        }
+
+        if (duration < TimeSpan.Zero)
+        {
+            throw new ArgumentOutOfRangeException(nameof(duration));
+        }
+
+        Name = name;
+        Identifier = "resource:" + invariantName;
+        IsBuiltIn = true;
+        Duration = duration;
+
+        _streamProvider = streamProvider ?? throw new ArgumentNullException(nameof(streamProvider));
+    }
 
     /// <summary>
     /// Gets the default sound.
@@ -123,8 +123,8 @@ public sealed class Sound
     /// <c>null</c> or empty.</returns>
     public static Sound? FromIdentifier(string? identifier)
     {
-            return SoundManager.Instance.GetSoundOrDefaultByIdentifier(identifier);
-        }
+        return SoundManager.Instance.GetSoundOrDefaultByIdentifier(identifier);
+    }
 
     /// <summary>
     /// Returns a stream with the sound data.
@@ -132,10 +132,10 @@ public sealed class Sound
     /// <returns>A stream with the sound data.</returns>
     public Stream GetStream()
     {
-            return _streamProvider is not null
-                ? _streamProvider()
-                : new FileStream(Path!, FileMode.Open, FileAccess.Read, FileShare.Read);
-        }
+        return _streamProvider is not null
+            ? _streamProvider()
+            : new FileStream(Path!, FileMode.Open, FileAccess.Read, FileShare.Read);
+    }
 
     /// <summary>
     /// Returns the friendly name for a sound file.
@@ -144,13 +144,13 @@ public sealed class Sound
     /// <returns>The friendly name for a sound file.</returns>
     private static string GetNameFromPath(string path)
     {
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
-
-            return GetFileNameWithoutExtension(path);
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            throw new ArgumentNullException(nameof(path));
         }
+
+        return GetFileNameWithoutExtension(path);
+    }
 
     /// <summary>
     /// Returns the unique identifier for a sound file.
@@ -159,17 +159,17 @@ public sealed class Sound
     /// <returns>The unique identifier for a sound file.</returns>
     private static string GetIdentifierFromPath(string path)
     {
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
-
-            string appDirectory = GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";
-            string fullPath = GetFullPath(path);
-
-            // Return a relative path if the sound is in or under the app directory, or otherwise return the full path
-            return fullPath.StartsWith(appDirectory, StringComparison.OrdinalIgnoreCase)
-                ? "file:." + fullPath.Substring(appDirectory.Length)
-                : "file:" + path;
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            throw new ArgumentNullException(nameof(path));
         }
+
+        string appDirectory = AssemblyExtensions.GetExecutableDirectoryName();
+        string fullPath = GetFullPath(path);
+
+        // Return a relative path if the sound is in or under the app directory, or otherwise return the full path
+        return fullPath.StartsWith(appDirectory, StringComparison.OrdinalIgnoreCase)
+            ? "file:." + fullPath.Substring(appDirectory.Length)
+            : "file:" + path;
+    }
 }

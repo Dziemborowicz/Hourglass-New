@@ -390,7 +390,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         // Sound
         foreach (var menuItem in _selectableSoundMenuItems)
         {
-            menuItem.IsChecked = menuItem.Tag == _timerWindow.Options.Sound;
+            menuItem.IsChecked = ReferenceEquals(menuItem.Tag, _timerWindow.Options.Sound);
         }
 
         // Loop sound

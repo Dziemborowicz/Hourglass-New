@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 using Extensions;
 using Properties;
@@ -159,7 +158,7 @@ public sealed class SoundManager : Manager
 
         try
         {
-            string appDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".";
+            string appDirectory = AssemblyExtensions.GetExecutableDirectoryName();
             string appSoundsDirectory = Path.Combine(appDirectory, soundsDirectory);
             string localAppDataDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Hourglass");
             string localAppDataSoundsDirectory = Path.Combine(localAppDataDirectory, soundsDirectory);

@@ -202,8 +202,9 @@ Options:
 
         <sound> is the name of a sound file without extension. The sound file
         should be placed to the application directory or to the
-        "%LOCALAPPDATA%\Hourglass" directory or to the "Sounds" subdirectory.
-        It can be the symbolic link created by the "mklink" system command.
+        "%LOCALAPPDATA%\Hourglass" directory or to the "Sounds" subdirectory,
+        while no Hourgrass is being run. It can be the symbolic link created
+        by the "mklink" system command.
 
         The sound file supported extensions are:
 
