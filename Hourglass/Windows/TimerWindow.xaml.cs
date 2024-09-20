@@ -147,7 +147,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     public static readonly KeyGesture RestartKeyGesture    = new(Key.R, ModifierKeys.Control);
     public static readonly KeyGesture FullScreenKeyGesture = new(Key.F11, ModifierKeys.None);
 
-    public static int LastActivatedID { get; private set; }
+    public static int LastActivatedID { get; set; }
 
     #endregion
 

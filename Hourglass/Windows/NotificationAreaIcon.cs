@@ -379,12 +379,7 @@ public class NotificationAreaIcon : IDisposable
 
         if (windows.Any())
         {
-            foreach (TimerWindow window in windows)
-            {
-                window.DoNotActivateNextWindow = true;
-                window.WindowState = WindowState.Minimized;
-            }
-
+            MinimizeAllTimerWindows();
             return;
         }
 
@@ -397,7 +392,7 @@ public class NotificationAreaIcon : IDisposable
                 return;
             }
 
-            ShowTimerContextMenu();
+            ShowTimerContextMenu(show: !IsKeyDown(ModifierKeys.Shift));
         }
 
         void ProcessLeftClick()
@@ -416,6 +411,24 @@ public class NotificationAreaIcon : IDisposable
             if (IsKeyDown(ModifierKeys.Control))
             {
                 NewTimer();
+            }
+        }
+
+        void MinimizeAllTimerWindows()
+        {
+            int id = TimerWindow.LastActivatedID;
+
+            try
+            {
+                foreach (TimerWindow window in windows)
+                {
+                    window.DoNotActivateNextWindow = true;
+                    window.WindowState = WindowState.Minimized;
+                }
+            }
+            finally
+            {
+                TimerWindow.LastActivatedID = id;
             }
         }
     }
@@ -779,8 +792,9 @@ public class NotificationAreaIcon : IDisposable
     /// <summary>
     /// Shows the timer context menu.
     /// </summary>
+    /// <param name="show">Show context menu.</param>
     /// <returns><c>true</c> if the timer context menu is shown, <c>false</c> otherwise.</returns>
-    private static bool ShowTimerContextMenu()
+    private static bool ShowTimerContextMenu(bool show = true)
     {
         TimerWindow[] windows = ArrangedWindows.ToArray();
 
@@ -793,7 +807,7 @@ public class NotificationAreaIcon : IDisposable
             return false;
         }
 
-        window.BringToFrontAndActivate(true, true);
+        window.BringToFrontAndActivate(true, show);
 
         return true;
     }
