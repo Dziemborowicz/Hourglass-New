@@ -746,7 +746,7 @@ $</value>
   </data>
   <data name="ErrorManagerErrorHasBeenWritten" xml:space="preserve">
     <value>The error has been written to "{0}".</value>
-    <comment>The messsage displayed to the user when an error dump is written to a file, where {0} is the path to the file (e.g., "The error has been written to '{0}'." =&gt; "The error has been written to 'C:\error.txt'.")</comment>
+    <comment>The message displayed to the user when an error dump is written to a file, where {0} is the path to the file (e.g., "The error has been written to '{0}'." =&gt; "The error has been written to 'C:\error.txt'.")</comment>
   </data>
   <data name="ErrorManagerFailedToClean" xml:space="preserve">
     <value>Failed to clean old error messages.</value>
@@ -901,7 +901,7 @@ $</value>
     <comment>The text for the close button in the timer window, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="TimerWindowNewTimerWithTitleFormatString" xml:space="preserve">
-    <value>New timer: {0} · {1}</value>
+    <value>⏺ {0} · {1}</value>
     <comment>A format string for the string representation of a timer window used when the timer window does not have a running timer and where it does have a title set, where {0} is the current user input into the window and {1} is the timer window title</comment>
   </data>
   <data name="TimerWindowPauseButtonContent" xml:space="preserve">
@@ -926,7 +926,7 @@ $</value>
   </data>
   <data name="TimerWindowTimerTextHint" xml:space="preserve">
     <value>Click to enter time or date</value>
-    <comment>The watermark text that is dispalyed in the main input text box in the timer window</comment>
+    <comment>The watermark text that is displayed in the main input text box in the timer window</comment>
   </data>
   <data name="TimerWindowTitle" xml:space="preserve">
     <value>Hourglass</value>
@@ -941,7 +941,7 @@ $</value>
     <comment>The text for the update button in the timer window, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="TimerWindowNewTimerFormatString" xml:space="preserve">
-    <value>New timer: {0}</value>
+    <value>⏺ {0}</value>
     <comment>A format string for the string representation of a timer window used when the timer window does not have a running timer, where {0} is the current user input into the window</comment>
   </data>
   <data name="UsageDialogCloseButtonContent" xml:space="preserve">
