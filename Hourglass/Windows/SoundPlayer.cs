@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Windows;
+
 namespace Hourglass.Windows;
 
 using System;
@@ -136,6 +138,8 @@ public class SoundPlayer : IDisposable
             }
             else
             {
+                MessageBox.Show($"Sound: {sound.Path!}", "Playing custom sound", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 // Use the media player
                 _mediaPlayer.Open(new(sound.Path!));
                 _mediaPlayer.Play();
@@ -143,7 +147,7 @@ public class SoundPlayer : IDisposable
         }
         catch (Exception ex) when (ex.CanBeHandled())
         {
-            // Ignored.
+            MessageBox.Show($"Sound: {sound.Path!}\n{ex}", "Error playing sound", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
     }
 
