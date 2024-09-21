@@ -4,8 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Windows;
-
 namespace Hourglass.Windows;
 
 using System;
@@ -20,7 +18,7 @@ using Timing;
 /// <summary>
 /// Plays <see cref="Sound"/>s stored in the file system.
 /// </summary>
-public class SoundPlayer : IDisposable
+public sealed class SoundPlayer : IDisposable
 {
     #region Private Members
 
@@ -38,6 +36,8 @@ public class SoundPlayer : IDisposable
     /// A <see cref="MediaPlayer"/> that can play most sound files.
     /// </summary>
     private readonly MediaPlayer _mediaPlayer;
+
+    private bool _isLooping;
 
     /// <summary>
     /// Indicates whether this object has been disposed.
@@ -62,28 +62,15 @@ public class SoundPlayer : IDisposable
         _mediaPlayer.MediaEnded += MediaPlayerOnMediaEnded;
     }
 
-    #region Events
-
     /// <summary>
     /// Raised when sound playback has completed.
     /// </summary>
     public event EventHandler? PlaybackCompleted;
 
-    #endregion
-
-    #region Properties
-
     /// <summary>
     /// Gets a value indicating whether the player is playing a sound.
     /// </summary>
     public bool IsPlaying { get; private set; }
-
-    /// <summary>
-    /// Gets a value indicating whether the player is looping the sound playback indefinitely.
-    /// </summary>
-    public bool IsLooping { get; private set; }
-
-    #endregion
 
     #region Public Methods
 
@@ -111,7 +98,7 @@ public class SoundPlayer : IDisposable
         try
         {
             IsPlaying = true;
-            IsLooping = loop;
+            _isLooping = loop;
 
             if (sound.IsBuiltIn)
             {
@@ -138,8 +125,6 @@ public class SoundPlayer : IDisposable
             }
             else
             {
-                MessageBox.Show($"Sound: {sound.Path!}", "Playing custom sound", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 // Use the media player
                 _mediaPlayer.Open(new(sound.Path!));
                 _mediaPlayer.Play();
@@ -147,7 +132,7 @@ public class SoundPlayer : IDisposable
         }
         catch (Exception ex) when (ex.CanBeHandled())
         {
-            MessageBox.Show($"Sound: {sound.Path!}\n{ex}", "Error playing sound", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            // Ignore.
         }
     }
 
@@ -163,7 +148,7 @@ public class SoundPlayer : IDisposable
         try
         {
             IsPlaying = false;
-            IsLooping = false;
+            _isLooping = false;
 
             // Stop the sound player
             _soundPlayer.Stop();
@@ -190,7 +175,6 @@ public class SoundPlayer : IDisposable
     public void Dispose()
     {
         Dispose(true);
-        GC.SuppressFinalize(this);
     }
 
     #endregion
@@ -202,7 +186,7 @@ public class SoundPlayer : IDisposable
     /// </summary>
     /// <param name="disposing">A value indicating whether this method was invoked by an explicit call to <see
     /// cref="Dispose"/>.</param>
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
         if (_disposed)
         {
@@ -214,7 +198,7 @@ public class SoundPlayer : IDisposable
         if (disposing)
         {
             IsPlaying = false;
-            IsLooping = false;
+            _isLooping = false;
 
             // Dispose the sound player
             _soundPlayer.Stop();
@@ -232,7 +216,7 @@ public class SoundPlayer : IDisposable
     /// <summary>
     /// Throws a <see cref="ObjectDisposedException"/> if the object has been disposed.
     /// </summary>
-    protected void ThrowIfDisposed()
+    private void ThrowIfDisposed()
     {
         if (_disposed)
         {
@@ -262,7 +246,7 @@ public class SoundPlayer : IDisposable
     /// <param name="e">The event data.</param>
     private void MediaPlayerOnMediaEnded(object sender, EventArgs e)
     {
-        if (!IsLooping)
+        if (!_isLooping)
         {
             PlaybackCompleted?.Invoke(this, EventArgs.Empty);
             return;
