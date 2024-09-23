@@ -24,6 +24,7 @@ exit /b 1
 :: .NET Framework version.
 set netVersion=4.0.30319
 
+set nAudio=%~dp0Hourglass.NAudio.dll
 set netPath=%WINDIR%\Microsoft.NET\Framework
 set ngenPath=%netPath%64
 
@@ -31,6 +32,10 @@ if not exist "%ngenPath%" set ngenPath=%netPath%
 
 echo on
 
-"%ngenPath%\v%netVersion%\ngen.exe" %~1 "%~dp0Hourglass.exe"
+"%ngenPath%\v%netVersion%\ngen.exe" %~1 "%~dp0Hourglass.exe" || goto EXIT
+@if not exist "%nAudio%" goto EXIT
+"%ngenPath%\v%netVersion%\ngen.exe" %~1 "%nAudio%" || goto EXIT
+
+:EXIT
 
 @exit /b %errorlevel%

@@ -4,8 +4,12 @@ on: [push, pull_request]
 
 env:
   PROJECT: Hourglass
+  NAUDIO: Hourglass.NAudio
+  NAUDIO_ARTIFACT: NAudioHourglassPack
   CONFIGURATION_RELEASE: Release
   CONFIGURATION_RELEASE_PORTABLE: Release Portable
+  FW: net48
+  COMPRESSION_LEVEL: 9
   RETENTION_DAYS: 30
 
 jobs:
@@ -26,8 +30,8 @@ jobs:
 
     # Restore
 
-    - name: Restore ${{env.PROJECT}}.Test
-      run: dotnet restore ${{env.PROJECT}}.Test\${{env.PROJECT}}.Test.csproj
+    - name: Restore ${{env.PROJECT}}.sln
+      run: dotnet restore ${{env.PROJECT}}.sln
 
     # Build
 
@@ -53,19 +57,35 @@ jobs:
     # Upload artifacts
 
     - name: Publish ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE}} Installer
-      uses: actions/upload-artifact@v4.3.0
+      uses: actions/upload-artifact@v4.4.0
       with:
         name: ${{env.PROJECT}}Installer
         path: |
           ${{env.PROJECT}}.Bundle/bin/${{env.CONFIGURATION_RELEASE}}/${{env.PROJECT}}Installer.exe
+        compression-level: ${{env.COMPRESSION_LEVEL}}
         retention-days: ${{env.RETENTION_DAYS}}
 
     - name: Publish ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE_PORTABLE}}
-      uses: actions/upload-artifact@v4.3.0
+      uses: actions/upload-artifact@v4.4.0
       with:
         name: ${{env.PROJECT}}Portable
         path: |
-          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/net48/${{env.PROJECT}}.exe
-          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/net48/${{env.PROJECT}}.exe.config
-          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/net48/ngen-${{env.PROJECT}}.bat
+          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/${{env.FW}}/${{env.PROJECT}}.exe
+          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/${{env.FW}}/${{env.PROJECT}}.exe.config
+          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/${{env.FW}}/ngen-${{env.PROJECT}}.bat
+        compression-level: ${{env.COMPRESSION_LEVEL}}
+        retention-days: ${{env.RETENTION_DAYS}}
+
+    - name: Publish ${{env.NAUDIO}}
+      uses: actions/upload-artifact@v4.4.0
+      with:
+        name: ${{env.NAUDIO_ARTIFACT}}
+        path: |
+          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/Hourglass.NAudio.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/Microsoft.Win32.Registry.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.Core.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.Wasapi.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.WinMM.dll
+        compression-level: ${{env.COMPRESSION_LEVEL}}
         retention-days: ${{env.RETENTION_DAYS}}

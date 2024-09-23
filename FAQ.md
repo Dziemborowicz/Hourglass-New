@@ -35,6 +35,7 @@ The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.c
 - [What command-line arguments does the Hourglass accept?](#what-command-line-arguments-does-the-hourglass-accept)
 - [How to speed up the Portable Hourglass startup?](#how-to-speed-up-the-portable-hourglass-startup)
 - [What should I do if the Hourglass does not start?](#what-should-i-do-if-the-hourglass-does-not-start)
+- [What should I do if there is no notification sound?](#what-should-i-do-if-there-is-no-notification-sound)
 
 ## How do I start, stop, pause or resume a timer?
 
@@ -371,3 +372,14 @@ cmd /k dir "C:\Users\%USERNAME%\AppData\Local\Chris_Dziemborowicz*"
 The settings are stored into the corresponding `hourglass.EXE` subdirectories.
 
 The **Hourglass Portable** keeps settings next to the executable.
+
+## What should I do if there is no notification sound?
+
+Some audio files could not be played for Windows with no [Windows Media Player](https://en.wikipedia.org/wiki/Windows_Media_Player) installed.
+To fix this, download the [NAudioHourglassPack](https://github.com/i2van/hourglass/releases/latest) and upzip its content to the **Hourglass** folder.
+
+Audio files supported:
+
+- `.aiff`
+- `.mp3`
+- `.wav`

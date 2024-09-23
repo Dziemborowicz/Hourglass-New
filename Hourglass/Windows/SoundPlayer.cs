@@ -10,6 +10,7 @@ using System;
 using System.Windows.Media;
 using System.Windows.Threading;
 
+using Audio;
 using Extensions;
 using Timing;
 
@@ -33,9 +34,9 @@ public sealed class SoundPlayer : IDisposable
     private readonly DispatcherTimer _dispatcherTimer;
 
     /// <summary>
-    /// A <see cref="MediaPlayer"/> that can play most sound files.
+    /// A <see cref="IAudioPlayer"/> that can play most audio files.
     /// </summary>
-    private readonly MediaPlayer _mediaPlayer;
+    private readonly IAudioPlayer _audioPlayer;
 
     private bool _isLooping;
 
@@ -57,9 +58,8 @@ public sealed class SoundPlayer : IDisposable
         };
         _dispatcherTimer.Tick += DispatcherTimerTick;
 
-        // File sound player
-        _mediaPlayer = new();
-        _mediaPlayer.MediaEnded += MediaPlayerOnMediaEnded;
+        // File audio player
+        _audioPlayer = AudioPlayerSelector.Create(OnAudioStopped);
     }
 
     /// <summary>
@@ -125,9 +125,9 @@ public sealed class SoundPlayer : IDisposable
             }
             else
             {
-                // Use the media player
-                _mediaPlayer.Open(new(sound.Path!));
-                _mediaPlayer.Play();
+                // Use the audio player
+                _audioPlayer.Open(sound.Path!);
+                _audioPlayer.Play();
             }
         }
         catch (Exception ex) when (ex.CanBeHandled())
@@ -157,9 +157,8 @@ public sealed class SoundPlayer : IDisposable
             _soundPlayer.Stream?.Dispose();
             _soundPlayer.Stream = null;
 
-            // Stop the media player
-            _mediaPlayer.Stop();
-            _mediaPlayer.Close();
+            // Stop the audio player
+            _audioPlayer.Stop();
         }
         catch (Exception ex) when (ex.CanBeHandled())
         {
@@ -208,8 +207,7 @@ public sealed class SoundPlayer : IDisposable
             _dispatcherTimer.Stop();
 
             // Dispose the media player
-            _mediaPlayer.Stop();
-            _mediaPlayer.Close();
+            _audioPlayer.Dispose();
         }
     }
 
@@ -242,9 +240,9 @@ public sealed class SoundPlayer : IDisposable
     /// <summary>
     /// Invoked when the media has finished playback in the <see cref="MediaPlayer"/>.
     /// </summary>
-    /// <param name="sender">The <see cref="MediaPlayer"/>.</param>
+    /// <param name="sender">The sender.</param>
     /// <param name="e">The event data.</param>
-    private void MediaPlayerOnMediaEnded(object sender, EventArgs e)
+    private void OnAudioStopped(object sender, EventArgs e)
     {
         if (!_isLooping)
         {
@@ -252,8 +250,7 @@ public sealed class SoundPlayer : IDisposable
             return;
         }
 
-        _mediaPlayer.Position = TimeSpan.Zero;
-        _mediaPlayer.Play();
+        _audioPlayer.Play();
     }
 
     #endregion

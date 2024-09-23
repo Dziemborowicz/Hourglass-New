@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyTitle>Hourglass NAudio</AssemblyTitle>
+    <Product>Hourglass NAudio</Product>
+    <Company>Ivan Ivon</Company>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Copyright>Copyright © $([System.DateTime]::Now.Year) Ivan Ivon</Copyright>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DisableDiagnosticTracing>true</DisableDiagnosticTracing>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hourglass\Hourglass.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NAudio">
+      <Version>2.2.1</Version>
+    </PackageReference>
+  </ItemGroup>
+</Project>

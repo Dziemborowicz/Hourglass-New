@@ -216,6 +216,13 @@ Options:
             .wav
             .wma
 
+        If NAudioHourglassPack is used for playing a sound (see FAQ), the sound
+        file supported extensions are:
+
+            .aiff
+            .mp3
+            .wav
+
   --loop-sound on|off|last
         Loops the sound that plays when the timer expires.
 
