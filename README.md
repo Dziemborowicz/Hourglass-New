@@ -80,19 +80,19 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 
 ### Notification Area
 
-- All the timers are arranged by the time left. The order of the timers is new, expired, paused, running.
+- All the timer windows are arranged by the time left. The order is new, expired, paused, running.
 - The red circle is shown over the notification area icon if at least one timer is expired.
 - The pause sign is shown over the notification area icon if at least one timer is paused.
-- The digits from `0` to `9` are the hotkeys for the timers in the notification area icon context menu.
+- The digits from `0` to `9` are the hotkeys for the timer windows in the notification area icon context menu.
 - The `Double Click` shows/hides all the timer windows.
-- The `Ctrl`+`Click` creates a new timer.
-- The `Shift`+`Click` shows the first timer.
-- The `Shift`+`Middle Click` shows the recently opened timer.
-- The `Middle Click` or `Shift`+`Right Click` opens the timer options menu.
-- The **Pause all** menu command pauses all the running timers.
-- The **Resume all** menu command resumes all the paused timers.
-- The **Options** menu command opens the timer options menu. The shortcut is the `Middle Click` or `Shift`+`Right Click` on the notification area icon.
-- The **Silent mode** disables all the timers notifications. It is not preserved between runs.
+- The `Ctrl`+`Click` creates a new timer window.
+- The `Shift`+`Click` shows the first timer window.
+- The `Shift`+`Middle Click` shows the recently opened timer window.
+- The `Middle Click` or `Shift`+`Right Click` opens the timer window options menu.
+- The **Pause all** menu command pauses all the running timer windows.
+- The **Resume all** menu command resumes all the paused timer windows.
+- The **Options** menu command opens the timer window options menu. The shortcut is the `Middle Click` or `Shift`+`Right Click` on the notification area icon.
+- The **Silent mode** disables all the timer windows notifications. It is not preserved between runs.
 - The **Exit** menu command prompts for closing all the running timer windows if the **Prompt on close** option is set.
 - ⏺⏸⏹⏏🔁 symbols are used for the **New**, **Paused**, **Stopped**, **Expired**, **Looped**.
 

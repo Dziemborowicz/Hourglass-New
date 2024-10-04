@@ -10,6 +10,7 @@ The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.c
 - [How do I run a timer in full screen mode?](#how-do-i-run-a-timer-in-full-screen-mode)
 - [How do I stop the timer from prompting me when I close the window?](#how-do-i-stop-the-timer-from-prompting-me-when-i-close-the-window)
 - [How do I minimize the timer window to the notification area?](#how-do-i-minimize-the-timer-window-to-the-notification-area)
+- [What are the notification area actions?](#what-are-the-notification-area-actions)
 - [How do I repeat the timer automatically when it expires?](#how-do-i-repeat-the-timer-automatically-when-it-expires)
 - [How do I stop the timer from popping up on top of other windows when it expires?](#how-do-i-stop-the-timer-from-popping-up-on-top-of-other-windows-when-it-expires)
 - [How do I automatically close the timer window when the timer expires?](#how-do-i-automatically-close-the-timer-window-when-the-timer-expires)
@@ -45,7 +46,10 @@ To stop a timer click **Stop** or press `Ctrl`+`S` or simply close the timer w
 
 To pause or resume a timer, click **Pause** or **Resume** or press `Ctrl`+`P`.
 
-Note that the **Pause** and **Stop** buttons only appear when you move your mouse cursor onto the timer window.
+To pause or resume all the timers click **Pause all** or **Resume all** in the timer window options menu or in the [notification area](#how-do-i-minimize-the-timer-window-to-the-notification-area) [context menu](#what-are-the-notification-area-actions).
+
+> [!NOTE]
+> The **Pause** and **Stop** buttons only appear when you move your mouse cursor onto the timer window.
 
 ## What do symbols ⏺⏸⏹⏏🔁 mean?
 
@@ -146,7 +150,8 @@ Or you can use the month number instead or a two-digit year, if you prefer:
 - `1/1/2019` - count down until midnight January 1, 2019
 - `01/01/2019` - count down until midnight January 1, 2019
 
-Note that the order of the day, month and year depends on your system settings in some cases.
+> [!NOTE]
+> The order of the day, month and year depends on your system settings in some cases.
 
 **Until weekday** - To start a timer until a specified weekday, enter `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`:
 
@@ -197,57 +202,73 @@ You can omit the `at` or `on` separating the date, weekday or tomorrow and t
 
 ## How do I start a second timer with the Hourglass?
 
-Right-click on any empty space in the timer window and select **New timer**.
+`Right Click` on any empty space in the timer window and select **New timer**.
 
 ## How do I keep the timer window on top of other windows?
 
-Right-click on any empty space in the timer window and check **Always on top**.
+`Right Click` on any empty space in the timer window and check **Always on top**.
 
 ## How do I run a timer in full screen mode?
 
-To enter full-screen mode, press `Alt`+`Enter` or `F11`; double-click on any empty space in the timer window or right-click on any empty space in the **Hourglass** window and check **Full screen**.
+To enter full-screen mode, press `Alt`+`Enter` or `F11`; `Double Click` on any empty space in the timer window or `Right Click` on any empty space in the **Hourglass** window and check **Full screen**.
 
-To exit full-screen mode, press `Alt`+`Enter` or `F11` again; double-click on any empty space in the timer window or right-click on any empty space in the timer window and uncheck **Full screen**.
+To exit full-screen mode, press `Alt`+`Enter` or `F11` again; `Double Click` on any empty space in the timer window or `Right Click` on any empty space in the timer window and uncheck **Full screen**.
 
 ## How do I stop the timer from prompting me when I close the window?
 
-Right-click on any empty space in the timer window and uncheck **Prompt on close**.
+`Right Click` on any empty space in the timer window and uncheck **Prompt on close**.
 
 ## How do I minimize the timer window to the notification area?
 
-Right-click on any empty space in the timer window and check **Show in notification area**. Now when you minimize the timer window, it will be hidden in the notification area. To restore all the timer windows, double-click on the **Hourglass** icon in the notification area.
+`Right Click` on any empty space in the timer window and check **Show in notification area**. Now when you minimize the timer window, it will be hidden in the notification area. To restore all the timer windows, `Double Click` on the **Hourglass** icon in the notification area.
 
-To remove the **Hourglass** icon from the notification area and restore any hidden timer windows, right-click on any empty space in the timer window and uncheck **Show in notification area**.
+To remove the **Hourglass** icon from the notification area and restore any hidden timer windows, `Right Click` on any empty space in the timer window and uncheck **Show in notification area**.
+
+## What are the notification area actions?
+
+| Action                 | Description                                             |
+| ---------------------- | ------------------------------------------------------- |
+| `Double Click`         | Shows/hides all the timer windows                       |
+| `Ctrl`+`Click`         | Creates a new timer window                              |
+| `Shift`+`Click`        | Shows the first timer window                            |
+| `Shift`+`Middle Click` | Shows the recently opened timer window                  |
+| `Middle Click` <br/> `Shift`+`Right Click` | Opens the timer window options menu |
 
 ## How do I repeat the timer automatically when it expires?
 
-Right-click on any empty space in the timer window and check **Loop timer**.
+`Right Click` on any empty space in the timer window and check **Loop timer**.
 
 ## How do I stop the timer from popping up on top of other windows when it expires?
 
-Right-click on any empty space in the timer window and uncheck **Pop up when expired**.
+`Right Click` on any empty space in the timer window and uncheck **Pop up when expired**.
 
 ## How do I automatically close the timer window when the timer expires?
 
-Right-click on any empty space in the timer window and check **Close when expired**. Note that the timer window will not close until the notification sound has finished playing.
+`Right Click` on any empty space in the timer window and check **Close when expired**.
+
+> [!NOTE]
+> The timer window will not close until the notification sound has finished playing.
 
 ## How do I automatically shut down Windows when the timer expires?
 
-Right-click on any empty space in the timer window and check **Shut down when expired** in the **Advanced options** submenu. Note that Windows will not shut down until the notification sound has finished playing.
+`Right Click` on any empty space in the timer window and check **Shut down when expired** in the **Advanced options** submenu.
+
+> [!NOTE]
+> The Windows will not shut down until the notification sound has finished playing.
 
 ## How do I start a timer for a duration or until a date and time that I recently entered?
 
 When you relaunch the **Hourglass**, the last duration or date and time that you entered will be automatically populated in the input text field. To start a countdown for that duration or until that date and time, simply press `Enter`.
 
-To start a timer for another duration or until another date and time that you recently entered, right-click on any empty space in the timer window and select the duration or date and time from the **Recent inputs** submenu.
+To start a timer for another duration or until another date and time that you recently entered, `Right Click` on any empty space in the timer window and select the duration or date and time from the **Recent inputs** submenu.
 
 ## How do I clear recently entered durations and dates and times?
 
-Right-click on any empty space in the timer window and select **Clear recent inputs** from the **Recent inputs** submenu.
+`Right Click` on any empty space in the timer window and select **Clear recent inputs** from the **Recent inputs** submenu.
 
 ## How do I resume a timer that I accidentally closed?
 
-The **Hourglass** keeps track of running timers that you have closed. To resume a saved timer, right-click on any empty space in the timer window and select the timer from the **Saved timers** submenu.
+The **Hourglass** keeps track of running timers that you have closed. To resume a saved timer, `Right Click` on any empty space in the timer window and select the timer from the **Saved timers** submenu.
 
 You can also resume all saved timers by checking **Open all saved timers** in the **Saved timers** submenu.
 
@@ -255,7 +276,7 @@ And you can set the **Hourglass** to automatically open saved timers when it sta
 
 ## How do I clear saved timers?
 
-Right-click on any empty space in the timer window and select **Clear saved timers** from the **Saved timers** submenu.
+`Right Click` on any empty space in the timer window and select **Clear saved timers** from the **Saved timers** submenu.
 
 ## How do I set a title for a timer?
 
@@ -267,43 +288,43 @@ To clear a title that you entered, click the title text field, delete the title 
 
 By default, the timer window title displays the application name **Hourglass**. You can change it to display the time left, the time elapsed or the timer title instead.
 
-Right-click on any empty space in the timer window and then select the appropriate option from the **Window title** submenu.
+`Right Click` on any empty space in the timer window and then select the appropriate option from the **Window title** submenu.
 
 ## How do I change the timer window color theme?
 
-Right-click on any empty space in the timer window and select a color theme from the **Theme** submenu.
+`Right Click` on any empty space in the timer window and select a color theme from the **Theme** submenu.
 
 ## Is there a dark color theme available?
 
-Yes. Right-click on any empty space in the timer window and select **Dark theme** from the **Theme** submenu.
+Yes. `Right Click` on any empty space in the timer window and select **Dark theme** from the **Theme** submenu.
 
 ## How do I add a custom color theme?
 
-Right-click on any empty space in the timer window, select **Manage themes...** from the **Theme** submenu. Pick a color theme from the drop-down menu to base the new theme on and click **New**.
+`Right Click` on any empty space in the timer window, select **Manage themes...** from the **Theme** submenu. Pick a color theme from the drop-down menu to base the new theme on and click **New**.
 
 Click on each color your want to change and select a color using the color picker. Type the theme name in the textbox at the top of the dialog and click **Save** to save your changes.
 
 ## How do I rename a custom color theme?
 
-Right-click on any empty space in the timer window, select **Manage themes...** from the **Theme** submenu. Pick the color theme that you want to rename from the drop-down menu, type the theme name in the textbox at the top of the dialog and click **Save**.
+`Right Click` on any empty space in the timer window, select **Manage themes...** from the **Theme** submenu. Pick the color theme that you want to rename from the drop-down menu, type the theme name in the textbox at the top of the dialog and click **Save**.
 
 The built-in color themes cannot be renamed.
 
 ## How do I delete a custom color theme?
 
-Right-click on any empty space in the timer window, select **Manage themes...** from the **Theme** submenu. Pick the color theme that you want to delete from the drop-down menu and click **Delete**.
+`Right Click` on any empty space in the timer window, select **Manage themes...** from the **Theme** submenu. Pick the color theme that you want to delete from the drop-down menu and click **Delete**.
 
 The built-in color themes cannot be deleted.
 
 ## How do I change the notification sound?
 
-Right-click on any empty space in the timer window and select a sound from the **Sound** submenu.
+`Right Click` on any empty space in the timer window and select a sound from the **Sound** submenu.
 
 ## How do I add a custom notification sound?
 
 Save the sound file to the folder where you installed the **Hourglass** (typically `%PROGRAMFILES(x86)%\Hourglass`) or to the `%LOCALAPPDATA%\Hourglass` directory or to the `Sounds` subdirectory.
 
-Your sound file should then appear when you right-click on any empty space in the **Hourglass** window and select the **Sound** submenu.
+Your sound file should then appear when you `Right Click` on any empty space in the **Hourglass** window and select the **Sound** submenu.
 
 The supported formats are `.aac`, `.m4a`, `.mid`, `.midi`, `.mp3`, `.wav` and `.wma`. If your sound file is not in one of the supported formats, you should convert it first.
 
@@ -313,23 +334,23 @@ Delete the sound file from the folder where you installed the **Hourglass** (typ
 
 ## How do I loop the notification sound?
 
-Right-click on any empty space in the timer window and check **Loop sound** from the **Sound** submenu.
+`Right Click` on any empty space in the timer window and check **Loop sound** from the **Sound** submenu.
 
 ## How do I stop the timer keeping the computer from going to sleep?
 
 By default, the **Hourglass** keeps the computer from going to sleep so that progress can be displayed and the notification sound can be played.
 
-To stop the **Hourglass** keeping the computer from going to sleep, right-click on any empty space in the timer window and check **Do not keep computer awake** in the **Advanced options** submenu.
+To stop the **Hourglass** keeping the computer from going to sleep, `Right Click` on any empty space in the timer window and check **Do not keep computer awake** in the **Advanced options** submenu.
 
 If the computer goes to sleep while a timer is running, the **Hourglass** will try to wake the computer around the time the timer will expire so the notification sound can be played.
 
 ## How do I show the time elapsed rather than the time left?
 
-Right-click on any empty space in the timer window and check **Show elapsed time instead of time left** in the **Advanced options** submenu.
+`Right Click` on any empty space in the timer window and check **Show elapsed time instead of time left** in the **Advanced options** submenu.
 
 ## How do I create a shortcut that automatically starts a timer with the Hourglass?
 
-To create a shortcut, right-click on your Desktop or the folder where you want to create the shortcut and select **Shortcut** from the **New** submenu. Enter the location where `Hourglass.exe` is (typically `%PROGRAMFILES(x86)%\Hourglass\Hourglass.exe`) followed by the duration or date and time for your countdown in quotes.
+To create a shortcut, `Right Click` on your Desktop or the folder where you want to create the shortcut and select **Shortcut** from the **New** submenu. Enter the location where `Hourglass.exe` is (typically `%PROGRAMFILES(x86)%\Hourglass\Hourglass.exe`) followed by the duration or date and time for your countdown in quotes.
 
 Then click **Next**, give your shortcut a name and click **Finish** to create the shortcut.
 
