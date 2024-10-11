@@ -3,11 +3,11 @@
 on: [push, pull_request]
 
 env:
-  PROJECT: Hourglass
+  NAME: Hourglass
   NAUDIO: Hourglass.NAudio
   NAUDIO_ARTIFACT: NAudioHourglassPack
-  CONFIGURATION_RELEASE: Release
-  CONFIGURATION_RELEASE_PORTABLE: Release Portable
+  CONFIG: Release
+  CONFIG_PORTABLE: Release Portable
   FW: net48
   COMPRESSION_LEVEL: 9
   RETENTION_DAYS: 30
@@ -21,32 +21,32 @@ jobs:
     # Set up
 
     - name: Setup msbuild
-      uses: microsoft/setup-msbuild@v1.3.2
+      uses: microsoft/setup-msbuild@v2
 
     # Check out
 
-    - name: Check out ${{env.PROJECT}}
-      uses: actions/checkout@v4.1.1
+    - name: Check out ${{env.NAME}}
+      uses: actions/checkout@v4.2.1
 
     # Restore
 
-    - name: Restore ${{env.PROJECT}}.sln
-      run: dotnet restore ${{env.PROJECT}}.sln
+    - name: Restore ${{env.NAME}}.sln
+      run: dotnet restore ${{env.NAME}}.sln
 
     # Build
 
-    - name: Build ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE_PORTABLE}}
-      run: msbuild /p:Configuration="${{env.CONFIGURATION_RELEASE_PORTABLE}}" ${{env.PROJECT}}.sln
+    - name: Build ${{env.NAME}} ${{env.CONFIG_PORTABLE}}
+      run: msbuild /p:Configuration="${{env.CONFIG_PORTABLE}}" ${{env.NAME}}.sln
 
-    - name: Build ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE}}
-      run: msbuild /p:Configuration="${{env.CONFIGURATION_RELEASE}}" ${{env.PROJECT}}.sln
+    - name: Build ${{env.NAME}} ${{env.CONFIG}}
+      run: msbuild /p:Configuration="${{env.CONFIG}}" ${{env.NAME}}.sln
 
     # Test
 
-    - name: Test ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE_PORTABLE}}
-      run: dotnet test --configuration "${{env.CONFIGURATION_RELEASE_PORTABLE}}" --no-build --verbosity normal
+    - name: Test ${{env.NAME}} ${{env.CONFIG_PORTABLE}}
+      run: dotnet test --configuration "${{env.CONFIG_PORTABLE}}" --no-build --verbosity normal
 
-    - name: Create ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE_PORTABLE}} test report
+    - name: Create ${{env.NAME}} ${{env.CONFIG_PORTABLE}} test report
       uses: dorny/test-reporter@v1.9.1
       if: ${{success() || failure()}}
       with:
@@ -56,36 +56,36 @@ jobs:
 
     # Upload artifacts
 
-    - name: Publish ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE}} Installer
-      uses: actions/upload-artifact@v4.4.0
+    - name: Publish ${{env.NAME}} ${{env.CONFIG}} Installer
+      uses: actions/upload-artifact@v4.4.3
       with:
-        name: ${{env.PROJECT}}Installer
+        name: ${{env.NAME}}Installer
         path: |
-          ${{env.PROJECT}}.Bundle/bin/${{env.CONFIGURATION_RELEASE}}/${{env.PROJECT}}Installer.exe
+          ${{env.NAME}}.Bundle/bin/${{env.CONFIG}}/${{env.NAME}}Installer.exe
         compression-level: ${{env.COMPRESSION_LEVEL}}
         retention-days: ${{env.RETENTION_DAYS}}
 
-    - name: Publish ${{env.PROJECT}} ${{env.CONFIGURATION_RELEASE_PORTABLE}}
-      uses: actions/upload-artifact@v4.4.0
+    - name: Publish ${{env.NAME}} ${{env.CONFIG_PORTABLE}}
+      uses: actions/upload-artifact@v4.4.3
       with:
-        name: ${{env.PROJECT}}Portable
+        name: ${{env.NAME}}Portable
         path: |
-          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/${{env.FW}}/${{env.PROJECT}}.exe
-          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/${{env.FW}}/${{env.PROJECT}}.exe.config
-          ${{env.PROJECT}}/bin/${{env.CONFIGURATION_RELEASE_PORTABLE}}/${{env.FW}}/ngen-${{env.PROJECT}}.bat
+          ${{env.NAME}}/bin/${{env.CONFIG_PORTABLE}}/${{env.FW}}/${{env.NAME}}.exe
+          ${{env.NAME}}/bin/${{env.CONFIG_PORTABLE}}/${{env.FW}}/${{env.NAME}}.exe.config
+          ${{env.NAME}}/bin/${{env.CONFIG_PORTABLE}}/${{env.FW}}/ngen-${{env.NAME}}.bat
         compression-level: ${{env.COMPRESSION_LEVEL}}
         retention-days: ${{env.RETENTION_DAYS}}
 
     - name: Publish ${{env.NAUDIO}}
-      uses: actions/upload-artifact@v4.4.0
+      uses: actions/upload-artifact@v4.4.3
       with:
         name: ${{env.NAUDIO_ARTIFACT}}
         path: |
-          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/Hourglass.NAudio.dll
-          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/Microsoft.Win32.Registry.dll
-          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.dll
-          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.Core.dll
-          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.Wasapi.dll
-          ${{env.NAUDIO}}/bin/${{env.CONFIGURATION_RELEASE}}/${{env.FW}}/NAudio.WinMM.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/Hourglass.NAudio.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/Microsoft.Win32.Registry.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.Core.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.Wasapi.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.WinMM.dll
         compression-level: ${{env.COMPRESSION_LEVEL}}
         retention-days: ${{env.RETENTION_DAYS}}
