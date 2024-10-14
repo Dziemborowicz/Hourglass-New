@@ -47,7 +47,7 @@ public abstract class TimerBase : IDisposable, INotifyPropertyChanged
     /// <summary>
     /// The default period of time between timer ticks.
     /// </summary>
-    public static readonly TimeSpan DefaultInterval = TimeSpan.FromMilliseconds(250);
+    public static readonly TimeSpan DefaultInterval = TimeSpan.FromMilliseconds(500);
 
     /// <summary>
     /// A <see cref="DispatcherTimer"/>.
