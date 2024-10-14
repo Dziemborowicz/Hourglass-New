@@ -1675,9 +1675,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     /// <param name="sender">The <see cref="TimerWindow"/>.</param>
     /// <param name="e">The event data.</param>
-#pragma warning disable S2325
     private void UpdateCommandExecuted(object sender, ExecutedRoutedEventArgs e)
-#pragma warning restore S2325
     {
         Uri updateUri = UpdateManager.Instance.UpdateUri;
         if (updateUri.Scheme != Uri.UriSchemeHttp && updateUri.Scheme != Uri.UriSchemeHttps)

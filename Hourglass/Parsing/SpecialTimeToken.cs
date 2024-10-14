@@ -15,8 +15,6 @@ using System.Text.RegularExpressions;
 using Extensions;
 using Properties;
 
-#pragma warning disable IDE0290
-
 /// <summary>
 /// Represents a special time of day.
 /// </summary>
@@ -75,15 +73,13 @@ public sealed class SpecialTimeToken : TimeToken
     /// </remarks>
     /// <param name="minDate">The minimum date and time to return.</param>
     /// <param name="datePart">The date part of the date and time to return.</param>
-    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.
-    /// </returns>
+    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.</returns>
     public override DateTime ToDateTime(DateTime minDate, DateTime datePart)
     {
         ThrowIfNotValid();
 
         SpecialTimeDefinition specialTimeDefinition = GetSpecialTimeDefinition()!;
 
-#pragma warning disable S6562
         return new(
             datePart.Year,
             datePart.Month,
@@ -91,7 +87,6 @@ public sealed class SpecialTimeToken : TimeToken
             specialTimeDefinition.Hour,
             specialTimeDefinition.Minute,
             specialTimeDefinition.Second);
-#pragma warning restore S6562
     }
 
     /// <summary>

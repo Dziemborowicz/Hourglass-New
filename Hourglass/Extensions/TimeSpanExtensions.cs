@@ -52,12 +52,10 @@ public static class TimeSpanExtensions
     public static string ToNaturalString(this TimeSpan timeSpan, IFormatProvider provider, bool compact)
     {
         return compact
-#pragma warning disable S3358
             ? timeSpan.ToString(
                 timeSpan.Days != 0
                     ? Resources.CompactTimeSpanWithDaysFormat
                     : Resources.CompactTimeSpanFormat)
-#pragma warning restore S3358
             : string.Join(
                 Resources.ResourceManager.GetString(nameof(Resources.TimeSpanExtensionsUnitSeparator), provider),
                 GetParts());

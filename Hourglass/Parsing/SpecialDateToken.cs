@@ -15,8 +15,6 @@ using System.Text.RegularExpressions;
 using Extensions;
 using Properties;
 
-#pragma warning disable IDE0290
-
 /// <summary>
 /// Represents a special date.
 /// </summary>
@@ -91,12 +89,10 @@ public sealed class SpecialDateToken : DateToken
 
         SpecialDateDefinition specialDateDefinition = GetSpecialDateDefinition()!;
 
-#pragma warning disable S6562
         DateTime date = new(
             minDate.Year,
             specialDateDefinition.Month,
             specialDateDefinition.Day);
-#pragma warning restore S6562
 
         if (date < minDate.Date ||
             (date == minDate.Date && !inclusive))

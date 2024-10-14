@@ -67,9 +67,7 @@ public sealed partial class AboutDialog
 
             return version.Revision != 0
                     ? version.ToString()
-#pragma warning disable S3358
                     : version.ToString(version.Build != 0 ? 3 : 2);
-#pragma warning restore S3358
         }
     }
 

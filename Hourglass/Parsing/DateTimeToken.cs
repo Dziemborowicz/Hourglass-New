@@ -13,8 +13,6 @@ using System.Text.RegularExpressions;
 using Extensions;
 using Properties;
 
-#pragma warning disable IDE0290
-
 /// <summary>
 /// Represents an instant in time.
 /// </summary>

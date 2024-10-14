@@ -89,14 +89,12 @@ public sealed class NormalTimeToken : TimeToken
     /// </remarks>
     /// <param name="minDate">The minimum date and time to return.</param>
     /// <param name="datePart">The date part of the date and time to return.</param>
-    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.
-    /// </returns>
+    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.</returns>
     /// <exception cref="InvalidOperationException">If this token is not valid.</exception>
     public override DateTime ToDateTime(DateTime minDate, DateTime datePart)
     {
         ThrowIfNotValid();
 
-#pragma warning disable S6562
         DateTime earlyDateTime = new(
             datePart.Year,
             datePart.Month,
@@ -112,7 +110,6 @@ public sealed class NormalTimeToken : TimeToken
             Hour < 12 ? Hour + 12 : Hour,
             Minute,
             Second);
-#pragma warning restore S6562
 
         return HourPeriod switch
         {

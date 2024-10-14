@@ -117,11 +117,9 @@ public sealed class WindowSize
         return window is null
             ? null
             : new(
-#pragma warning disable S3358
                 window.WindowState == WindowState.Normal
                     ? new(window.Left, window.Top, window.Width, window.Height)
                     : window.RestoreBounds,
-#pragma warning restore S3358
                 window.WindowState,
                 window.RestoreWindowState,
                 window.IsFullScreen);

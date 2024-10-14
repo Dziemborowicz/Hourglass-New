@@ -672,11 +672,9 @@ public static class WindowExtensions
 
         MessageBoxResult messageBoxResult = ReferenceEquals(result, yesButton)
             ? MessageBoxResult.Yes
-#pragma warning disable S3358
             : ReferenceEquals(result, noButton)
                 ? MessageBoxResult.No
                 : MessageBoxResult.Cancel;
-#pragma warning restore S3358
 
         _taskDialogInstance = null;
 
