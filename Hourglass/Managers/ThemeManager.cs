@@ -95,7 +95,9 @@ public sealed class ThemeManager : Manager
     /// </summary>
     public override void Persist()
     {
+#pragma warning disable IDE0305
         Settings.Default.UserProvidedThemes = UserProvidedThemes.ToList();
+#pragma warning restore IDE0305
     }
 
     /// <summary>
@@ -155,8 +157,7 @@ public sealed class ThemeManager : Manager
     /// Returns the theme for the specified identifier, or <see cref="DefaultTheme"/> if no such theme is loaded.
     /// </summary>
     /// <param name="identifier">The identifier for the theme.</param>
-    /// <returns>The theme for the specified identifier, or <see cref="DefaultTheme"/> if no such theme is loaded.
-    /// </returns>
+    /// <returns>The theme for the specified identifier, or <see cref="DefaultTheme"/> if no such theme is loaded.</returns>
     public Theme GetThemeOrDefaultByIdentifier(string? identifier)
     {
         return GetThemeByIdentifier(identifier) ?? DefaultTheme;

@@ -13,8 +13,6 @@ using System.Linq;
 
 using Properties;
 
-#pragma warning disable S6562
-
 /// <summary>
 /// Provides extensions methods for the <see cref="DateTime"/> class.
 /// </summary>
@@ -236,8 +234,7 @@ public static class DateTimeExtensions
     /// Returns a dictionary mapping month values to their localized string representations.
     /// </summary>
     /// <param name="provider">An <see cref="IFormatProvider"/>.</param>
-    /// <returns>A dictionary mapping month values to their localized string representations.
-    /// </returns>
+    /// <returns>A dictionary mapping month values to their localized string representations.</returns>
     private static IDictionary<int, string> GetMonthStrings(IFormatProvider provider)
     {
         return new Dictionary<int, string>

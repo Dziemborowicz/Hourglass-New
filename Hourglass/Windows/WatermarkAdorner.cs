@@ -122,8 +122,7 @@ public sealed class WatermarkAdorner : Adorner
     /// </summary>
     /// <param name="constraint">The available size that this element can give to child elements. Infinity can
     /// be specified as a value to indicate that the element will size to whatever content is available.</param>
-    /// <returns>The size that this element determines it needs during layout, based on its calculations of child
-    /// element sizes.</returns>
+    /// <returns>The size that this element determines it needs during layout, based on its calculations of child element sizes.</returns>
     protected override Size MeasureOverride(Size constraint)
     {
         _contentPresenter.Measure(AdornedElement.RenderSize);

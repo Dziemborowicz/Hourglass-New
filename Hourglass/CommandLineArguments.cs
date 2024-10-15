@@ -1036,9 +1036,7 @@ public sealed class CommandLineArguments
     }
 
     /// <summary>
-    /// Returns the next <see cref="WindowTitleMode"/> value in <paramref name="remainingArgs"/>, or throws an
-    /// exception if <paramref name="remainingArgs"/> is empty or the next argument is not "app", "left", "elapsed",
-    /// "title", or "last".
+    /// Returns the next <see cref="WindowTitleMode"/> value in <paramref name="remainingArgs"/>, or throws an exception if <paramref name="remainingArgs"/> is empty or the next argument is not "app", "left", "elapsed", "title", or "last".
     /// </summary>
     /// <param name="arg">The name of the argument for which the value is to be returned.</param>
     /// <param name="remainingArgs">The unparsed arguments.</param>
@@ -1093,9 +1091,7 @@ public sealed class CommandLineArguments
     }
 
     /// <summary>
-    /// Returns the next <see cref="WindowState"/> value in <paramref name="remainingArgs"/>, or throws an
-    /// exception if <paramref name="remainingArgs"/> is empty or the next argument is not "normal", "maximized",
-    /// "minimized", or "last".
+    /// Returns the next <see cref="WindowState"/> value in <paramref name="remainingArgs"/>, or throws an exception if <paramref name="remainingArgs"/> is empty or the next argument is not "normal", "maximized", "minimized", or "last".
     /// </summary>
     /// <param name="arg">The name of the argument for which the value is to be returned.</param>
     /// <param name="remainingArgs">The unparsed arguments.</param>
@@ -1174,10 +1170,7 @@ public sealed class CommandLineArguments
     /// </summary>
     /// <param name="remainingArgs">The unparsed arguments.</param>
     /// <param name="multiTimers">Treat each timer argument as a separate timer.</param>
-    /// <returns>
-    /// The <see cref="TimerStart"/> value corresponding to the concatenation of all <paramref name="remainingArgs"/>
-    /// or individual timer values if <paramref name="multiTimers"/> if <c>true</c>.
-    /// </returns>
+    /// <returns>The <see cref="TimerStart"/> value corresponding to the concatenation of all <paramref name="remainingArgs"/> or individual timer values if <paramref name="multiTimers"/> if <c>true</c>.</returns>
     /// <exception cref="ParseException">If the concatenation of all <paramref name="remainingArgs"/> is not a valid representation of a <see cref="TimerStart"/>.</exception>
     private static IEnumerable<TimerStart> GetTimerStartValue(IEnumerable<string> remainingArgs, bool multiTimers)
     {

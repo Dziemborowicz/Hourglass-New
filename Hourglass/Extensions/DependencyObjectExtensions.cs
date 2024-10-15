@@ -22,8 +22,7 @@ public static class DependencyObjectExtensions
     /// </summary>
     /// <param name="parent">A <see cref="DependencyObject"/>.</param>
     /// <param name="predicate">A predicate.</param>
-    /// <returns>The first visual child of a <see cref="DependencyObject"/> that matches the specified predicate.
-    /// </returns>
+    /// <returns>The first visual child of a <see cref="DependencyObject"/> that matches the specified predicate.</returns>
     public static DependencyObject? FindVisualChild(this DependencyObject parent, Func<DependencyObject, bool> predicate)
     {
         return GetAllVisualChildren(parent).FirstOrDefault(predicate!);

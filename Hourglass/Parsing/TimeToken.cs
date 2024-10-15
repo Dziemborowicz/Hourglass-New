@@ -47,8 +47,7 @@ public abstract class TimeToken
     /// </remarks>
     /// <param name="minDate">The minimum date and time to return.</param>
     /// <param name="datePart">The date part of the date and time to return.</param>
-    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.
-    /// </returns>
+    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.</returns>
     /// <exception cref="InvalidOperationException">If this token is not valid.</exception>
     public abstract DateTime ToDateTime(DateTime minDate, DateTime datePart);
 

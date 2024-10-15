@@ -215,7 +215,7 @@ public sealed class TimerManager : Manager
     /// <summary>
     /// Returns a value indicating whether a timer is bound to any <see cref="TimerWindow"/>.</summary>
     /// <param name="timer">A <see cref="Timer"/>.</param>
-    /// <returns>A value indicating whether the timer is bound to any <see cref="TimerWindow"/>. </returns>
+    /// <returns>A value indicating whether the timer is bound to any <see cref="TimerWindow"/>.</returns>
     private static bool IsBoundToWindow(Timer timer)
     {
         return Application.Current?.Windows.OfType<TimerWindow>().Any(w => ReferenceEquals(w.Timer, timer)) == true;

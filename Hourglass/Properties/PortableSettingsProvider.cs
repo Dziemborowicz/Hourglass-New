@@ -61,8 +61,7 @@ namespace Hourglass.Properties
         /// <param name="context">A <see cref="SettingsContext"/> describing the current application use.</param>
         /// <param name="collection">A <see cref="SettingsPropertyCollection"/> containing the settings property group
         /// whose values are to be retrieved.</param>
-        /// <returns>A <see cref="SettingsPropertyValueCollection"/> containing the values for the specified settings
-        /// property group.</returns>
+        /// <returns>A <see cref="SettingsPropertyValueCollection"/> containing the values for the specified settings property group.</returns>
         public override SettingsPropertyValueCollection GetPropertyValues(SettingsContext context, SettingsPropertyCollection collection)
         {
             SettingsPropertyValueCollection settingsPropertyValueCollection = GetSettingsPropertyValueCollection(collection);
@@ -157,8 +156,7 @@ namespace Hourglass.Properties
         /// </summary>
         /// <param name="collection">A <see cref="SettingsPropertyCollection"/> containing the settings property group
         /// whose values are to be retrieved.</param>
-        /// <returns>A <see cref="SettingsPropertyValueCollection"/> containing a <see cref="SettingsPropertyValue"/>
-        /// for each <see cref="SettingsProperty"/> in the <see cref="SettingsPropertyCollection"/>.</returns>
+        /// <returns>A <see cref="SettingsPropertyValueCollection"/> containing a <see cref="SettingsPropertyValue"/> for each <see cref="SettingsProperty"/> in the <see cref="SettingsPropertyCollection"/>.</returns>
         private static SettingsPropertyValueCollection GetSettingsPropertyValueCollection(SettingsPropertyCollection collection)
         {
             SettingsPropertyValueCollection values = [];
@@ -178,8 +176,7 @@ namespace Hourglass.Properties
         /// <summary>
         /// Tries to load the settings XML document.
         /// </summary>
-        /// <returns>The settings XML document, or <c>null</c> if the settings XML document could not be loaded.
-        /// </returns>
+        /// <returns>The settings XML document, or <c>null</c> if the settings XML document could not be loaded.</returns>
         private static XmlDocument? TryLoadSettingsDocument()
         {
             try
@@ -200,8 +197,7 @@ namespace Hourglass.Properties
         /// </summary>
         /// <param name="document">The XML document.</param>
         /// <param name="propertyName">The name of the property whose value to get.</param>
-        /// <returns>The value of the specified property, or <c>null</c> if a value for the specified property was not
-        /// found in the XML document.</returns>
+        /// <returns>The value of the specified property, or <c>null</c> if a value for the specified property was not found in the XML document.</returns>
         private static string? TryGetSerializedValue(XmlDocument? document, string propertyName)
         {
             if (document is null)

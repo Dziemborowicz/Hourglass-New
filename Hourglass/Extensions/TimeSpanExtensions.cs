@@ -35,8 +35,7 @@ public static class TimeSpanExtensions
     /// Rounds a <see cref="Nullable{TimeSpan}"/> up to the nearest second.
     /// </summary>
     /// <param name="timeSpan">A <see cref="Nullable{TimeSpan}"/>.</param>
-    /// <returns><paramref name="timeSpan"/> rounded up to the nearest second, or <c>null</c> if <paramref
-    /// name="timeSpan"/> is <c>null</c>.</returns>
+    /// <returns><paramref name="timeSpan"/> rounded up to the nearest second, or <c>null</c> if <paramref name="timeSpan"/> is <c>null</c>.</returns>
     public static TimeSpan? RoundUp(this TimeSpan? timeSpan)
     {
         return timeSpan?.RoundUp();
@@ -109,8 +108,7 @@ public static class TimeSpanExtensions
     /// <param name="timeSpan">A <see cref="Nullable{TimeSpan}"/>.</param>
     /// <param name="provider">An <see cref="IFormatProvider"/>.</param>
     /// <param name="compact">Use compact time format.</param>
-    /// <returns>The natural string representation of the <see cref="TimeSpan"/> represented by <paramref
-    /// name="timeSpan"/>, or <see cref="string.Empty"/> if <paramref name="timeSpan"/> is <c>null</c>.</returns>
+    /// <returns>The natural string representation of the <see cref="TimeSpan"/> represented by <paramref name="timeSpan"/>, or <see cref="string.Empty"/> if <paramref name="timeSpan"/> is <c>null</c>.</returns>
     public static string ToNaturalString(this TimeSpan? timeSpan, IFormatProvider provider, bool compact)
     {
         return timeSpan.HasValue ? timeSpan.Value.ToNaturalString(provider, compact) : string.Empty;

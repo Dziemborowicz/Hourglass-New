@@ -66,8 +66,7 @@ public static class DayOfWeekExtensions
     /// Returns a dictionary mapping <see cref="DayOfWeek"/> values to their localized string representations.
     /// </summary>
     /// <param name="provider">An <see cref="IFormatProvider"/>.</param>
-    /// <returns>A dictionary mapping <see cref="DayOfWeek"/> values to their localized string representations.
-    /// </returns>
+    /// <returns>A dictionary mapping <see cref="DayOfWeek"/> values to their localized string representations.</returns>
     private static IDictionary<DayOfWeek, string> GetDayOfWeekStrings(IFormatProvider provider)
     {
         return new Dictionary<DayOfWeek, string>

@@ -29,8 +29,7 @@ public sealed class EmptyTimeToken : TimeToken
     /// </remarks>
     /// <param name="minDate">The minimum date and time to return.</param>
     /// <param name="datePart">The date part of the date and time to return.</param>
-    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.
-    /// </returns>
+    /// <returns>The next date and time after <paramref name="minDate"/> that is represented by this token.</returns>
     public override DateTime ToDateTime(DateTime minDate, DateTime datePart)
     {
         ThrowIfNotValid();

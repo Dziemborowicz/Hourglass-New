@@ -94,8 +94,7 @@ public abstract class DateToken
         /// cref="TimeToken.Parser"/>.
         /// </summary>
         /// <param name="timeTokenParser">A <see cref="TimeToken.Parser"/>.</param>
-        /// <returns>A value indicating whether this parser can be used in conjunction with the specified <see
-        /// cref="TimeToken.Parser"/>.</returns>
+        /// <returns>A value indicating whether this parser can be used in conjunction with the specified <see cref="TimeToken.Parser"/>.</returns>
         public virtual bool IsCompatibleWith(TimeToken.Parser timeTokenParser)
         {
             return true;

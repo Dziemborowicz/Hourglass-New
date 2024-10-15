@@ -631,8 +631,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// specified <see cref="TimerOptions"/> is <c>null</c>.
     /// </summary>
     /// <param name="options">A <see cref="TimerOptions"/>.</param>
-    /// <returns>A <see cref="TimerOptions"/> for the specified <see cref="TimerOptions"/>, or <c>null</c> if the
-    /// specified <see cref="TimerOptions"/> is <c>null</c>.</returns>
+    /// <returns>A <see cref="TimerOptions"/> for the specified <see cref="TimerOptions"/>, or <c>null</c> if the specified <see cref="TimerOptions"/> is <c>null</c>.</returns>
     public static TimerOptions? FromTimerOptions(TimerOptions? options)
     {
         return options is not null ? new TimerOptions(options) : null;
@@ -643,8 +642,7 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// the specified <see cref="TimerOptionsInfo"/> is <c>null</c>.
     /// </summary>
     /// <param name="info">A <see cref="TimerOptionsInfo"/>.</param>
-    /// <returns>A <see cref="TimerOptions"/> for the specified <see cref="TimerOptionsInfo"/>, or <c>null</c> if
-    /// the specified <see cref="TimerOptionsInfo"/> is <c>null</c>.</returns>
+    /// <returns>A <see cref="TimerOptions"/> for the specified <see cref="TimerOptionsInfo"/>, or <c>null</c> if the specified <see cref="TimerOptionsInfo"/> is <c>null</c>.</returns>
     public static TimerOptions? FromTimerOptionsInfo(TimerOptionsInfo? info)
     {
         return info is not null ? new TimerOptions(info) : null;

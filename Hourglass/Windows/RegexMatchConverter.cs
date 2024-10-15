@@ -25,8 +25,7 @@ public sealed class RegexMatchConverter : IValueConverter
     /// <param name="targetType">The type of the binding target property.</param>
     /// <param name="parameter">The converter parameter to use.</param>
     /// <param name="culture">The culture to use in the converter.</param>
-    /// <returns>A value indicating whether the value produced by the binding source matches the regular expression
-    /// passed as the converter parameter.</returns>
+    /// <returns>A value indicating whether the value produced by the binding source matches the regular expression passed as the converter parameter.</returns>
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         return Regex.IsMatch(value!.ToString(), (string)parameter!);

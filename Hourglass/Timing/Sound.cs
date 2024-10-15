@@ -119,8 +119,7 @@ public sealed class Sound
     /// or empty.
     /// </summary>
     /// <param name="identifier">The identifier for the sound.</param>
-    /// <returns>A <see cref="Sound"/> for the specified identifier, or <c>null</c> if the identifier is
-    /// <c>null</c> or empty.</returns>
+    /// <returns>A <see cref="Sound"/> for the specified identifier, or <c>null</c> if the identifier is <c>null</c> or empty.</returns>
     public static Sound? FromIdentifier(string? identifier)
     {
         return SoundManager.Instance.GetSoundOrDefaultByIdentifier(identifier);

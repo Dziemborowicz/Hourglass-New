@@ -97,8 +97,7 @@ public sealed class SoundManager : Manager
     /// Returns the sound for the specified identifier, or <see cref="DefaultSound"/> if no such sound is loaded.
     /// </summary>
     /// <param name="identifier">The identifier for the sound.</param>
-    /// <returns>The sound for the specified identifier, or <see cref="DefaultSound"/> if no such sound is loaded.
-    /// </returns>
+    /// <returns>The sound for the specified identifier, or <see cref="DefaultSound"/> if no such sound is loaded.</returns>
     public Sound? GetSoundOrDefaultByIdentifier(string? identifier)
     {
         return string.IsNullOrWhiteSpace(identifier)

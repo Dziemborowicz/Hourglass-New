@@ -139,8 +139,7 @@ public sealed class SoundPlayer : IDisposable
     /// <summary>
     /// Stops playback of a <see cref="Sound"/> if playback is occurring.
     /// </summary>
-    /// <returns><c>true</c> if playback is stopped successfully or no playback was occurring, or <c>false</c>
-    /// otherwise.</returns>
+    /// <returns><c>true</c> if playback is stopped successfully or no playback was occurring, or <c>false</c> otherwise.</returns>
     public bool Stop()
     {
         ThrowIfDisposed();
