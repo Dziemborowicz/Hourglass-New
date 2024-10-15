@@ -51,7 +51,6 @@ public static class WindowExtensions
     /// </summary>
     /// <param name="window">A <see cref="TimerWindow"/>.</param>
     /// <param name="useImmersiveDarkMode">A value indicating whether to use immersive dark mode.</param>
-    /// <returns>A value indicating whether immersive dark mode was successfully applied.</returns>
     public static void SetImmersiveDarkMode(this TimerWindow window, bool useImmersiveDarkMode)
     {
         if (!EnvironmentExtensions.IsWindows10BuildOrNewer(17763))
@@ -59,7 +58,12 @@ public static class WindowExtensions
             return;
         }
 
-        IntPtr handle = new WindowInteropHelper(window).EnsureHandle();
+        IntPtr handle = new WindowInteropHelper(window).Handle;
+
+        if (handle == IntPtr.Zero)
+        {
+            return;
+        }
 
         DwmWindowAttribute attribute = EnvironmentExtensions.IsWindows10BuildOrNewer(18985)
             ? DwmWindowAttribute.UseImmersiveDarkMode
@@ -521,8 +525,7 @@ public static class WindowExtensions
     /// window is visible on the screen when in its normal state.
     /// </summary>
     /// <param name="window">A window.</param>
-    /// <returns>A value indicating whether the size and position of the window are such that the center of the
-    /// window is visible on the screen when in its normal state.</returns>
+    /// <returns>A value indicating whether the size and position of the window are such that the center of the window is visible on the screen when in its normal state.</returns>
     private static bool IsOnScreen(this Window window)
     {
         Rect windowRect = window.GetBoundsForNormalState();
@@ -534,8 +537,7 @@ public static class WindowExtensions
     /// cref="double.PositiveInfinity"/>, <see cref="double.NegativeInfinity"/>, and <see cref="double.NaN"/>.
     /// </summary>
     /// <param name="value">A <see cref="double"/>.</param>
-    /// <returns>A value indicating whether a <see cref="double"/> is a value other than <see
-    /// cref="double.PositiveInfinity"/>, <see cref="double.NegativeInfinity"/>, and <see cref="double.NaN"/>.</returns>
+    /// <returns>A value indicating whether a <see cref="double"/> is a value other than <see cref="double.PositiveInfinity"/>, <see cref="double.NegativeInfinity"/>, and <see cref="double.NaN"/>.</returns>
     private static bool IsValidDouble(double value)
     {
         return !double.IsInfinity(value) && !double.IsNaN(value);

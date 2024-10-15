@@ -5,9 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace WindowsVirtualDesktopHelper.VirtualDesktopAPI.Implementation;
 
-#pragma warning disable S3881
 internal abstract class VirtualDesktop<TVirtualDesktopManagerInternal> : ICurrentVirtualDesktop
-#pragma warning restore S3881
     where TVirtualDesktopManagerInternal : class
 {
     private IVirtualDesktopManager? _virtualDesktopManager;
@@ -39,17 +37,24 @@ internal abstract class VirtualDesktop<TVirtualDesktopManagerInternal> : ICurren
 
     public void MoveTo(IntPtr handle)
     {
-        if (!IsValid)
+        try
         {
-            return;
-        }
+            if (!IsValid)
+            {
+                return;
+            }
 
-        if (_virtualDesktopManager!.IsWindowOnCurrentVirtualDesktop(handle))
+            if (_virtualDesktopManager!.IsWindowOnCurrentVirtualDesktop(handle))
+            {
+                return;
+            }
+
+            _virtualDesktopManager!.MoveWindowToDesktop(handle, GetCurrentDesktopId());
+        }
+        catch
         {
-            return;
+            // Ignore.
         }
-
-        _virtualDesktopManager!.MoveWindowToDesktop(handle, GetCurrentDesktopId());
     }
 
     public void Dispose()
