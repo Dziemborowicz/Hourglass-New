@@ -165,7 +165,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// <summary>
     /// The <see cref="SoundPlayer"/> used to play notification sounds.
     /// </summary>
-    private readonly SoundPlayer _soundPlayer = new();
+    private readonly Lazy<SoundPlayer> _soundPlayer = new();
 
     /// <summary>
     /// The <see cref="TimerWindowMode"/> of the window.
@@ -242,7 +242,6 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         InitializeComponent();
         InitializeResources();
         InitializeAnimations();
-        InitializeSoundPlayer();
         InitializeUpdateButton();
 
         BindTimer();
@@ -567,10 +566,9 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             Topmost = true;
             Topmost = Options.AlwaysOnTop;
 
-            this.ForceUpdateLayout();
-
             if (!ShowActivated)
             {
+                this.ForceUpdateLayout();
                 return;
             }
 
@@ -734,7 +732,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                 }
 
                 // Stop playing the notification sound if it is playing
-                if (_soundPlayer.IsPlaying)
+                if (_soundPlayer.Value.IsPlaying)
                 {
                     EndAnimationsAndSounds();
                     return true;
@@ -752,7 +750,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                 }
 
                 // Stop playing the notification sound if it is playing
-                if (_soundPlayer.IsPlaying)
+                if (_soundPlayer.Value.IsPlaying)
                 {
                     EndAnimationsAndSounds();
                     return true;
@@ -879,14 +877,6 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     }
 
     /// <summary>
-    /// Initializes the sound player.
-    /// </summary>
-    private void InitializeSoundPlayer()
-    {
-        _soundPlayer.PlaybackCompleted += SoundPlayerPlaybackCompleted;
-    }
-
-    /// <summary>
     /// Begins the animation used to notify the user that the timer has expired.
     /// </summary>
     /// <param name="glowOnly"><c>true</c> to show the glow animation only, or <c>false</c> to show the flash
@@ -922,7 +912,10 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     private void BeginExpirationSound()
     {
-        _soundPlayer.Play(Options.Sound, Options.LoopSound);
+        _soundPlayer.Value.PlaybackCompleted -= SoundPlayerPlaybackCompleted;
+        _soundPlayer.Value.PlaybackCompleted += SoundPlayerPlaybackCompleted;
+
+        _soundPlayer.Value.Play(Options.Sound, Options.LoopSound);
     }
 
     /// <summary>
@@ -953,7 +946,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         _glowExpirationStoryboard.Stop();
         _validationErrorStoryboard.Stop();
 
-        _soundPlayer.Stop();
+        _soundPlayer.Value.Stop();
     }
 
     /// <summary>
@@ -2041,7 +2034,9 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         {
             // Clean up
             UnbindTimer();
-            _soundPlayer.Dispose();
+
+            _soundPlayer.Value.PlaybackCompleted -= SoundPlayerPlaybackCompleted;
+            _soundPlayer.Value.Dispose();
 
             Settings.Default.WindowSize = WindowSize.FromWindow(this /* window */);
 
