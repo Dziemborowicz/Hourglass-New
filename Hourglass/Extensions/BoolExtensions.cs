@@ -10,4 +10,3 @@ internal static class BoolExtensions
     public static Visibility ToVisibilityReversed(this bool visible) =>
         ToVisibility(!visible);
 }
-
