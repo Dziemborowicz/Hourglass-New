@@ -99,13 +99,15 @@ public sealed class KeepAwakeManager : Manager
     /// </summary>
     private void StartKeepAwake()
     {
-        if (!IsKeepingSystemAwake)
+        if (IsKeepingSystemAwake)
         {
-            ExecutionState executionState = ExecutionState.EsContinuous | ExecutionState.EsDisplayRequired | ExecutionState.EsSystemRequired;
-            _previousExecutionState = NativeMethods.SetThreadExecutionState(executionState);
-
-            IsKeepingSystemAwake = true;
+            return;
         }
+
+        ExecutionState executionState = ExecutionState.EsContinuous | ExecutionState.EsDisplayRequired | ExecutionState.EsSystemRequired;
+        _previousExecutionState = NativeMethods.SetThreadExecutionState(executionState);
+
+        IsKeepingSystemAwake = true;
     }
 
     /// <summary>
@@ -113,14 +115,16 @@ public sealed class KeepAwakeManager : Manager
     /// </summary>
     private void StopKeepAwake()
     {
-        if (IsKeepingSystemAwake)
+        if (!IsKeepingSystemAwake)
         {
-            if (_previousExecutionState != ExecutionState.EsNull)
-            {
-                NativeMethods.SetThreadExecutionState(_previousExecutionState);
-            }
-
-            IsKeepingSystemAwake = false;
+            return;
         }
+
+        if (_previousExecutionState != ExecutionState.EsNull)
+        {
+            NativeMethods.SetThreadExecutionState(_previousExecutionState);
+        }
+
+        IsKeepingSystemAwake = false;
     }
 }
