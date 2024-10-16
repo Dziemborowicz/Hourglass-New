@@ -1280,18 +1280,17 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     }
 
     /// <summary>
-    /// Updates the registration of this window in the <see cref="KeepAwakeManager"/> based on the state of the
-    /// timer.
+    /// Updates the registration of this window in the <see cref="KeepAwakeManager"/> based on the state of the timer.
     /// </summary>
     private void UpdateKeepAwake()
     {
         if (Timer.State == TimerState.Running && !Options.DoNotKeepComputerAwake)
         {
-            KeepAwakeManager.Instance.StartKeepAwakeFor(this);
+            KeepAwakeManager.Instance.StartKeepAwakeFor(ID);
         }
         else
         {
-            KeepAwakeManager.Instance.StopKeepAwakeFor(this);
+            KeepAwakeManager.Instance.StopKeepAwakeFor(ID);
         }
     }
 
@@ -1712,7 +1711,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             return;
         }
 
-        if (Equals(FocusManager.GetFocusedElement(this), this))
+        if (ReferenceEquals(FocusManager.GetFocusedElement(this), this))
         {
             WindowState = WindowState.Minimized;
         }
@@ -2034,6 +2033,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         {
             // Clean up
             UnbindTimer();
+            Menu.Unbind();
 
             _soundPlayer.Value.PlaybackCompleted -= SoundPlayerPlaybackCompleted;
             _soundPlayer.Value.Dispose();
@@ -2043,7 +2043,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             PropertyChangedEventManager.RemoveHandler(_theme, ThemePropertyChanged, string.Empty);
             PropertyChangedEventManager.RemoveHandler(UpdateManager.Instance, UpdateManagerPropertyChanged, string.Empty);
 
-            KeepAwakeManager.Instance.StopKeepAwakeFor(this);
+            KeepAwakeManager.Instance.StopKeepAwakeFor(ID);
             AppManager.Instance.Persist();
 
             return;

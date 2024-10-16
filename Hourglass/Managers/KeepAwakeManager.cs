@@ -9,8 +9,7 @@ namespace Hourglass.Managers;
 using System.Collections.Generic;
 
 /// <summary>
-/// Manages the thread-state of the main user interface thread to keep the computer from sleeping while a timer is
-/// running in any window.
+/// Manages the thread-state of the main user interface thread to keep the computer from sleeping while a timer is running in any window.
 /// </summary>
 public sealed class KeepAwakeManager : Manager
 {
@@ -20,9 +19,9 @@ public sealed class KeepAwakeManager : Manager
     public static readonly KeepAwakeManager Instance = new();
 
     /// <summary>
-    /// The set of objects that require that the system be kept awake.
+    /// The set of ids that require that the system to be kept awake.
     /// </summary>
-    private readonly HashSet<object> _objectsToKeepAwakeFor = [];
+    private readonly HashSet<int> _idsToKeepAwakeFor = [];
 
     /// <summary>
     /// The <see cref="ExecutionState"/> before the manager started keeping the system awake.
@@ -42,24 +41,24 @@ public sealed class KeepAwakeManager : Manager
     public bool IsKeepingSystemAwake { get; private set; }
 
     /// <summary>
-    /// Adds the specified object to the set of objects that require that the system be kept awake and starts
+    /// Adds the specified id to the set of ids that require that the system to be kept awake and starts
     /// keeping the system awake if it was not already being kept awake.
     /// </summary>
-    /// <param name="obj">An <see cref="object"/>.</param>
-    public void StartKeepAwakeFor(object obj)
+    /// <param name="id">An <see cref="int"/>.</param>
+    public void StartKeepAwakeFor(int id)
     {
-        _objectsToKeepAwakeFor.Add(obj);
+        _idsToKeepAwakeFor.Add(id);
         UpdateKeepAwake();
     }
 
     /// <summary>
-    /// Removes the specified object from the set of objects that require that the system be kept awake and stops
+    /// Removes the specified id from the set of ids that require that the system to be kept awake and stops
     /// keeping the system awake if it was being kept awake.
     /// </summary>
-    /// <param name="obj">An <see cref="object"/>.</param>
-    public void StopKeepAwakeFor(object obj)
+    /// <param name="id">An <see cref="int"/>.</param>
+    public void StopKeepAwakeFor(int id)
     {
-        _objectsToKeepAwakeFor.Remove(obj);
+        _idsToKeepAwakeFor.Remove(id);
         UpdateKeepAwake();
     }
 
@@ -84,7 +83,7 @@ public sealed class KeepAwakeManager : Manager
     /// </summary>
     private void UpdateKeepAwake()
     {
-        if (_objectsToKeepAwakeFor.Count > 0)
+        if (_idsToKeepAwakeFor.Count > 0)
         {
             StartKeepAwake();
         }

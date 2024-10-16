@@ -271,6 +271,30 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         BuildMenu();
     }
 
+    /// <summary>
+    /// Unbind menu.
+    /// </summary>
+    public void Unbind()
+    {
+        // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (_dispatcherTimer is not null)
+        {
+            _dispatcherTimer.Stop();
+            _dispatcherTimer.Tick -= DispatcherTimerTick;
+
+            _dispatcherTimer = null!;
+        }
+
+        if (_timerWindow is not null)
+        {
+            _timerWindow.ContextMenuOpening -= WindowContextMenuOpening;
+            _timerWindow.ContextMenuClosing -= WindowContextMenuClosing;
+
+            _timerWindow = null!;
+        }
+        // ReSharper restore ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+    }
+
     #region Private Methods (Lifecycle)
 
     /// <summary>
@@ -1397,6 +1421,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         };
         stackPanel.Children.Add(border);
         stackPanel.Children.Add(label);
+
         return stackPanel;
     }
 

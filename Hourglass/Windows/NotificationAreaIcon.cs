@@ -559,7 +559,7 @@ public class NotificationAreaIcon : IDisposable
 
                 menuItem = new(timerMenuItemTextGenerator.Value(window))
                 {
-                    Tag = window
+                    Tag = new WeakReference<TimerWindow>(window)
                 };
                 menuItem.Click += WindowMenuItemClick;
                 yield return menuItem;
@@ -640,7 +640,8 @@ public class NotificationAreaIcon : IDisposable
 
         foreach (MenuItem menuItem in _notifyIcon.ContextMenu.MenuItems)
         {
-            if (menuItem.Tag is not TimerWindow window)
+            TimerWindow? window = GetFromTag(menuItem);
+            if (window is null)
             {
                 continue;
             }
@@ -684,10 +685,14 @@ public class NotificationAreaIcon : IDisposable
     /// <param name="e">The event data.</param>
     private static void WindowMenuItemClick(object sender, EventArgs e)
     {
-        MenuItem windowMenuItem = (MenuItem)sender;
-        TimerWindow window = (TimerWindow)windowMenuItem.Tag;
-        window.BringToFrontAndActivate();
+        GetFromTag((MenuItem)sender)?.BringToFrontAndActivate();
     }
+
+    private static TimerWindow? GetFromTag(MenuItem menuItem) =>
+        menuItem.Tag is WeakReference<TimerWindow> windowWeakReference &&
+        windowWeakReference.TryGetTarget(out TimerWindow? window)
+            ? window
+            : null;
 
     /// <summary>
     /// Invoked when the "Exit" <see cref="MenuItem"/> is clicked.
