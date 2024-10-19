@@ -75,12 +75,12 @@ public sealed class TimerOptionsManager : Manager
         }
 
         // Get the options most recently shown to the user from a window that is still open
-        var q = from window in Application.Current.Windows.OfType<TimerWindow>()
-            where window.IsVisible
-            orderby window.Menu.LastShown descending
-            select window.Options;
+        var options = Application.Current.Windows.OfType<TimerWindow>()
+            .Where(static window => window.IsVisible)
+            .OrderByDescending(static window => window.MenuLastShown)
+            .Select(static window => window.Options);
 
-        _mostRecentOptions = TimerOptions.FromTimerOptions(q.FirstOrDefault()) ?? _mostRecentOptions;
+        _mostRecentOptions = TimerOptions.FromTimerOptions(options.FirstOrDefault()) ?? _mostRecentOptions;
 
         // Never save a title
         _mostRecentOptions.Title = string.Empty;

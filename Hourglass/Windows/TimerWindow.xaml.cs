@@ -168,6 +168,11 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     private readonly Lazy<SoundPlayer> _soundPlayer = new();
 
     /// <summary>
+    /// The <see cref="ContextMenu"/> for the window.
+    /// </summary>
+    private readonly ContextMenu _menu = new();
+
+    /// <summary>
     /// The <see cref="TimerWindowMode"/> of the window.
     /// </summary>
     private TimerWindowMode _mode;
@@ -247,8 +252,8 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         BindTimer();
         SwitchToInputMode();
 
-        Menu.Bind(this /* window */);
-        _scaler.Bind(this /* window */);
+        _menu.Bind(this);
+        _scaler.Bind(this);
 
         TimerManager.Instance.Add(Timer);
     }
@@ -298,9 +303,9 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     }
 
     /// <summary>
-    /// Gets the <see cref="ContextMenu"/> for the window.
+    /// Gets the date and time the menu was last visible.
     /// </summary>
-    public ContextMenu Menu { get; } = new();
+    public DateTime MenuLastShown => _menu.LastShown;
 
     /// <summary>
     /// Gets the timer backing the window.
@@ -2033,7 +2038,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         {
             // Clean up
             UnbindTimer();
-            Menu.Unbind();
+            _menu.Unbind();
 
             _soundPlayer.Value.PlaybackCompleted -= SoundPlayerPlaybackCompleted;
             _soundPlayer.Value.Dispose();

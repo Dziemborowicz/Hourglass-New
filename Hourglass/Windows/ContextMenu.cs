@@ -231,9 +231,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     #endregion
 
     /// <summary>
-    /// Gets the date and time the menu was last visible.
+    /// Gets the date and time for the menu being last visible.
     /// </summary>
-    public DateTime LastShown { get; private set; } = DateTime.MinValue;
+    public DateTime LastShown { get; private set; }
 
     /// <summary>
     /// Binds the <see cref="ContextMenu"/> to a <see cref="TimerWindow"/>.
