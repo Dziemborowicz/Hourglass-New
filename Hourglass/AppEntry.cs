@@ -205,5 +205,6 @@ public sealed class AppEntry : WindowsFormsApplicationBase
         Settings.Default.OpenSavedTimersOnStartup = arguments.OpenSavedTimers;
         Settings.Default.Prefer24HourTime = arguments.Prefer24HourTime;
         Settings.Default.ActivateNextWindow = arguments.ActivateNextWindow;
+        Settings.Default.DigitalClockTime = arguments.DigitalClockTime;
     }
 }
