@@ -789,7 +789,14 @@ public class NotificationAreaIcon : IDisposable
     /// </summary>
     private static void NewTimer()
     {
+        TimerWindow? existingWindow = GetExistingTimerWindow();
         TimerWindow window = new();
+
+        if (existingWindow is not null)
+        {
+            window.Options.Set(existingWindow.Options);
+        }
+
         window.RestoreFromSibling();
         window.Show();
     }
@@ -801,12 +808,7 @@ public class NotificationAreaIcon : IDisposable
     /// <returns><c>true</c> if the timer context menu is shown, <c>false</c> otherwise.</returns>
     private static bool ShowTimerContextMenu(bool show = true)
     {
-        TimerWindow[] windows = ArrangedWindows.ToArray();
-
-        TimerWindow? window =
-            Array.Find(windows, static window => window.ID == TimerWindow.LastActivatedID) ??
-            Array.Find(windows, static window => window.IsVisible) ??
-            windows.FirstOrDefault();
+        TimerWindow? window = GetExistingTimerWindow();
         if (window is null)
         {
             return false;
@@ -815,5 +817,19 @@ public class NotificationAreaIcon : IDisposable
         window.BringToFrontAndActivate(true, show);
 
         return true;
+    }
+
+    /// <summary>
+    /// Returns an any existing timer window.
+    /// </summary>
+    /// <returns>An any existing <see cref="TimerWindow"/>.</returns>
+    private static TimerWindow? GetExistingTimerWindow()
+    {
+        TimerWindow[] windows = ArrangedWindows.ToArray();
+
+        return
+            Array.Find(windows, static window => window.ID == TimerWindow.LastActivatedID) ??
+            Array.Find(windows, static window => window.IsVisible) ??
+            windows.FirstOrDefault();
     }
 }
