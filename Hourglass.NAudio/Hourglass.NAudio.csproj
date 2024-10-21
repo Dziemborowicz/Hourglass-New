@@ -21,8 +21,6 @@
     <ProjectReference Include="..\Hourglass\Hourglass.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NAudio">
-      <Version>2.2.1</Version>
-    </PackageReference>
+    <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
 </Project>
