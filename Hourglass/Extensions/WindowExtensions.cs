@@ -596,8 +596,17 @@ public static class WindowExtensions
     /// Force window layout update.
     /// </summary>
     /// <param name="window">The window.</param>
-    public static void ForceUpdateLayout(this Window window) =>
-        window.Dispatcher.Invoke(EmptyAction, DispatcherPriority.Render);
+    public static void ForceUpdateLayout(this Window window)
+    {
+        try
+        {
+            window.Dispatcher.Invoke(EmptyAction, DispatcherPriority.Render);
+        }
+        catch(InvalidOperationException)
+        {
+            // Ignore.
+        }
+    }
 
     /// <summary>
     /// Open window context menu.
