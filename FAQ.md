@@ -382,6 +382,9 @@ ngen-Hourglass.bat uninstall
 
 ## What should I do if the Hourglass does not start?
 
+> [!IMPORTANT]
+> The **Hourglass** writes error files in case of the crash to the `%TEMP%` folder (usually it is the `%USERPROFILE%\AppData\Local\Temp` folder). File mask is the `Hourglass-Crash*.txt`.
+
 If the **Hourglass** does not start or fails silently, delete the **Hourglass** settings.
 
 The **Hourglass** settings can be located by the following command (to run it press `Win`+`R` and copy-paste command below):
