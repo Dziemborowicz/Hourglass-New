@@ -56,17 +56,6 @@ internal enum ExecutionState : uint
     EsSystemRequired = 0x00000001,
 
     /// <summary>
-    /// <para>
-    /// This value is not supported. If <see cref="EsUserPresent"/> is combined with other <see
-    /// cref="ExecutionState"/> values, the call will fail and none of the specified states will be set.
-    /// </para><para>
-    /// Windows Server 2003 and Windows XP: Informs the system that a user is present and resets the display
-    /// and system idle timers. <see cref="EsUserPresent"/> must be called with <see cref="EsContinuous"/>.
-    /// </para>
-    /// </summary>
-    EsUserPresent = 0x00000004,
-
-    /// <summary>
     /// Indicates that a call to <see cref="NativeMethods.SetThreadExecutionState"/> failed.
     /// </summary>
 #pragma warning disable S2346
