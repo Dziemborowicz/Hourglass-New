@@ -2051,6 +2051,8 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             KeepAwakeManager.Instance.StopKeepAwakeFor(ID);
             AppManager.Instance.Persist();
 
+            UpdateNotificationAreaIcon();
+
             return;
         }
 
@@ -2082,7 +2084,6 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
     private void WindowClosed(object sender, EventArgs e)
     {
-        UpdateNotificationAreaIcon();
         this.BringNextToFrontAndActivate();
     }
 
