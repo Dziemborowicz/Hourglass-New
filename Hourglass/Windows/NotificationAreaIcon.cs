@@ -795,6 +795,7 @@ public class NotificationAreaIcon : IDisposable
         if (existingWindow is not null)
         {
             window.Options.Set(existingWindow.Options);
+            window.Options.Title = null;
         }
 
         window.RestoreFromSibling();
