@@ -326,7 +326,7 @@ Save the sound file to the folder where you installed the **Hourglass** (typical
 
 Your sound file should then appear when you `Right Click` on any empty space in the **Hourglass** window and select the **Sound** submenu.
 
-The supported formats are `.aac`, `.m4a`, `.mid`, `.midi`, `.mp3`, `.wav` and `.wma`. If your sound file is not in one of the supported formats, you should convert it first.
+The supported formats are `.aac`, `.m4a`, `.mid`, `.midi`, `.mp3`, `.ogg`, `.wav` and `.wma`. If your sound file is not in one of the supported formats, you should convert it first.
 
 ## How do I remove a custom notification sound?
 
@@ -402,8 +402,9 @@ The **Hourglass Portable** keeps settings next to the executable.
 Some audio files could not be played for Windows with no [Windows Media Player](https://en.wikipedia.org/wiki/Windows_Media_Player) installed.
 To fix this, download the [NAudioHourglassPack](https://github.com/i2van/hourglass/releases/latest) and upzip its content to the **Hourglass** folder.
 
-Audio files supported:
+The supported formats are:
 
 - `.aiff`
 - `.mp3`
+- `.ogg`
 - `.wav`

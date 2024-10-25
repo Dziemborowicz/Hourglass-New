@@ -213,6 +213,7 @@ Options:
             .mid
             .midi
             .mp3
+            .ogg
             .wav
             .wma
 
@@ -221,6 +222,7 @@ Options:
 
             .aiff
             .mp3
+            .ogg
             .wav
 
   --loop-sound on|off|last

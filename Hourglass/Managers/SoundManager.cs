@@ -36,6 +36,7 @@ public sealed class SoundManager : Manager
         "*.mid",
         "*.midi",
         "*.mp3",
+        "*.ogg",
         "*.wav",
         "*.wma"
     ];

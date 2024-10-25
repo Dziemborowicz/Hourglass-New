@@ -85,7 +85,14 @@ jobs:
           ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/Microsoft.Win32.Registry.dll
           ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.dll
           ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.Core.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.Vorbis.dll
           ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.Wasapi.dll
           ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NAudio.WinMM.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/NVorbis.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/System.Buffers.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/System.Memory.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/System.Numerics.Vectors.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/System.Runtime.CompilerServices.Unsafe.dll
+          ${{env.NAUDIO}}/bin/${{env.CONFIG}}/${{env.FW}}/System.ValueTuple.dll
         compression-level: ${{env.COMPRESSION_LEVEL}}
         retention-days: ${{env.RETENTION_DAYS}}
