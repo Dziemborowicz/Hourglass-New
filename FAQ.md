@@ -34,6 +34,7 @@ The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.c
 - [How do I show the time elapsed rather than the time left?](#how-do-i-show-the-time-elapsed-rather-than-the-time-left)
 - [How do I create a shortcut that automatically starts a timer with the Hourglass?](#how-do-i-create-a-shortcut-that-automatically-starts-a-timer-with-the-hourglass)
 - [What command-line arguments does the Hourglass accept?](#what-command-line-arguments-does-the-hourglass-accept)
+- [How to launch the Hourglass on Windows startup?](#how-to-launch-the-hourglass-on-windows-startup)
 - [How to speed up the Portable Hourglass startup?](#how-to-speed-up-the-portable-hourglass-startup)
 - [What should I do if the Hourglass does not start?](#what-should-i-do-if-the-hourglass-does-not-start)
 - [What should I do if there is no notification sound?](#what-should-i-do-if-there-is-no-notification-sound)
@@ -361,6 +362,15 @@ You can also specify additional [command-line](https://github.com/i2van/hourglas
 You can launch the **Hourglass** and immediately start a timer by running `Hourglass.exe "<duration or date and time>"`. For example, to launch the **Hourglass** and start a 5-minute timer, run `Hourglass.exe "5 minutes"`.
 
 You can also set any option that you can set using the user interface by specifying additional command-line arguments. To view a full list of command-line arguments, run `Hourglass.exe --help` or click [here](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt).
+
+## How to launch the Hourglass on Windows startup?
+
+1. Press `Win`+`R`.
+2. Execute `shell:startup` to open the `Startup` folder for the current user.
+3. Drag and drop the **Hourglass** executable while holding `Alt` key to create the shortcut for the **Hourglass**.
+
+> [!IMPORTANT]
+> Check **Open saved timers on startup** in the **Advanced options** submenu to open all the saved timers on the **Hourglass** startup.
 
 ## How to speed up the Portable Hourglass startup?
 
