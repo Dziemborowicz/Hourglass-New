@@ -23,7 +23,7 @@ public sealed class TimerManager : Manager
     /// <summary>
     /// The maximum number of timers to persist in settings.
     /// </summary>
-    public const int MaxSavedTimers = 30;
+    private const int MaxSavedTimers = 30;
 
     /// <summary>
     /// Singleton instance of the <see cref="TimerManager"/> class.
@@ -42,10 +42,16 @@ public sealed class TimerManager : Manager
     {
     }
 
+    private bool _silentMode;
+
     /// <summary>
-    /// Gets ot sets the silent mode when all the timers notifications are postponed.
+    /// Gets the silent mode when all the timers notifications are postponed.
     /// </summary>
-    public static bool SilentMode { get; set; }
+    public bool SilentMode
+    {
+        get => _silentMode && Settings.Default.ShowInNotificationArea;
+        private set => _silentMode = value;
+    }
 
     /// <summary>
     /// Gets a list of the currently loaded timers.
@@ -158,7 +164,7 @@ public sealed class TimerManager : Manager
     /// <summary>
     /// Toggles the silent mode.
     /// </summary>
-    public static void ToggleSilentMode()
+    public void ToggleSilentMode()
     {
         SilentMode = !SilentMode;
 

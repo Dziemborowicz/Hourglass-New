@@ -1404,7 +1404,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// <param name="e">The event data.</param>
     private void TimerExpired(object sender, EventArgs e)
     {
-        if (!TimerManager.SilentMode)
+        if (!TimerManager.Instance.SilentMode)
         {
             BeginExpirationAnimationAndSound();
         }

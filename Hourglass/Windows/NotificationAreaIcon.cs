@@ -601,7 +601,7 @@ public class NotificationAreaIcon : IDisposable
 
                 menuItem = new(Resources.NotificationAreaIconSilentModeMenuItem)
                 {
-                    Checked = TimerManager.SilentMode
+                    Checked = TimerManager.Instance.SilentMode
                 };
                 menuItem.Click += MenuItemClickEventHandler;
                 yield return menuItem;
@@ -610,7 +610,7 @@ public class NotificationAreaIcon : IDisposable
 
                 void MenuItemClickEventHandler(object sender1, EventArgs e1)
                 {
-                    TimerManager.ToggleSilentMode();
+                    TimerManager.Instance.ToggleSilentMode();
                     RefreshIcon();
                 }
 
@@ -756,7 +756,7 @@ public class NotificationAreaIcon : IDisposable
     /// </summary>
     public void RefreshIcon()
     {
-        bool silent  = TimerManager.SilentMode;
+        bool silent  = TimerManager.Instance.SilentMode;
         bool paused  = TimerManager.GetPausableTimers(TimerState.Paused ).Any();
         bool expired = TimerManager.GetTimersByState (TimerState.Expired).Any();
 
