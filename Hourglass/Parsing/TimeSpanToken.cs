@@ -88,7 +88,7 @@ public sealed class TimeSpanToken : TimerStartToken
 
         if (endTime < startTime)
         {
-            throw new InvalidOperationException(@"The end time is less than start time");
+            throw new InvalidOperationException(@"The end time is less than the start time");
         }
 
         return endTime;

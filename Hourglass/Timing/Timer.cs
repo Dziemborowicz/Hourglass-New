@@ -8,6 +8,7 @@ namespace Hourglass.Timing;
 
 using System;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 using Extensions;
 using Properties;
@@ -337,6 +338,7 @@ public sealed class Timer : TimerBase
     /// Returns the percentage of time left until the timer expires.
     /// </summary>
     /// <returns>The percentage of time left until the timer expires.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private double? GetTimeLeftAsPercentage()
     {
         if (State == TimerState.Stopped ||
@@ -366,6 +368,7 @@ public sealed class Timer : TimerBase
     /// Returns the percentage of time elapsed since the timer was started.
     /// </summary>
     /// <returns>The percentage of time elapsed since the timer was started.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private double? GetTimeElapsedAsPercentage()
     {
         if (State == TimerState.Stopped ||
@@ -396,6 +399,7 @@ public sealed class Timer : TimerBase
     /// </summary>
     /// <param name="compact">Use compact time format.</param>
     /// <returns>The string representation of the time left until the timer expires.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private string GetTimeLeftAsString(bool compact) =>
         State switch
         {
@@ -409,6 +413,7 @@ public sealed class Timer : TimerBase
     /// </summary>
     /// <param name="compact">Use compact time format.</param>
     /// <returns>The string representation of the time elapsed since the timer was started.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private string? GetTimeElapsedAsString(bool compact) =>
         State switch
         {
@@ -422,6 +427,7 @@ public sealed class Timer : TimerBase
     /// </summary>
     /// <param name="compact">Use compact time format.</param>
     /// <returns>The string representation of the time since the timer expired.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private string GetTimeExpiredAsString(bool compact) =>
         State != TimerState.Expired
             ? FormatEndTime(compact)
