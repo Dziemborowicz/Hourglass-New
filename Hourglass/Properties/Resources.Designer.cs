@@ -476,6 +476,15 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order timers by titl_e first then by time left.
+        /// </summary>
+        public static string ContextMenuOrderByTitleFirstMenuItem {
+            get {
+                return ResourceManager.GetString("ContextMenuOrderByTitleFirstMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pause after each _loop.
         /// </summary>
         public static string ContextMenuPauseAfterEachLoopTimerMenuItem {

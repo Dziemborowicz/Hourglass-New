@@ -68,6 +68,7 @@ ngen-Hourglass.bat uninstall
 - New option `--activate-next`, `-an`, `/an`
 - New option `--show-trigger-time`, `-st`, `/st`
 - New option `--pause-after-loop-timer`, `-pl`, `/pl`
+- New option `--order-by-title`, `-ot`, `/ot`
 - Renamed option `--prompt-on-exit` to `--prompt-on-close`
 
 See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
@@ -80,7 +81,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 
 ### Notification Area
 
-- All the timer windows are arranged by the time left. The order is new, expired, paused, running.
+- All the timer windows are arranged by the time left. The order is new, expired, paused, running. Timers can be ordered by the title first using `--order-by-title`, `-ot`, `/ot` command-line option or by the checking **Advanced options** / **Order timers by title first then by time left** timer window context menu option.
 - The red circle is shown over the notification area icon if at least one timer is expired.
 - The pause sign is shown over the notification area icon if at least one timer is paused.
 - The digits from `0` to `9` are the hotkeys for the timer windows in the notification area icon context menu.
@@ -114,6 +115,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The **Advanced options** / **Display time in the digital clock format** timer window context menu option toggles the displayed time digital clock time format. The command-line option is `--digital-clock-time`, `-c`, `/c`
 - The **Advanced options** / **Show trigger time** timer window context menu option shows the trigger time in the timer window and in the notification area context menu. The command-line option is `--show-trigger-time`, `-st`, `/st`
 - The **Advanced options** / **Activate next window when minimized or closed** timer window context menu option enables the next timer window activation when the current timer window is minimized or closed. The command-line option is `--activate-next`, `-an`, `/an`
+- The **Advanced options** / **Order timers by title first then by time left** timer window context menu option orders the timers by the title first then by the time left. The command-line option is `--order-by-title`, `-ot`, `/ot`
 - The **Pause all** timer window context menu command pauses all the running timers. Command-line command is `pause`
 - The **Resume all** timer window context menu command resumes all the paused timers. Command-line command is `resume`
 - The **Pause after each loop** timer window context menu command pauses the loop timer when it expires. Command-line command is `--pause-after-loop-timer`, `-pl`, `/pl`

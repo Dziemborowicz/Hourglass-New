@@ -189,6 +189,11 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     private MenuItem _activateNextWindowMenuItem = null!;
 
     /// <summary>
+    /// The "Order by the title first" <see cref="MenuItem"/>.
+    /// </summary>
+    private MenuItem _orderByTitleFirstMenuItem = null!;
+
+    /// <summary>
     /// The "Reverse progress bar" <see cref="MenuItem"/>.
     /// </summary>
     private MenuItem _reverseProgressBarMenuItem = null!;
@@ -432,6 +437,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         // Activate next window when minimized or closed
         _activateNextWindowMenuItem.IsChecked = Settings.Default.ActivateNextWindow;
 
+        // Order by the title first.
+        _orderByTitleFirstMenuItem.IsChecked = Settings.Default.OrderByTitleFirst;
+
         // Display time in the digital clock format
         _digitalClockTimeMenuItem.IsChecked = _timerWindow.Options.DigitalClockTime;
 
@@ -533,6 +541,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
 
         // Activate next window when minimized or closed
         Settings.Default.ActivateNextWindow = _activateNextWindowMenuItem.IsChecked;
+
+        // Order by the title first.
+        Settings.Default.OrderByTitleFirst = _orderByTitleFirstMenuItem.IsChecked;
 
         // Display time in the digital clock format
         Settings.Default.DigitalClockTime = _digitalClockTimeMenuItem.IsChecked;
@@ -894,6 +905,13 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         };
         _activateNextWindowMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_activateNextWindowMenuItem);
+
+        _orderByTitleFirstMenuItem = new CheckableMenuItem
+        {
+            Header = Properties.Resources.ContextMenuOrderByTitleFirstMenuItem
+        };
+        _orderByTitleFirstMenuItem.Click += CheckableMenuItemClick;
+        advancedOptionsMenuItem.Items.Add(_orderByTitleFirstMenuItem);
 
         advancedOptionsMenuItem.Items.Add(new Separator());
 

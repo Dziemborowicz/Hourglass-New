@@ -169,6 +169,11 @@ public sealed class CommandLineArguments
     public bool Prefer24HourTime { get; private set; }
 
     /// <summary>
+    /// Order timers by the title first.
+    /// </summary>
+    public bool OrderByTitleFirst { get; private set; }
+
+    /// <summary>
     /// Gets a value indicating what information to display in the timer window title.
     /// </summary>
     public WindowTitleMode WindowTitleMode { get; private set; }
@@ -329,6 +334,7 @@ public sealed class CommandLineArguments
             OpenSavedTimers = Settings.Default.OpenSavedTimersOnStartup,
             Prefer24HourTime = Settings.Default.Prefer24HourTime,
             ActivateNextWindow = Settings.Default.ActivateNextWindow,
+            OrderByTitleFirst = Settings.Default.OrderByTitleFirst,
             WindowTitleMode = options.WindowTitleMode,
             WindowState = windowSize.WindowState != WindowState.Minimized ? windowSize.WindowState : windowSize.RestoreWindowState,
             RestoreWindowState = windowSize.RestoreWindowState,
@@ -373,6 +379,7 @@ public sealed class CommandLineArguments
             OpenSavedTimers = false,
             Prefer24HourTime = false,
             ActivateNextWindow = true,
+            OrderByTitleFirst = false,
             WindowTitleMode = WindowTitleMode.ApplicationName,
             WindowState = defaultOptions.WindowSize?.WindowState ?? WindowState.Normal,
             RestoreWindowState = defaultOptions.WindowSize?.RestoreWindowState ?? WindowState.Normal,
@@ -736,6 +743,20 @@ public sealed class CommandLineArguments
 
                     argumentsBasedOnMostRecentOptions.ActivateNextWindow = activateNextWindow;
                     argumentsBasedOnFactoryDefaults.ActivateNextWindow = activateNextWindow;
+                    break;
+
+                case "--order-by-title":
+                case "-ot":
+                case "/ot":
+                    ThrowIfDuplicateSwitch(specifiedSwitches, "--order-by-title");
+
+                    bool orderByTitleFirst = GetBoolValue(
+                        arg,
+                        remainingArgs,
+                        argumentsBasedOnMostRecentOptions.OrderByTitleFirst);
+
+                    argumentsBasedOnMostRecentOptions.OrderByTitleFirst = orderByTitleFirst;
+                    argumentsBasedOnFactoryDefaults.OrderByTitleFirst = orderByTitleFirst;
                     break;
 
                 case "--window-title":

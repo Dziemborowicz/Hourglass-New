@@ -1348,6 +1348,10 @@ $</value>
     <value>_Activate next window when minimized or closed</value>
     <comment>The text for the activate next window when minimized or closed menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
+  <data name="ContextMenuOrderByTitleFirstMenuItem" xml:space="preserve">
+    <value>Order timers by titl_e first then by time left</value>
+    <comment>The text for the order timers by title first then by time left menu item, where the character following the optional underscore (_) is the access key</comment>
+  </data>
   <data name="ContextMenuPrefer24HourTimeMenuItem" xml:space="preserve">
     <value>Prefer 24-_hour time when parsing</value>
     <comment>The text for the prefer 24-hour time when parsing menu item, where the character following the optional underscore (_) is the access key</comment>

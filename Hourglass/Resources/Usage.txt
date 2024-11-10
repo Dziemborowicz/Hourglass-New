@@ -99,6 +99,13 @@ Options:
         Default value   last
         Alias           -an, /an
 
+  --order-by-title on|off|last
+        Order the timers by the title first then by the time left.
+
+        Required        no
+        Default value   last
+        Alias           -ot, /ot
+
   --digital-clock-time on|off|last
         Displays time in the digital clock format:
         - d.hh:mm:ss if a time is longer than a day;
@@ -330,6 +337,7 @@ Options:
             --show-in-notification-area   -n  off
             --reverse-progress-bar        -g  off
             --activate-next               -an on
+            --order-by-title              -ot off
             --digital-clock-time          -c  off
             --show-time-elapsed           -u  off
             --show-trigger-time           -st off
