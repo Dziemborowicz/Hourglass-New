@@ -18,6 +18,7 @@ The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.c
 - [How do I start a timer for a duration or until a date and time that I recently entered?](#how-do-i-start-a-timer-for-a-duration-or-until-a-date-and-time-that-i-recently-entered)
 - [How do I clear recently entered durations and dates and times?](#how-do-i-clear-recently-entered-durations-and-dates-and-times)
 - [How do I resume a timer that I accidentally closed?](#how-do-i-resume-a-timer-that-i-accidentally-closed)
+- [How do I save a timer?](#how-do-i-save-a-timer)
 - [How do I clear saved timers?](#how-do-i-clear-saved-timers)
 - [How do I set a title for a timer?](#how-do-i-set-a-title-for-a-timer)
 - [How do I change what is displayed in the timer window title?](#how-do-i-change-what-is-displayed-in-the-timer-window-title)
@@ -274,6 +275,10 @@ The **Hourglass** keeps track of running timers that you have closed. To resume 
 You can also resume all saved timers by checking **Open all saved timers** in the **Saved timers** submenu.
 
 And you can set the **Hourglass** to automatically open saved timers when it starts up by checking **Open saved timers on startup** in the **Advanced options** submenu.
+
+## How do I save a timer?
+
+A not expired yet timer is saved automatically when closed. See also [How do I resume a timer that I accidentally closed?](#how-do-i-resume-a-timer-that-i-accidentally-closed)
 
 ## How do I clear saved timers?
 
