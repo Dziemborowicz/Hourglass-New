@@ -489,7 +489,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             else
             {
                 // Otherwise, assume the user made an error and display a validation error animation
-                Show();
+                BringToFrontAndActivate();
                 SwitchToInputMode();
                 BeginValidationErrorAnimation();
             }

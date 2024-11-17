@@ -173,7 +173,7 @@ public sealed class AppEntry : WindowsFormsApplicationBase
         window.Restore(arguments.GetWindowSize(), RestoreOptions.AllowMinimized);
         window.Show();
 
-        if (window.WindowState != WindowState.Minimized)
+        if (timerStart is null || window.WindowState != WindowState.Minimized)
         {
             window.BringToFrontAndActivate();
         }
