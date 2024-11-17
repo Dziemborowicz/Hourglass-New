@@ -221,7 +221,6 @@
                         <Condition Binding="{Binding ElementName=UpdateButton, Path=IsFocused, Mode=OneWay}" Value="False"/>
                         <Condition Binding="{Binding ElementName=InnerGrid, Path=IsMouseOver, Mode=OneWay}" Value="False"/>
                         <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=ContextMenu.IsOpen, Mode=OneWay}" Value="False"/>
-                        <!--<Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=Timer.State, Mode=OneWay}" Value="Expired"/>-->
                     </MultiDataTrigger.Conditions>
                     <MultiDataTrigger.EnterActions>
                         <BeginStoryboard>

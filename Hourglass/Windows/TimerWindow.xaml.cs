@@ -1086,6 +1086,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         Timer.Stopped += TimerStateChanged;
         Timer.Expired += TimerExpired;
         Timer.Tick += TimerTick;
+
         PropertyChangedEventManager.AddHandler(Timer, TimerPropertyChanged, string.Empty);
         PropertyChangedEventManager.AddHandler(Options, TimerOptionsPropertyChanged, string.Empty);
 
@@ -1370,6 +1371,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         Timer.Stopped -= TimerStateChanged;
         Timer.Expired -= TimerExpired;
         Timer.Tick -= TimerTick;
+
         PropertyChangedEventManager.RemoveHandler(Timer, TimerPropertyChanged, string.Empty);
         PropertyChangedEventManager.RemoveHandler(Options, TimerOptionsPropertyChanged, string.Empty);
 
