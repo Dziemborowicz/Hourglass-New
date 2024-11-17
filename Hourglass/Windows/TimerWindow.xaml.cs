@@ -2084,6 +2084,11 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
     private void WindowClosed(object sender, EventArgs e)
     {
+        if (Timer.State == TimerState.Paused)
+        {
+            UpdateNotificationAreaIcon();
+        }
+
         this.BringNextToFrontAndActivate();
     }
 
