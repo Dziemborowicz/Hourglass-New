@@ -379,7 +379,7 @@ You can also set any option that you can set using the user interface by specify
 
 ## How to speed up the Portable Hourglass startup?
 
-Processing the **Hourglass** with the [Native Image Generator (Ngen.exe)](https://learn.microsoft.com/en-us/dotnet/framework/tools/ngen-exe-native-image-generator) speeds up the **Hourglass** startup.
+Processing the **Portable Hourglass** with the [Native Image Generator (Ngen.exe)](https://learn.microsoft.com/en-us/dotnet/framework/tools/ngen-exe-native-image-generator) speeds up the **Portable Hourglass** startup.
 
 To run script as an **Administrator** press `Win`+`X` and select the **Windows PowerShell (Admin)** or **Command Prompt (Admin)**. Copy script full path to the console opened and execute one of the following:
 

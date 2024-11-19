@@ -3,13 +3,19 @@
 
 @echo off
 
+set scriptName=%~nx0
 set command=%~1
+set faq=https://github.com/i2van/hourglass/blob/main/FAQ.md#how-to-speed-up-the-portable-hourglass-startup
 
+:: Check permissions.
+net session >nul 2>&1
+if not %errorlevel%==0 goto NO_PERMISSIONS
+
+:: Params.
 if "%command%"=="install"   goto EXECUTE
 if "%command%"=="uninstall" goto EXECUTE
 
-set scriptName=%~nx0
-
+:: Usage.
 echo Usage: %scriptName% [install^|uninstall]
 echo.
 echo ^> %scriptName% install
@@ -17,6 +23,8 @@ echo Generates the Hourglass native image and its dependencies and installs in t
 echo.
 echo ^> %scriptName% uninstall
 echo Deletes the native images of the Hourglass and its dependencies from the native image cache.
+echo.
+echo FAQ: %faq%
 exit /b 1
 
 :EXECUTE
@@ -39,3 +47,8 @@ echo on
 :EXIT
 
 @exit /b %errorlevel%
+
+:NO_PERMISSIONS
+
+echo Please run %scriptName% as an Administrator: %faq%
+exit /b 1
