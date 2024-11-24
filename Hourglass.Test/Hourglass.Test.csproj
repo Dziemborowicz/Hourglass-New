@@ -3,7 +3,7 @@
     <ProjectGuid>{CBE74854-0344-4606-A854-BFA719896A98}</ProjectGuid>
     <TargetFramework>net48</TargetFramework>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>

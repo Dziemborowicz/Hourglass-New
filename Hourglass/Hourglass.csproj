@@ -4,9 +4,8 @@
     <ProjectGuid>{4E327D2C-9171-4596-82C5-A9C3CF5028E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Configurations>Debug;Release;Release Portable;Debug Portable</Configurations>
