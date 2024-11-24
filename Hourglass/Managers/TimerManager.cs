@@ -42,15 +42,13 @@ public sealed class TimerManager : Manager
     {
     }
 
-    private bool _silentMode;
-
     /// <summary>
     /// Gets the silent mode when all the timers notifications are postponed.
     /// </summary>
     public bool SilentMode
     {
-        get => _silentMode && Settings.Default.ShowInNotificationArea;
-        private set => _silentMode = value;
+        get => field && Settings.Default.ShowInNotificationArea;
+        private set;
     }
 
     /// <summary>

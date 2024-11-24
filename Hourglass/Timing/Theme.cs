@@ -43,24 +43,9 @@ public sealed class Theme : INotifyPropertyChanged
     #region Private Members
 
     /// <summary>
-    /// The friendly name for this theme, or <c>null</c> if no friendly name is specified.
-    /// </summary>
-    private string _name;
-
-    /// <summary>
-    /// The background color of the window.
-    /// </summary>
-    private Color _backgroundColor;
-
-    /// <summary>
     /// The brush used to paint the background color of the window.
     /// </summary>
     private Brush? _backgroundBrush;
-
-    /// <summary>
-    /// The color of the progress bar.
-    /// </summary>
-    private Color _progressBarColor;
 
     /// <summary>
     /// The brush used to paint the color of the progress bar.
@@ -68,19 +53,9 @@ public sealed class Theme : INotifyPropertyChanged
     private Brush? _progressBarBrush;
 
     /// <summary>
-    /// The background color of the progress bar.
-    /// </summary>
-    private Color _progressBackgroundColor;
-
-    /// <summary>
     /// The brush used to paint the background color of the progress bar.
     /// </summary>
     private Brush? _progressBackgroundBrush;
-
-    /// <summary>
-    /// The color that is flashed on expiration.
-    /// </summary>
-    private Color _expirationFlashColor;
 
     /// <summary>
     /// The brush used to paint the color that is flashed on expiration.
@@ -88,19 +63,9 @@ public sealed class Theme : INotifyPropertyChanged
     private Brush? _expirationFlashBrush;
 
     /// <summary>
-    /// The color of the primary text.
-    /// </summary>
-    private Color _primaryTextColor;
-
-    /// <summary>
     /// The brush used to paint the color of the primary text.
     /// </summary>
     private Brush? _primaryTextBrush;
-
-    /// <summary>
-    /// The color of the watermark in the primary text box.
-    /// </summary>
-    private Color _primaryHintColor;
 
     /// <summary>
     /// The brush used to paint the color of the watermark in the primary text box.
@@ -108,19 +73,9 @@ public sealed class Theme : INotifyPropertyChanged
     private Brush? _primaryHintBrush;
 
     /// <summary>
-    /// The color of any secondary text.
-    /// </summary>
-    private Color _secondaryTextColor;
-
-    /// <summary>
     /// The brush used to paint the color of any secondary text.
     /// </summary>
     private Brush? _secondaryTextBrush;
-
-    /// <summary>
-    /// The color of the watermark in any secondary text box.
-    /// </summary>
-    private Color _secondaryHintColor;
 
     /// <summary>
     /// The brush used to paint the color of the watermark in any secondary text box.
@@ -128,29 +83,14 @@ public sealed class Theme : INotifyPropertyChanged
     private Brush? _secondaryHintBrush;
 
     /// <summary>
-    /// The color of the button text.
-    /// </summary>
-    private Color _buttonColor;
-
-    /// <summary>
     /// The brush used to paint the color of the button text.
     /// </summary>
     private Brush? _buttonBrush;
 
     /// <summary>
-    /// The color of the button text when the user hovers over the button.
-    /// </summary>
-    private Color _buttonHoverColor;
-
-    /// <summary>
     /// The brush used to paint the color of the button text when the user hovers over the button.
     /// </summary>
     private Brush? _buttonHoverBrush;
-
-    /// <summary>
-    /// Is the user theme the dark one.
-    /// </summary>
-    private bool _isUserThemeDark;
 
     #endregion
 
@@ -191,19 +131,19 @@ public sealed class Theme : INotifyPropertyChanged
     {
         Type = type;
         Identifier = identifier;
-        _name = name;
+        Name = name;
 
-        _backgroundColor = backgroundColor;
-        _progressBarColor = progressBarColor;
-        _progressBackgroundColor = progressBackgroundColor;
-        _expirationFlashColor = expirationFlashColor;
-        _primaryTextColor = primaryTextColor;
-        _primaryHintColor = primaryHintColor;
-        _secondaryTextColor = secondaryTextColor;
-        _secondaryHintColor = secondaryHintColor;
-        _buttonColor = buttonColor;
-        _buttonHoverColor = buttonHoverColor;
-        _isUserThemeDark = isUserThemeDark;
+        BackgroundColor = backgroundColor;
+        ProgressBarColor = progressBarColor;
+        ProgressBackgroundColor = progressBackgroundColor;
+        ExpirationFlashColor = expirationFlashColor;
+        PrimaryTextColor = primaryTextColor;
+        PrimaryHintColor = primaryHintColor;
+        SecondaryTextColor = secondaryTextColor;
+        SecondaryHintColor = secondaryHintColor;
+        ButtonColor = buttonColor;
+        ButtonHoverColor = buttonHoverColor;
+        IsUserThemeDark = isUserThemeDark;
     }
 
     /// <summary>
@@ -265,17 +205,17 @@ public sealed class Theme : INotifyPropertyChanged
             type,
             identifier,
             name,
-            theme._backgroundColor,
-            theme._progressBarColor,
-            theme._progressBackgroundColor,
-            theme._expirationFlashColor,
-            theme._primaryTextColor,
-            theme._primaryHintColor,
-            theme._secondaryTextColor,
-            theme._secondaryHintColor,
-            theme._buttonColor,
-            theme._buttonHoverColor,
-            theme.Type == ThemeType.BuiltInDark || theme._isUserThemeDark)
+            theme.BackgroundColor,
+            theme.ProgressBarColor,
+            theme.ProgressBackgroundColor,
+            theme.ExpirationFlashColor,
+            theme.PrimaryTextColor,
+            theme.PrimaryHintColor,
+            theme.SecondaryTextColor,
+            theme.SecondaryHintColor,
+            theme.ButtonColor,
+            theme.ButtonHoverColor,
+            theme.Type == ThemeType.BuiltInDark || theme.IsUserThemeDark)
     {
     }
 
@@ -331,16 +271,16 @@ public sealed class Theme : INotifyPropertyChanged
     /// </summary>
     public string Name
     {
-        get => _name;
+        get;
 
         set
         {
-            if (_name == value)
+            if (field == value)
             {
                 return;
             }
 
-            _name = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -350,16 +290,16 @@ public sealed class Theme : INotifyPropertyChanged
     /// </summary>
     public Color BackgroundColor
     {
-        get => _backgroundColor;
+        get;
 
         set
         {
-            if (_backgroundColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _backgroundColor = value;
+            field = value;
             _backgroundBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(BackgroundBrush));
@@ -369,23 +309,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the background color of the window.
     /// </summary>
-    public Brush BackgroundBrush => _backgroundBrush ??= new SolidColorBrush(_backgroundColor);
+    public Brush BackgroundBrush => _backgroundBrush ??= new SolidColorBrush(BackgroundColor);
 
     /// <summary>
     /// Gets or sets the color of the progress bar.
     /// </summary>
     public Color ProgressBarColor
     {
-        get => _progressBarColor;
+        get;
 
         set
         {
-            if (_progressBarColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _progressBarColor = value;
+            field = value;
             _progressBarBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(ProgressBarBrush));
@@ -395,23 +335,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color of the progress bar.
     /// </summary>
-    public Brush ProgressBarBrush => _progressBarBrush ??= new SolidColorBrush(_progressBarColor);
+    public Brush ProgressBarBrush => _progressBarBrush ??= new SolidColorBrush(ProgressBarColor);
 
     /// <summary>
     /// Gets or sets the background color of the progress bar.
     /// </summary>
     public Color ProgressBackgroundColor
     {
-        get => _progressBackgroundColor;
+        get;
 
         set
         {
-            if (_progressBackgroundColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _progressBackgroundColor = value;
+            field = value;
             _progressBackgroundBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(ProgressBackgroundBrush));
@@ -421,23 +361,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the background color of the progress bar.
     /// </summary>
-    public Brush ProgressBackgroundBrush => _progressBackgroundBrush ??= new SolidColorBrush(_progressBackgroundColor);
+    public Brush ProgressBackgroundBrush => _progressBackgroundBrush ??= new SolidColorBrush(ProgressBackgroundColor);
 
     /// <summary>
     /// Gets or sets the color that is flashed on expiration.
     /// </summary>
     public Color ExpirationFlashColor
     {
-        get => _expirationFlashColor;
+        get;
 
         set
         {
-            if (_expirationFlashColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _expirationFlashColor = value;
+            field = value;
             _expirationFlashBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(ExpirationFlashBrush));
@@ -447,23 +387,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color that is flashed on expiration.
     /// </summary>
-    public Brush ExpirationFlashBrush => _expirationFlashBrush ??= new SolidColorBrush(_expirationFlashColor);
+    public Brush ExpirationFlashBrush => _expirationFlashBrush ??= new SolidColorBrush(ExpirationFlashColor);
 
     /// <summary>
     /// Gets or sets the color of the primary text.
     /// </summary>
     public Color PrimaryTextColor
     {
-        get => _primaryTextColor;
+        get;
 
         set
         {
-            if (_primaryTextColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _primaryTextColor = value;
+            field = value;
             _primaryTextBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(PrimaryTextBrush));
@@ -473,23 +413,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color of the primary text.
     /// </summary>
-    public Brush PrimaryTextBrush => _primaryTextBrush ??= new SolidColorBrush(_primaryTextColor);
+    public Brush PrimaryTextBrush => _primaryTextBrush ??= new SolidColorBrush(PrimaryTextColor);
 
     /// <summary>
     /// Gets or sets the color of the watermark in the primary text box.
     /// </summary>
     public Color PrimaryHintColor
     {
-        get => _primaryHintColor;
+        get;
 
         set
         {
-            if (_primaryHintColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _primaryHintColor = value;
+            field = value;
             _primaryHintBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(PrimaryHintBrush));
@@ -499,23 +439,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color of the watermark in the primary text box.
     /// </summary>
-    public Brush PrimaryHintBrush => _primaryHintBrush ??= new SolidColorBrush(_primaryHintColor);
+    public Brush PrimaryHintBrush => _primaryHintBrush ??= new SolidColorBrush(PrimaryHintColor);
 
     /// <summary>
     /// Gets or sets the color of any secondary text.
     /// </summary>
     public Color SecondaryTextColor
     {
-        get => _secondaryTextColor;
+        get;
 
         set
         {
-            if (_secondaryTextColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _secondaryTextColor = value;
+            field = value;
             _secondaryTextBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(SecondaryTextBrush));
@@ -525,23 +465,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color of any secondary text.
     /// </summary>
-    public Brush SecondaryTextBrush => _secondaryTextBrush ??= new SolidColorBrush(_secondaryTextColor);
+    public Brush SecondaryTextBrush => _secondaryTextBrush ??= new SolidColorBrush(SecondaryTextColor);
 
     /// <summary>
     /// Gets or sets the color of the watermark in any secondary text box.
     /// </summary>
     public Color SecondaryHintColor
     {
-        get => _secondaryHintColor;
+        get;
 
         set
         {
-            if (_secondaryHintColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _secondaryHintColor = value;
+            field = value;
             _secondaryHintBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(SecondaryHintBrush));
@@ -551,23 +491,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color of the watermark in any secondary text box.
     /// </summary>
-    public Brush SecondaryHintBrush => _secondaryHintBrush ??= new SolidColorBrush(_secondaryHintColor);
+    public Brush SecondaryHintBrush => _secondaryHintBrush ??= new SolidColorBrush(SecondaryHintColor);
 
     /// <summary>
     /// Gets or sets the color of the button text.
     /// </summary>
     public Color ButtonColor
     {
-        get => _buttonColor;
+        get;
 
         set
         {
-            if (_buttonColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _buttonColor = value;
+            field = value;
             _buttonBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(ButtonBrush));
@@ -577,23 +517,23 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color of the button text.
     /// </summary>
-    public Brush ButtonBrush => _buttonBrush ??= new SolidColorBrush(_buttonColor);
+    public Brush ButtonBrush => _buttonBrush ??= new SolidColorBrush(ButtonColor);
 
     /// <summary>
     /// Gets or sets the color of the button text when the user hovers over the button.
     /// </summary>
     public Color ButtonHoverColor
     {
-        get => _buttonHoverColor;
+        get;
 
         set
         {
-            if (_buttonHoverColor == value)
+            if (field == value)
             {
                 return;
             }
 
-            _buttonHoverColor = value;
+            field = value;
             _buttonHoverBrush = null;
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(ButtonHoverBrush));
@@ -605,16 +545,16 @@ public sealed class Theme : INotifyPropertyChanged
     /// </summary>
     public bool IsUserThemeDark
     {
-        get => _isUserThemeDark;
+        get;
 
         set
         {
-            if (_isUserThemeDark == value)
+            if (field == value)
             {
                 return;
             }
 
-            _isUserThemeDark = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -622,7 +562,7 @@ public sealed class Theme : INotifyPropertyChanged
     /// <summary>
     /// Gets the brush used to paint the color of the button text when the user hovers over the button.
     /// </summary>
-    public Brush ButtonHoverBrush => _buttonHoverBrush ??= new SolidColorBrush(_buttonHoverColor);
+    public Brush ButtonHoverBrush => _buttonHoverBrush ??= new SolidColorBrush(ButtonHoverColor);
 
     /// <summary>
     /// Gets the light variant of this theme.
@@ -730,18 +670,18 @@ public sealed class Theme : INotifyPropertyChanged
         return new()
         {
             Identifier = Identifier,
-            Name = _name,
-            BackgroundColor = _backgroundColor,
-            ProgressBarColor = _progressBarColor,
-            ProgressBackgroundColor = _progressBackgroundColor,
-            ExpirationFlashColor = _expirationFlashColor,
-            PrimaryTextColor = _primaryTextColor,
-            PrimaryHintColor = _primaryHintColor,
-            SecondaryTextColor = _secondaryTextColor,
-            SecondaryHintColor = _secondaryHintColor,
-            ButtonColor = _buttonColor,
-            ButtonHoverColor = _buttonHoverColor,
-            IsUserThemeDark = _isUserThemeDark
+            Name = Name,
+            BackgroundColor = BackgroundColor,
+            ProgressBarColor = ProgressBarColor,
+            ProgressBackgroundColor = ProgressBackgroundColor,
+            ExpirationFlashColor = ExpirationFlashColor,
+            PrimaryTextColor = PrimaryTextColor,
+            PrimaryHintColor = PrimaryHintColor,
+            SecondaryTextColor = SecondaryTextColor,
+            SecondaryHintColor = SecondaryHintColor,
+            ButtonColor = ButtonColor,
+            ButtonHoverColor = ButtonHoverColor,
+            IsUserThemeDark = IsUserThemeDark
         };
     }
 

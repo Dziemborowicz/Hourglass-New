@@ -46,27 +46,6 @@ public enum ThemeManagerWindowState
 public sealed partial class ThemeManagerWindow
 {
     /// <summary>
-    /// The state of the window.
-    /// </summary>
-    private ThemeManagerWindowState _state;
-
-    /// <summary>
-    /// The <see cref="TimerWindow"/> that will be updated when a theme is selected in this window.
-    /// </summary>
-    private TimerWindow _timerWindow = null!;
-
-    /// <summary>
-    /// The currently selected theme.
-    /// </summary>
-    private Theme _selectedTheme = null!;
-
-    /// <summary>
-    /// A copy of the currently selected theme. The changes to this copy are applied to the selected theme when the
-    /// user saves their changes.
-    /// </summary>
-    private Theme _editedTheme = null!;
-
-    /// <summary>
     /// Initializes a new instance of the <see cref="ThemeManagerWindow"/> class.
     /// </summary>
     /// <param name="timerWindow">The <see cref="TimerWindow"/> to edit the theme for.</param>
@@ -83,11 +62,11 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     public ThemeManagerWindowState State
     {
-        get => _state;
+        get;
 
         private set
         {
-            _state = value;
+            field = value;
             BindState();
         }
     }
@@ -97,11 +76,11 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     public TimerWindow TimerWindow
     {
-        get => _timerWindow;
+        get;
 
         private set
         {
-            _timerWindow = value;
+            field = value;
             BindTimerWindow();
         }
     }
@@ -111,14 +90,14 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     public Theme SelectedTheme
     {
-        get => _selectedTheme;
+        get;
 
         private set
         {
-            _selectedTheme = value;
+            field = value;
             BindSelectedTheme();
         }
-    }
+    } = null!;
 
     /// <summary>
     /// Gets or sets a copy of the currently selected theme. The changes to this copy are applied to the selected
@@ -126,14 +105,14 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     private Theme EditedTheme
     {
-        get => _editedTheme;
+        get;
 
         set
         {
-            _editedTheme = value;
-            DataContext = _editedTheme;
+            field = value;
+            DataContext = field;
         }
-    }
+    } = null!;
 
     /// <summary>
     /// Brings the window to the front.
@@ -189,16 +168,16 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     private void BindTimerWindow()
     {
-        if (_timerWindow.Theme?.Type == ThemeType.UserProvided)
+        if (TimerWindow.Theme?.Type == ThemeType.UserProvided)
         {
-            EditedTheme = CloneThemeForEditing(_timerWindow.Theme);
-            SelectedTheme = _timerWindow.Theme;
+            EditedTheme = CloneThemeForEditing(TimerWindow.Theme);
+            SelectedTheme = TimerWindow.Theme;
             State = ThemeManagerWindowState.UserThemeUnedited;
         }
         else
         {
-            EditedTheme = _timerWindow.Theme!;
-            SelectedTheme = _timerWindow.Theme!;
+            EditedTheme = TimerWindow.Theme!;
+            SelectedTheme = TimerWindow.Theme!;
             State = ThemeManagerWindowState.BuiltInTheme;
         }
     }
@@ -225,7 +204,7 @@ public sealed partial class ThemeManagerWindow
     /// </summary>
     private void BindState()
     {
-        switch (_state)
+        switch (State)
         {
             case ThemeManagerWindowState.BuiltInTheme:
                 NameTextBox.IsEnabled = false;
@@ -416,20 +395,20 @@ public sealed partial class ThemeManagerWindow
         }
 
         Theme newSelectedTheme = (Theme)selectedItem.Tag;
-        if (newSelectedTheme.Identifier == _selectedTheme.Identifier)
+        if (newSelectedTheme.Identifier == SelectedTheme.Identifier)
         {
             return;
         }
 
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-        if (_timerWindow.Options is null || !PromptToSaveIfRequired())
+        if (TimerWindow.Options is null || !PromptToSaveIfRequired())
         {
             // Revert the selection
             BindSelectedTheme();
             return;
         }
 
-        _timerWindow.Options.Theme = newSelectedTheme;
+        TimerWindow.Options.Theme = newSelectedTheme;
         BindTimerWindow();
     }
 
@@ -445,7 +424,7 @@ public sealed partial class ThemeManagerWindow
             return;
         }
 
-        _timerWindow.Options.Theme = ThemeManager.Instance.AddThemeBasedOnTheme(SelectedTheme);
+        TimerWindow.Options.Theme = ThemeManager.Instance.AddThemeBasedOnTheme(SelectedTheme);
         BindThemesComboBox();
         BindTimerWindow();
     }

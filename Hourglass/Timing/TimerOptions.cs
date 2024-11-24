@@ -70,113 +70,6 @@ public enum WindowTitleMode
 /// </summary>
 public sealed class TimerOptions : INotifyPropertyChanged
 {
-    #region Private Members
-
-    /// <summary>
-    /// A user-specified title for the timer.
-    /// </summary>
-    private string? _title;
-
-    /// <summary>
-    /// A value indicating whether the timer window should always be displayed on top of other windows.
-    /// </summary>
-    private bool _alwaysOnTop;
-
-    /// <summary>
-    /// A value indicating whether to prompt the user before closing the timer window if the timer is running.
-    /// </summary>
-    private bool _promptOnExit;
-
-    /// <summary>
-    /// A value indicating whether to show progress in the taskbar.
-    /// </summary>
-    private bool _showProgressInTaskbar;
-
-    /// <summary>
-    /// A value indicating whether to keep the computer awake while the timer is running.
-    /// </summary>
-    private bool _doNotKeepComputerAwake;
-
-    /// <summary>
-    /// A value indicating whether to reverse the progress bar (count backwards).
-    /// </summary>
-    private bool _reverseProgressBar;
-
-    /// <summary>
-    /// A value indicating whether to show the time elapsed rather than the time left.
-    /// </summary>
-    private bool _showTimeElapsed;
-
-    /// <summary>
-    /// A value indicating whether to show the trigger time.
-    /// </summary>
-    private bool _showTriggerTime;
-
-    /// <summary>
-    /// A value indicating whether to loop the timer continuously.
-    /// </summary>
-    private bool _loopTimer;
-
-    /// <summary>
-    /// A value indicating whether to pause before loop the timer continuously.
-    /// </summary>
-    private bool _pauseBeforeLoopTimer;
-
-    /// <summary>
-    /// A value indicating whether the timer window should be brought to the top of other windows when the timer
-    /// expires.
-    /// </summary>
-    private bool _popUpWhenExpired;
-
-    /// <summary>
-    /// A value indicating whether the timer window should be closed when the timer expires.
-    /// </summary>
-    private bool _closeWhenExpired;
-
-    /// <summary>
-    /// A value indicating whether Windows should be shut down when the timer expires.
-    /// </summary>
-    private bool _shutDownWhenExpired;
-
-    /// <summary>
-    /// The sound to play when the timer expires, or <c>null</c> if no sound is to be played.
-    /// </summary>
-    private Sound? _sound;
-
-    /// <summary>
-    /// A value indicating whether the sound that plays when the timer expires should be looped until stopped by
-    /// the user.
-    /// </summary>
-    private bool _loopSound;
-
-    /// <summary>
-    /// The theme of the timer window.
-    /// </summary>
-    private Theme? _theme;
-
-    /// <summary>
-    /// A value indicating what information to display in the timer window title.
-    /// </summary>
-    private WindowTitleMode _windowTitleMode;
-
-    /// <summary>
-    /// The size, position, and state of the timer window.
-    /// </summary>
-    private WindowSize? _windowSize;
-
-    /// <summary>
-    /// A value indicating whether the user interface should be locked, preventing the user from taking any action
-    /// until the timer expires.
-    /// </summary>
-    private bool _lockInterface;
-
-    /// <summary>
-    /// A value indicating whether to display time in the digital clock format.
-    /// </summary>
-    private bool _digitalClockTime;
-
-    #endregion
-
     #region Constructors
 
     /// <summary>
@@ -184,30 +77,30 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public TimerOptions()
     {
-        _title = string.Empty;
-        _alwaysOnTop = false;
-        _promptOnExit = true;
-        _showProgressInTaskbar = true;
-        _doNotKeepComputerAwake = false;
-        _reverseProgressBar = false;
-        _digitalClockTime = false;
-        _showTimeElapsed = false;
-        _showTriggerTime = false;
-        _loopTimer = false;
-        _pauseBeforeLoopTimer = false;
-        _popUpWhenExpired = true;
-        _closeWhenExpired = false;
-        _shutDownWhenExpired = false;
-        _theme = Theme.DefaultTheme;
-        _sound = Sound.DefaultSound;
-        _loopSound = false;
-        _windowTitleMode = WindowTitleMode.ApplicationName;
-        _windowSize = new(
+        Title = string.Empty;
+        AlwaysOnTop = false;
+        PromptOnExit = true;
+        ShowProgressInTaskbar = true;
+        DoNotKeepComputerAwake = false;
+        ReverseProgressBar = false;
+        DigitalClockTime = false;
+        ShowTimeElapsed = false;
+        ShowTriggerTime = false;
+        LoopTimer = false;
+        PauseBeforeLoopTimer = false;
+        PopUpWhenExpired = true;
+        CloseWhenExpired = false;
+        ShutDownWhenExpired = false;
+        Theme = Theme.DefaultTheme;
+        Sound = Sound.DefaultSound;
+        LoopSound = false;
+        WindowTitleMode = WindowTitleMode.ApplicationName;
+        WindowSize = new(
             new(double.PositiveInfinity, double.PositiveInfinity, InterfaceScaler.BaseWindowWidth, InterfaceScaler.BaseWindowHeight),
             WindowState.Normal,
             WindowState.Normal,
             false /* isFullScreen */);
-        _lockInterface = false;
+        LockInterface = false;
     }
 
     /// <summary>
@@ -243,16 +136,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public string? Title
     {
-        get => _title;
+        get;
 
         set
         {
-            if (_title == value)
+            if (field == value)
             {
                 return;
             }
 
-            _title = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -262,16 +155,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool AlwaysOnTop
     {
-        get => _alwaysOnTop;
+        get;
 
         set
         {
-            if (_alwaysOnTop == value)
+            if (field == value)
             {
                 return;
             }
 
-            _alwaysOnTop = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -282,16 +175,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool PromptOnExit
     {
-        get => _promptOnExit;
+        get;
 
         set
         {
-            if (_promptOnExit == value)
+            if (field == value)
             {
                 return;
             }
 
-            _promptOnExit = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -301,16 +194,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool ShowProgressInTaskbar
     {
-        get => _showProgressInTaskbar;
+        get;
 
         set
         {
-            if (_showProgressInTaskbar == value)
+            if (field == value)
             {
                 return;
             }
 
-            _showProgressInTaskbar = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -320,16 +213,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool DoNotKeepComputerAwake
     {
-        get => _doNotKeepComputerAwake;
+        get;
 
         set
         {
-            if (_doNotKeepComputerAwake == value)
+            if (field == value)
             {
                 return;
             }
 
-            _doNotKeepComputerAwake = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -339,16 +232,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool ReverseProgressBar
     {
-        get => _reverseProgressBar;
+        get;
 
         set
         {
-            if (_reverseProgressBar == value)
+            if (field == value)
             {
                 return;
             }
 
-            _reverseProgressBar = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -358,16 +251,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool DigitalClockTime
     {
-        get => _digitalClockTime;
+        get;
 
         set
         {
-            if (_digitalClockTime == value)
+            if (field == value)
             {
                 return;
             }
 
-            _digitalClockTime = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -377,16 +270,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool ShowTimeElapsed
     {
-        get => _showTimeElapsed;
+        get;
 
         set
         {
-            if (_showTimeElapsed == value)
+            if (field == value)
             {
                 return;
             }
 
-            _showTimeElapsed = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -396,16 +289,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool ShowTriggerTime
     {
-        get => _showTriggerTime;
+        get;
 
         set
         {
-            if (_showTriggerTime == value)
+            if (field == value)
             {
                 return;
             }
 
-            _showTriggerTime = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -415,16 +308,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool LoopTimer
     {
-        get => _loopTimer;
+        get;
 
         set
         {
-            if (_loopTimer == value)
+            if (field == value)
             {
                 return;
             }
 
-            _loopTimer = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -434,16 +327,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool PauseBeforeLoopTimer
     {
-        get => _pauseBeforeLoopTimer;
+        get;
 
         set
         {
-            if (_pauseBeforeLoopTimer == value)
+            if (field == value)
             {
                 return;
             }
 
-            _pauseBeforeLoopTimer = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -454,16 +347,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool PopUpWhenExpired
     {
-        get => _popUpWhenExpired;
+        get;
 
         set
         {
-            if (_popUpWhenExpired == value)
+            if (field == value)
             {
                 return;
             }
 
-            _popUpWhenExpired = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -473,16 +366,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool CloseWhenExpired
     {
-        get => _closeWhenExpired;
+        get;
 
         set
         {
-            if (_closeWhenExpired == value)
+            if (field == value)
             {
                 return;
             }
 
-            _closeWhenExpired = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -492,16 +385,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool ShutDownWhenExpired
     {
-        get => _shutDownWhenExpired;
+        get;
 
         set
         {
-            if (_shutDownWhenExpired == value)
+            if (field == value)
             {
                 return;
             }
 
-            _shutDownWhenExpired = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -511,16 +404,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public Theme? Theme
     {
-        get => _theme;
+        get;
 
         set
         {
-            if (ReferenceEquals(_theme, value))
+            if (field == value)
             {
                 return;
             }
 
-            _theme = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -530,16 +423,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public Sound? Sound
     {
-        get => _sound;
+        get;
 
         set
         {
-            if (_sound == value)
+            if (field == value)
             {
                 return;
             }
 
-            _sound = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -550,16 +443,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool LoopSound
     {
-        get => _loopSound;
+        get;
 
         set
         {
-            if (_loopSound == value)
+            if (field == value)
             {
                 return;
             }
 
-            _loopSound = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -569,16 +462,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public WindowTitleMode WindowTitleMode
     {
-        get => _windowTitleMode;
+        get;
 
         set
         {
-            if (_windowTitleMode == value)
+            if (field == value)
             {
                 return;
             }
 
-            _windowTitleMode = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -588,16 +481,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public WindowSize? WindowSize
     {
-        get => _windowSize;
+        get;
 
         set
         {
-            if (_windowSize == value)
+            if (field == value)
             {
                 return;
             }
 
-            _windowSize = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -608,16 +501,16 @@ public sealed class TimerOptions : INotifyPropertyChanged
     /// </summary>
     public bool LockInterface
     {
-        get => _lockInterface;
+        get;
 
         set
         {
-            if (_lockInterface == value)
+            if (field == value)
             {
                 return;
             }
 
-            _lockInterface = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -660,26 +553,26 @@ public sealed class TimerOptions : INotifyPropertyChanged
             throw new ArgumentNullException(nameof(options));
         }
 
-        _title = options._title;
-        _alwaysOnTop = options._alwaysOnTop;
-        _promptOnExit = options._promptOnExit;
-        _showProgressInTaskbar = options._showProgressInTaskbar;
-        _doNotKeepComputerAwake = options._doNotKeepComputerAwake;
-        _reverseProgressBar = options._reverseProgressBar;
-        _digitalClockTime = options._digitalClockTime;
-        _showTimeElapsed = options._showTimeElapsed;
-        _showTriggerTime = options._showTriggerTime;
-        _loopTimer = options._loopTimer;
-        _pauseBeforeLoopTimer = options._pauseBeforeLoopTimer;
-        _popUpWhenExpired = options._popUpWhenExpired;
-        _closeWhenExpired = options._closeWhenExpired;
-        _shutDownWhenExpired = options._shutDownWhenExpired;
-        _theme = options._theme;
-        _sound = options._sound;
-        _loopSound = options._loopSound;
-        _windowTitleMode = options._windowTitleMode;
-        _windowSize = WindowSize.FromWindowSize(options.WindowSize);
-        _lockInterface = options._lockInterface;
+        Title = options.Title;
+        AlwaysOnTop = options.AlwaysOnTop;
+        PromptOnExit = options.PromptOnExit;
+        ShowProgressInTaskbar = options.ShowProgressInTaskbar;
+        DoNotKeepComputerAwake = options.DoNotKeepComputerAwake;
+        ReverseProgressBar = options.ReverseProgressBar;
+        DigitalClockTime = options.DigitalClockTime;
+        ShowTimeElapsed = options.ShowTimeElapsed;
+        ShowTriggerTime = options.ShowTriggerTime;
+        LoopTimer = options.LoopTimer;
+        PauseBeforeLoopTimer = options.PauseBeforeLoopTimer;
+        PopUpWhenExpired = options.PopUpWhenExpired;
+        CloseWhenExpired = options.CloseWhenExpired;
+        ShutDownWhenExpired = options.ShutDownWhenExpired;
+        Theme = options.Theme;
+        Sound = options.Sound;
+        LoopSound = options.LoopSound;
+        WindowTitleMode = options.WindowTitleMode;
+        WindowSize = WindowSize.FromWindowSize(options.WindowSize);
+        LockInterface = options.LockInterface;
 
         PropertyChanged.Notify(this,
             nameof(WindowTitleMode),
@@ -715,26 +608,26 @@ public sealed class TimerOptions : INotifyPropertyChanged
             throw new ArgumentNullException(nameof(info));
         }
 
-        _title = info.Title;
-        _alwaysOnTop = info.AlwaysOnTop;
-        _promptOnExit = info.PromptOnExit;
-        _showProgressInTaskbar = info.ShowProgressInTaskbar;
-        _doNotKeepComputerAwake = info.DoNotKeepComputerAwake;
-        _reverseProgressBar = info.ReverseProgressBar;
-        _digitalClockTime = info.DigitalClockTime;
-        _showTimeElapsed = info.ShowTimeElapsed;
-        _showTriggerTime = info.ShowTriggerTime;
-        _loopTimer = info.LoopTimer;
-        _pauseBeforeLoopTimer = info.PauseBeforeLoopTimer;
-        _popUpWhenExpired = info.PopUpWhenExpired;
-        _closeWhenExpired = info.CloseWhenExpired;
-        _shutDownWhenExpired = info.ShutDownWhenExpired;
-        _theme = Theme.FromIdentifier(info.ThemeIdentifier);
-        _sound = Sound.FromIdentifier(info.SoundIdentifier);
-        _loopSound = info.LoopSound;
-        _windowTitleMode = info.WindowTitleMode;
-        _windowSize = WindowSize.FromWindowSizeInfo(info.WindowSize);
-        _lockInterface = info.LockInterface;
+        Title = info.Title;
+        AlwaysOnTop = info.AlwaysOnTop;
+        PromptOnExit = info.PromptOnExit;
+        ShowProgressInTaskbar = info.ShowProgressInTaskbar;
+        DoNotKeepComputerAwake = info.DoNotKeepComputerAwake;
+        ReverseProgressBar = info.ReverseProgressBar;
+        DigitalClockTime = info.DigitalClockTime;
+        ShowTimeElapsed = info.ShowTimeElapsed;
+        ShowTriggerTime = info.ShowTriggerTime;
+        LoopTimer = info.LoopTimer;
+        PauseBeforeLoopTimer = info.PauseBeforeLoopTimer;
+        PopUpWhenExpired = info.PopUpWhenExpired;
+        CloseWhenExpired = info.CloseWhenExpired;
+        ShutDownWhenExpired = info.ShutDownWhenExpired;
+        Theme = Theme.FromIdentifier(info.ThemeIdentifier);
+        Sound = Sound.FromIdentifier(info.SoundIdentifier);
+        LoopSound = info.LoopSound;
+        WindowTitleMode = info.WindowTitleMode;
+        WindowSize = WindowSize.FromWindowSizeInfo(info.WindowSize);
+        LockInterface = info.LockInterface;
 
         PropertyChanged.Notify(this,
             nameof(WindowTitleMode),
@@ -766,26 +659,26 @@ public sealed class TimerOptions : INotifyPropertyChanged
     {
         return new()
         {
-            Title = _title,
-            AlwaysOnTop = _alwaysOnTop,
-            PromptOnExit = _promptOnExit,
-            ShowProgressInTaskbar = _showProgressInTaskbar,
-            DoNotKeepComputerAwake = _doNotKeepComputerAwake,
-            ReverseProgressBar = _reverseProgressBar,
-            DigitalClockTime = _digitalClockTime,
-            ShowTimeElapsed = _showTimeElapsed,
-            ShowTriggerTime = _showTriggerTime,
-            LoopTimer = _loopTimer,
-            PauseBeforeLoopTimer = _pauseBeforeLoopTimer,
-            PopUpWhenExpired = _popUpWhenExpired,
-            CloseWhenExpired = _closeWhenExpired,
-            ShutDownWhenExpired = _shutDownWhenExpired,
-            ThemeIdentifier = _theme?.Identifier,
-            SoundIdentifier = _sound?.Identifier,
-            LoopSound = _loopSound,
-            WindowTitleMode = _windowTitleMode,
-            WindowSize = WindowSizeInfo.FromWindowSize(_windowSize)!,
-            LockInterface = _lockInterface
+            Title = Title,
+            AlwaysOnTop = AlwaysOnTop,
+            PromptOnExit = PromptOnExit,
+            ShowProgressInTaskbar = ShowProgressInTaskbar,
+            DoNotKeepComputerAwake = DoNotKeepComputerAwake,
+            ReverseProgressBar = ReverseProgressBar,
+            DigitalClockTime = DigitalClockTime,
+            ShowTimeElapsed = ShowTimeElapsed,
+            ShowTriggerTime = ShowTriggerTime,
+            LoopTimer = LoopTimer,
+            PauseBeforeLoopTimer = PauseBeforeLoopTimer,
+            PopUpWhenExpired = PopUpWhenExpired,
+            CloseWhenExpired = CloseWhenExpired,
+            ShutDownWhenExpired = ShutDownWhenExpired,
+            ThemeIdentifier = Theme?.Identifier,
+            SoundIdentifier = Sound?.Identifier,
+            LoopSound = LoopSound,
+            WindowTitleMode = WindowTitleMode,
+            WindowSize = WindowSizeInfo.FromWindowSize(WindowSize)!,
+            LockInterface = LockInterface
         };
     }
 

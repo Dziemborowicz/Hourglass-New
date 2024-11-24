@@ -173,16 +173,6 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     private readonly ContextMenu _menu = new();
 
     /// <summary>
-    /// The <see cref="TimerWindowMode"/> of the window.
-    /// </summary>
-    private TimerWindowMode _mode;
-
-    /// <summary>
-    /// The timer backing the window.
-    /// </summary>
-    private Timer _timer = new(TimerOptionsManager.Instance.MostRecentOptions);
-
-    /// <summary>
     /// The timer to resume when the window loads, or <c>null</c> if no timer is to be resumed.
     /// </summary>
     private Timer? _timerToResumeOnLoad;
@@ -192,11 +182,6 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// is to be started.
     /// </summary>
     private TimerStart? _timerStartToStartOnLoad;
-
-    /// <summary>
-    /// The last <see cref="TimerStart"/> used to start a timer in the window.
-    /// </summary>
-    private TimerStart _lastTimerStart = TimerStartManager.Instance.LastTimerStart;
 
     /// <summary>
     /// The currently loaded theme.
@@ -222,16 +207,6 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// The storyboard that flashes red to notify the user that the input was invalid.
     /// </summary>
     private Storyboard _validationErrorStoryboard = null!;
-
-    /// <summary>
-    /// A value indicating whether the window is in full-screen mode.
-    /// </summary>
-    private bool _isFullScreen;
-
-    /// <summary>
-    /// The <see cref="Window.WindowState"/> before the window was minimized.
-    /// </summary>
-    private WindowState _restoreWindowState = WindowState.Normal;
 
     #endregion
 
@@ -288,16 +263,16 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     public TimerWindowMode Mode
     {
-        get => _mode;
+        get;
 
         private set
         {
-            if (_mode == value)
+            if (field == value)
             {
                 return;
             }
 
-            _mode = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
     }
@@ -312,22 +287,22 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     public Timer Timer
     {
-        get => _timer;
+        get;
 
         private set
         {
-            if (_timer == value)
+            if (field == value)
             {
                 return;
             }
 
             UnbindTimer();
-            _timer = value;
+            field = value;
             BindTimer();
             PropertyChanged.Notify(this);
             PropertyChanged.Notify(this, nameof(Options));
         }
-    }
+    } = new(TimerOptionsManager.Instance.MostRecentOptions);
 
     /// <summary>
     /// Gets the <see cref="TimerOptions"/> for the timer backing the window.
@@ -339,19 +314,19 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     public TimerStart LastTimerStart
     {
-        get => _lastTimerStart;
+        get;
 
         private set
         {
-            if (_lastTimerStart == value)
+            if (field == value)
             {
                 return;
             }
 
-            _lastTimerStart = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
-    }
+    } = TimerStartManager.Instance.LastTimerStart;
 
     /// <summary>
     /// Gets the currently loaded theme.
@@ -363,20 +338,20 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     public bool IsFullScreen
     {
-        get => _isFullScreen;
+        get;
 
         set
         {
-            if (_isFullScreen == value)
+            if (field == value)
             {
                 return;
             }
 
-            _isFullScreen = value;
+            field = value;
 
             PropertyChanged.Notify(this);
 
-            if (_isFullScreen)
+            if (field)
             {
                 WindowState = WindowState.Normal; // Needed to put the window on top of the taskbar
                 WindowState = WindowState.Maximized;
@@ -384,7 +359,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             }
             else
             {
-                WindowState restoreWindowState = _restoreWindowState;
+                WindowState restoreWindowState = RestoreWindowState;
                 if (restoreWindowState != WindowState.Normal && WindowStyle == WindowStyle.None)
                 {
                     WindowState = WindowState.Normal;
@@ -401,19 +376,19 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     public WindowState RestoreWindowState
     {
-        get => _restoreWindowState;
+        get;
 
         set
         {
-            if (_restoreWindowState == value)
+            if (field == value)
             {
                 return;
             }
 
-            _restoreWindowState = value;
+            field = value;
             PropertyChanged.Notify(this);
         }
-    }
+    } = WindowState.Normal;
 
     public bool DoNotPromptOnExit { get; set; }
 
@@ -421,19 +396,17 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
     public bool ForceClose { get; set; }
 
-    private bool _showTimeToolTip;
-
     public bool ShowTimeToolTip
     {
-        get => _showTimeToolTip;
+        get;
         set
         {
-            if (_showTimeToolTip == value)
+            if (field == value)
             {
                 return;
             }
 
-            _showTimeToolTip = value;
+            field = value;
 
             UpdateTimeToolTip();
 
@@ -441,19 +414,17 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         }
     }
 
-    private string? _timeToolTip;
-
     public string? TimeToolTip
     {
-        get => _timeToolTip;
+        get;
         set
         {
-            if (_timeToolTip == value)
+            if (field == value)
             {
                 return;
             }
 
-            _timeToolTip = value;
+            field = value;
 
             PropertyChanged.Notify(this);
         }
@@ -975,7 +946,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                 break;
 
             case TimerWindowMode.Status:
-                if (Options.LoopTimer && _timer.SupportsLooping)
+                if (Options.LoopTimer && Timer.SupportsLooping)
                 {
                     // Flash three times, or flash indefinitely if the sound is looped
                     if (_flashExpirationCount < 3 || Options.LoopSound)
