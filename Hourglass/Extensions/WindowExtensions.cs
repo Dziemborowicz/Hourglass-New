@@ -647,7 +647,7 @@ public static class WindowExtensions
 
     private static TaskDialog? _taskDialogInstance;
 
-    public static MessageBoxResult ShowTaskDialog(this Window? window, string instruction, string yesText, string? noText = null)
+    public static MessageBoxResult ShowTaskDialog(this Window? window, string instruction, string yesText, string? noText = null, TaskDialogCheckBox? taskDialogCheckBox = null)
     {
         if (_taskDialogInstance is not null)
         {
@@ -662,7 +662,8 @@ public static class WindowExtensions
             Instruction = instruction,
             Icon = TaskDialogStandardIcon.Warning,
             CustomButtonStyle = TaskDialogCustomButtonStyle.CommandLinks,
-            AllowCancel = true
+            AllowCancel = true,
+            CheckBox = taskDialogCheckBox
         };
 
         TaskDialogCustomButton yesButton = dialogPage.CustomButtons.Add(yesText);
