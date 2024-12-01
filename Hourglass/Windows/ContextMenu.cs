@@ -1076,6 +1076,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         {
             window = new();
             window.Options.Set(_timerWindow.Options);
+            window.Options.Title = null;
             window.RestoreFromWindow(_timerWindow);
         }
 
