@@ -47,8 +47,7 @@ public sealed class TimerStartManager : Manager
 #pragma warning restore S2365
 
     /// <summary>
-    /// Gets the most recent <see cref="TimerStart"/>, or the default <see cref="TimerStart"/> if there are no <see
-    /// cref="TimerStart"/> objects in <see cref="TimerStarts"/>.
+    /// Gets the most recent <see cref="TimerStart"/>, or the default <see cref="TimerStart"/> if there are no <see cref="TimerStart"/> objects in <see cref="TimerStarts"/>.
     /// </summary>
     public TimerStart LastTimerStart => _timerStarts.Find(static e => e.IsCurrent) ?? TimerStart.Default;
 
