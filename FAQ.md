@@ -10,6 +10,7 @@ The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.c
 - [How do I run a timer in full screen mode?](#how-do-i-run-a-timer-in-full-screen-mode)
 - [How do I stop the timer from prompting me when I close the window?](#how-do-i-stop-the-timer-from-prompting-me-when-i-close-the-window)
 - [How do I minimize the timer window to the notification area?](#how-do-i-minimize-the-timer-window-to-the-notification-area)
+- [What are the timer window hotkeys?](#what-are-the-timer-window-hotkeys)
 - [What are the notification area actions?](#what-are-the-notification-area-actions)
 - [How do I repeat the timer automatically when it expires?](#how-do-i-repeat-the-timer-automatically-when-it-expires)
 - [How do I stop the timer from popping up on top of other windows when it expires?](#how-do-i-stop-the-timer-from-popping-up-on-top-of-other-windows-when-it-expires)
@@ -226,15 +227,27 @@ To exit full-screen mode, press `Alt`+`Enter` or `F11` again; `Double Click` on 
 
 To remove the **Hourglass** icon from the notification area and restore any hidden timer windows, `Right Click` on any empty space in the timer window and uncheck **Show in notification area**.
 
+## What are the timer window hotkeys?
+
+| Action                    | Description            |
+| ------------------------- | ---------------------- |
+| `Ctrl`+`N`                | Create a new timer     |
+| `Ctrl`+`P`                | Pause/resume the timer |
+| `Ctrl`+`S`                | Stop the timer         |
+| `Ctrl`+`R`                | Restart the timer      |
+| `F11` <br/> `Alt`+`Enter` | Toggle full screen     |
+| `F2`                      | Edit the time          |
+| `F4`                      | Edit the title         |
+
 ## What are the notification area actions?
 
-| Action                 | Description                                             |
-| ---------------------- | ------------------------------------------------------- |
-| `Double Click`         | Shows/hides all the timer windows                       |
-| `Ctrl`+`Click`         | Creates a new timer window                              |
-| `Shift`+`Click`        | Shows the first timer window                            |
-| `Shift`+`Middle Click` | Shows the recently opened timer window                  |
-| `Middle Click` <br/> `Shift`+`Right Click` | Opens the timer window options menu |
+| Action                 | Description                                            |
+| ---------------------- | ------------------------------------------------------ |
+| `Double Click`         | Show/hide all the timer windows                        |
+| `Ctrl`+`Click`         | Create a new timer window                              |
+| `Shift`+`Click`        | Show the first timer window                            |
+| `Shift`+`Middle Click` | Show the recently opened timer window                  |
+| `Middle Click` <br/> `Shift`+`Right Click` | Open the timer window options menu |
 
 ## How do I repeat the timer automatically when it expires?
 

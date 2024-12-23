@@ -1859,6 +1859,34 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     }
 
     /// <summary>
+    /// Invokes when key is pressed while <see cref="TimerWindow"/> is focused.
+    /// </summary>
+    /// <param name="sender">This <see cref="TimerWindow"/>.</param>
+    /// <param name="e">The event data.</param>
+    private void WindowPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (Options.LockInterface)
+        {
+            return;
+        }
+
+        TextBox? focus = e.Key switch
+        {
+            Key.F2 => TimerTextBox,
+            Key.F4 => TitleTextBox,
+            _ => null
+        };
+
+        if (focus is null)
+        {
+            return;
+        }
+
+        SwitchToInputMode(focus);
+        e.Handled = true;
+    }
+
+    /// <summary>
     /// Invoked when the <see cref="TimerWindow"/> is laid out, rendered, and ready for interaction.
     /// </summary>
     /// <param name="sender">The <see cref="TimerWindow"/>.</param>
