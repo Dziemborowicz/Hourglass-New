@@ -708,14 +708,8 @@ public class NotificationAreaIcon : IDisposable
             return;
         }
 
-        if (Application.Current.Windows.OfType<TimerWindow>()
-            .Any(static window => window.Options.LockInterface && IsTimerRunningFor(window)))
-        {
-            return;
-        }
-
         TimerWindow? firstTimerWindow = ArrangedWindows
-            .FirstOrDefault(static window => window.Options.PromptOnExit && IsTimerRunningFor(window));
+            .FirstOrDefault(static window => window.Options is { LockInterface: false, PromptOnExit: true } && IsTimerRunningFor(window));
 
         if (firstTimerWindow is not null)
         {
@@ -739,6 +733,11 @@ public class NotificationAreaIcon : IDisposable
         {
             if (window is TimerWindow timerWindow)
             {
+                if (timerWindow.Options.LockInterface)
+                {
+                    continue;
+                }
+
                 timerWindow.DoNotActivateNextWindow = true;
                 timerWindow.DoNotPromptOnExit = true;
             }
