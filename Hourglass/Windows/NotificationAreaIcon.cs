@@ -540,7 +540,6 @@ public class NotificationAreaIcon : IDisposable
             _dispatcherTimer.Start();
         }
 
-
         IEnumerable<MenuItem> GetApplicationMenuItems()
         {
             MenuItem menuItem = new(Resources.NotificationAreaIconNewTimerMenuItem);
