@@ -236,8 +236,8 @@ To remove the **Hourglass** icon from the notification area and restore any hidd
 | `Ctrl`+`S`                | Stop the timer         |
 | `Ctrl`+`R`                | Restart the timer      |
 | `F11` <br/> `Alt`+`Enter` | Toggle full screen     |
-| `F2`                      | Edit the time          |
-| `F4`                      | Edit the title         |
+| `F2`                      | Edit the title         |
+| `F4`                      | Edit the time          |
 
 ## What are the notification area actions?
 

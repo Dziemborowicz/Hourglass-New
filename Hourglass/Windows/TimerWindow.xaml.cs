@@ -1872,8 +1872,8 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
         TextBox? focus = e.Key switch
         {
-            Key.F2 => TimerTextBox,
-            Key.F4 => TitleTextBox,
+            Key.F2 => TitleTextBox,
+            Key.F4 => TimerTextBox,
             _ => null
         };
 
