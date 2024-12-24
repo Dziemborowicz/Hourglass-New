@@ -10,8 +10,8 @@ The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.c
 - [How do I run a timer in full screen mode?](#how-do-i-run-a-timer-in-full-screen-mode)
 - [How do I stop the timer from prompting me when I close the window?](#how-do-i-stop-the-timer-from-prompting-me-when-i-close-the-window)
 - [How do I minimize the timer window to the notification area?](#how-do-i-minimize-the-timer-window-to-the-notification-area)
-- [What are the timer window hotkeys?](#what-are-the-timer-window-hotkeys)
-- [What are the notification area actions?](#what-are-the-notification-area-actions)
+- [What are the timer window keyboard shortcuts?](#what-are-the-timer-window-keyboard-shortcuts)
+- [What are the notification area keyboard shortcuts?](#what-are-the-notification-area-keyboard-shortcuts)
 - [How do I repeat the timer automatically when it expires?](#how-do-i-repeat-the-timer-automatically-when-it-expires)
 - [How do I stop the timer from popping up on top of other windows when it expires?](#how-do-i-stop-the-timer-from-popping-up-on-top-of-other-windows-when-it-expires)
 - [How do I automatically close the timer window when the timer expires?](#how-do-i-automatically-close-the-timer-window-when-the-timer-expires)
@@ -227,21 +227,21 @@ To exit full-screen mode, press `Alt`+`Enter` or `F11` again; `Double Click` on 
 
 To remove the **Hourglass** icon from the notification area and restore any hidden timer windows, `Right Click` on any empty space in the timer window and uncheck **Show in notification area**.
 
-## What are the timer window hotkeys?
+## What are the timer window keyboard shortcuts?
 
-| Action                    | Description            |
+| Shortcut                  | Action                 |
 | ------------------------- | ---------------------- |
 | `Ctrl`+`N`                | Create a new timer     |
 | `Ctrl`+`P`                | Pause/resume the timer |
 | `Ctrl`+`S`                | Stop the timer         |
 | `Ctrl`+`R`                | Restart the timer      |
-| `F11` <br/> `Alt`+`Enter` | Toggle full screen     |
+| `F11` <br/> `Alt`+`Enter` <br/> `Double Click`     | Toggle full screen     |
 | `F2`                      | Edit the title         |
 | `F4`                      | Edit the time          |
 
-## What are the notification area actions?
+## What are the notification area keyboard shortcuts?
 
-| Action                 | Description                                            |
+| Shortcut               | Action                                                 |
 | ---------------------- | ------------------------------------------------------ |
 | `Double Click`         | Show/hide all the timer windows                        |
 | `Ctrl`+`Click`         | Create a new timer window                              |
