@@ -1490,6 +1490,11 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
     private void NewTimerCommandExecuted(object sender, ExecutedRoutedEventArgs e)
     {
+        if (Options.LockInterface)
+        {
+            return;
+        }
+
         New();
     }
 
