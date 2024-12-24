@@ -266,6 +266,7 @@
                                         KeyDown="TitleTextBoxKeyDown"
                                         MaxFontSize="24"
                                         MinFontSize="0.5"
+                                        IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=IsInterfaceUnlocked, Mode=OneTime}"
                                         PreviewMouseDown="TitleTextBoxPreviewMouseDown"
                                         PreviewGotKeyboardFocus="TitleTextBoxPreviewGotKeyboardFocus"
                                         Style="{StaticResource TitleTextBoxStyle}"
@@ -280,6 +281,7 @@
                                         Margin="0 1 0 4"
                                         MaxFontSize="36"
                                         MinFontSize="0.5"
+                                        IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=local:TimerWindow}, Path=IsInterfaceUnlocked, Mode=OneTime}"
                                         PreviewMouseDown="TimerTextBoxPreviewMouseDown"
                                         PreviewGotKeyboardFocus="TimerTextBoxPreviewGotKeyboardFocus"
                                         TextAlignment="Center"/>

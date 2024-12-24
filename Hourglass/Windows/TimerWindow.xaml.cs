@@ -430,6 +430,8 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         }
     }
 
+    public bool IsInterfaceUnlocked => !Options.LockInterface;
+
     #endregion
 
     #region Public Methods
