@@ -78,9 +78,7 @@ public sealed partial class UsageDialog
 
     private void UsageDialogClosed(object sender, EventArgs e)
     {
-#pragma warning disable S2696
         _instance = null;
-#pragma warning restore S2696
     }
 
     /// <summary>
