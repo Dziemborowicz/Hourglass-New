@@ -1029,7 +1029,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     private void InitializeUpdateButton()
     {
         PropertyChangedEventManager.AddHandler(UpdateManager.Instance, UpdateManagerPropertyChanged, string.Empty);
-        UpdateButton.IsEnabled = UpdateManager.Instance.HasUpdates && (Mode == TimerWindowMode.Input || !Options.LockInterface);
+        EnableUpdateButton();
     }
 
     /// <summary>
@@ -1037,12 +1037,11 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     /// </summary>
     /// <param name="sender">The <see cref="UpdateManager"/>.</param>
     /// <param name="e">The event data.</param>
-    private void UpdateManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
-    {
-        Dispatcher.BeginInvoke(() =>
-            UpdateButton.IsEnabled = UpdateManager.Instance.HasUpdates && (Mode == TimerWindowMode.Input || !Options.LockInterface)
-        );
-    }
+    private void UpdateManagerPropertyChanged(object sender, PropertyChangedEventArgs e) =>
+        Dispatcher.BeginInvoke(EnableUpdateButton);
+
+    private void EnableUpdateButton() =>
+        UpdateButton.IsEnabled = UpdateManager.Instance.HasUpdates && (Mode == TimerWindowMode.Input || !Options.LockInterface);
 
     #endregion
 
