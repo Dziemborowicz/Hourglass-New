@@ -7,7 +7,6 @@
 namespace Hourglass.Windows;
 
 using System;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -70,9 +69,9 @@ public sealed partial class UsageDialog
                 _instance.Show();
             }
         }
-        catch (COMException ex) when((uint)ex.ErrorCode == 0x80070542)
+        catch (Exception ex)
         {
-            // Thrown when running non-elevated Hourglass instance receives request from elevated Hourglass instance.
+            // Might be thrown when running non-elevated Hourglass instance receives request from elevated Hourglass instance.
             MessageBox.Show(ex.Message, Properties.Resources.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
