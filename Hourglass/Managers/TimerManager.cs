@@ -109,11 +109,20 @@ public sealed class TimerManager : Manager
     }
 
     /// <summary>
-    /// Remove an existing timer.
+    /// Removes a timer.
+    /// </summary>
+    /// <param name="timer">A <see cref="Timer"/>.</param>
+    public void Remove(Timer timer)
+    {
+        _timers.Remove(timer);
+    }
+
+    /// <summary>
+    /// Stops and removes an existing timer.
     /// </summary>
     /// <param name="timer">A <see cref="Timer"/>.</param>
     /// <exception cref="InvalidOperationException">If the timer had not been added previously or has already been removed.</exception>
-    public void Remove(Timer timer)
+    public void StopAndRemove(Timer timer)
     {
         timer.Stop();
 
@@ -126,23 +135,24 @@ public sealed class TimerManager : Manager
     }
 
     /// <summary>
-    /// Removes the timer elements of the specified collection.
+    /// Stops and removes existing timers.
     /// </summary>
     /// <param name="collection">A collection of timers to remove.</param>
-    public void Remove(IEnumerable<Timer> collection)
+    /// <exception cref="InvalidOperationException">If the timer had not been added previously or has already been removed.</exception>
+    public void StopAndRemove(IEnumerable<Timer> collection)
     {
         foreach (Timer timer in collection)
         {
-            Remove(timer);
+            StopAndRemove(timer);
         }
     }
 
     /// <summary>
-    /// Clears the <see cref="ResumableTimers"/>.
+    /// Stops and removes the <see cref="ResumableTimers"/>.
     /// </summary>
-    public void ClearResumableTimers()
+    public void StopAndRemoveResumableTimers()
     {
-        Remove(ResumableTimers);
+        StopAndRemove(ResumableTimers);
     }
 
     /// <summary>

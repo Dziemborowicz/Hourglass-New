@@ -470,6 +470,12 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             return;
         }
 
+        // Do not save timer when edited.
+        if (Timer.StartTime.HasValue && Timer.StartTime.Value != default)
+        {
+            TimerManager.Instance.Remove(Timer);
+        }
+
         TimerManager.Instance.Add(newTimer);
 
         if (remember)
@@ -1352,7 +1358,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
 
         if (Timer.State is TimerState.Stopped or TimerState.Expired)
         {
-            TimerManager.Instance.Remove(Timer);
+            TimerManager.Instance.StopAndRemove(Timer);
         }
     }
 

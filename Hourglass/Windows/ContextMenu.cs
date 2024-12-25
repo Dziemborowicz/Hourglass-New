@@ -1316,7 +1316,7 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     /// <param name="e">The event data.</param>
     private static void ClearSavedTimersMenuItemClick(object sender, RoutedEventArgs e)
     {
-        TimerManager.Instance.ClearResumableTimers();
+        TimerManager.Instance.StopAndRemoveResumableTimers();
     }
 
     #endregion
