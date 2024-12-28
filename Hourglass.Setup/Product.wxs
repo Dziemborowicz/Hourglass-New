@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-    <Product Id="*" Name="Hourglass" Language="1033" Version="1.15.43.0" Manufacturer="Chris Dziemborowicz, Ivan Ivon" UpgradeCode="172d3713-8820-4374-8195-3e2374e7724f">
+    <Product Id="*" Name="Hourglass" Language="1033" Version="1.15.44.0" Manufacturer="Chris Dziemborowicz, Ivan Ivon" UpgradeCode="172d3713-8820-4374-8195-3e2374e7724f">
         <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
 
         <Icon Id="AppIcon.exe" SourceFile="$(var.Hourglass.ProjectDir)Resources\AppIcon.ico"/>

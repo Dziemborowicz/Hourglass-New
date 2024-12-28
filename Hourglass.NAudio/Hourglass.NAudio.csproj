@@ -10,7 +10,7 @@
     <Product>Hourglass NAudio</Product>
     <Company>Ivan Ivon</Company>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Copyright>Copyright © $([System.DateTime]::Now.Year) Ivan Ivon</Copyright>
+    <Copyright>Copyright © 2024-$([System.DateTime]::Now.Year) Ivan Ivon</Copyright>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>

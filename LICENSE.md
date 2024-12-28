@@ -1,6 +1,6 @@
 MIT License
 
-Copyright © 2021 Chris Dziemborowicz, 2024 Ivan Ivon
+Copyright © 2021 Chris Dziemborowicz, 2024-2025 Ivan Ivon
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
