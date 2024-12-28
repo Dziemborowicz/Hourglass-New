@@ -138,6 +138,11 @@ public abstract class TimerBase : IDisposable, INotifyPropertyChanged
     public TimerState State { get; private set; } = TimerState.Stopped;
 
     /// <summary>
+    /// Gets or sets value indicating whether this timer should be saved on closing.
+    /// </summary>
+    public bool ShouldBeSaved { get; set; } = true;
+
+    /// <summary>
     /// Gets the <see cref="DateTime"/> that this timer was started if the <see cref="State"/> is <see
     /// cref="TimerState.Running"/> or <see cref="TimerState.Expired"/>, or <c>null</c> otherwise.
     /// </summary>

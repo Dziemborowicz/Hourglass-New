@@ -584,6 +584,15 @@ namespace Hourglass.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sa_ve timer on closing.
+        /// </summary>
+        public static string ContextMenuSaveTimerOnClosingMenuItem {
+            get {
+                return ResourceManager.GetString("ContextMenuSaveTimerOnClosingMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Show elapsed time instead of time left.
         /// </summary>
         public static string ContextMenuShowElapsedTimeMenuItem {
@@ -1630,6 +1639,15 @@ namespace Hourglass.Properties {
         public static string RelativeDateTokenTomorrowPattern {
             get {
                 return ResourceManager.GetString("RelativeDateTokenTomorrowPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Save this timer.
+        /// </summary>
+        public static string SaveTimerTaskDialogText {
+            get {
+                return ResourceManager.GetString("SaveTimerTaskDialogText", resourceCulture);
             }
         }
         

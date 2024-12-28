@@ -22,6 +22,7 @@ The original **Hourglass** FAQ can be found [here](https://chris.dziemborowicz.c
 - [How do I save a timer?](#how-do-i-save-a-timer)
 - [How do I clear saved timers?](#how-do-i-clear-saved-timers)
 - [How do I set a title for a timer?](#how-do-i-set-a-title-for-a-timer)
+- [How do I set a time for a timer?](#how-do-i-set-a-time-for-a-timer)
 - [How do I change what is displayed in the timer window title?](#how-do-i-change-what-is-displayed-in-the-timer-window-title)
 - [How do I change the timer window color theme?](#how-do-i-change-the-timer-window-color-theme)
 - [Is there a dark color theme available?](#is-there-a-dark-color-theme-available)
@@ -291,7 +292,13 @@ And you can set the **Hourglass** to automatically open saved timers when it sta
 
 ## How do I save a timer?
 
-A not expired yet timer is saved automatically when closed. See also [How do I resume a timer that I accidentally closed?](#how-do-i-resume-a-timer-that-i-accidentally-closed)
+A not expired yet timer is saved automatically when closed if **Save timer on closing** option in the **Advanced options** submenu is checked.
+You can change it in the close confirmation dialog shown if the **Prompt on close** in the timer window options menu is checked.
+
+See also [How do I resume a timer that I accidentally closed?](#how-do-i-resume-a-timer-that-i-accidentally-closed)
+
+> [!IMPORTANT]
+> All the not expired yet timers are always saved on exit.
 
 ## How do I clear saved timers?
 
@@ -299,9 +306,13 @@ A not expired yet timer is saved automatically when closed. See also [How do I r
 
 ## How do I set a title for a timer?
 
-Click in the text field that says **Click to enter title**, enter a title and press `Enter`.
+Click in the text field that says **Click to enter title** or press `F2`, enter a title and press `Enter`.
 
 To clear a title that you entered, click the title text field, delete the title text and press `Enter`.
+
+## How do I set a time for a timer?
+
+Click in the time field or press `F4`, enter a time and press `Enter` to accept the new time or `Esc` to revert it back. In case of an error the red border will blink for a some time.
 
 ## How do I change what is displayed in the timer window title?
 

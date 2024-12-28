@@ -203,6 +203,7 @@ public sealed class AppEntry : WindowsFormsApplicationBase
     {
         Settings.Default.ShowInNotificationArea = arguments.ShowInNotificationArea;
         Settings.Default.OpenSavedTimersOnStartup = arguments.OpenSavedTimers;
+        Settings.Default.SaveTimerOnClosing = arguments.SaveTimerOnClosing;
         Settings.Default.Prefer24HourTime = arguments.Prefer24HourTime;
         Settings.Default.ActivateNextWindow = arguments.ActivateNextWindow;
         Settings.Default.OrderByTitleFirst = arguments.OrderByTitleFirst;

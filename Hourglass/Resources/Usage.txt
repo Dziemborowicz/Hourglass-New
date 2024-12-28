@@ -246,6 +246,13 @@ Options:
         Default value   last
         Alias           -v, /v
 
+  --save-timer-on-closing on|off|last
+        Saves the timer on closing.
+
+        Required        no
+        Default value   last
+        Alias           -sc, /sc
+
   --prefer-24h-time on|off|last
         When the input used to start the timer contains a time of day that does
         not explicitly specify "am" or "pm", prefer interpreting the input as a
@@ -351,6 +358,7 @@ Options:
             --sound                       -s  normal beep
             --loop-sound                  -r  off
             --open-saved-timers           -v  off
+            --save-timer-on-closing       -sc on
             --prefer-24h-time             -j  off
             --window-title                -i  app
             --window-state                -w  normal

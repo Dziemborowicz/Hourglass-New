@@ -71,6 +71,7 @@ ngen-Hourglass.bat uninstall
 - New option `--pause-after-loop-timer`, `-pl`, `/pl`
 - New option `--order-by-title`, `-ot`, `/ot`
 - Renamed option `--prompt-on-exit` to `--prompt-on-close`
+- New option `--save-timer-on-closing`, `-sc`, `/sc`
 
 See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
 
@@ -105,6 +106,8 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The `Esc` shortcut minimizes the timer window.
 - The `F11` shortcut makes the timer window full screen and back.
 - The `Ctrl`+`N` shortcut creates a new timer window.
+- The `F2` shortcut edits a timer window title.
+- The `F4` shortcut edits a timer window time.
 
 #### Context Menu
 
@@ -117,6 +120,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The **Advanced options** / **Show trigger time** timer window context menu option shows the trigger time in the timer window and in the notification area context menu. The command-line option is `--show-trigger-time`, `-st`, `/st`
 - The **Advanced options** / **Activate next window when minimized or closed** timer window context menu option enables the next timer window activation when the current timer window is minimized or closed. The command-line option is `--activate-next`, `-an`, `/an`
 - The **Advanced options** / **Order timers by title first then by time left** timer window context menu option orders the timers by the title first then by the time left. The command-line option is `--order-by-title`, `-ot`, `/ot`
+- The **Advanced options** / **Save timer on closing** timer window context menu option enables timer window save on closing. The command-line option is `--save-timer-on-closing`, `-sc`, `/sc`
 - The **Pause all** timer window context menu command pauses all the running timers. Command-line command is `pause`
 - The **Resume all** timer window context menu command resumes all the paused timers. Command-line command is `resume`
 - The **Pause after each loop** timer window context menu command pauses the loop timer when it expires. Command-line command is `--pause-after-loop-timer`, `-pl`, `/pl`

@@ -61,7 +61,7 @@ public sealed class TimerManager : Manager
     /// <see cref="TimerState.Stopped"/>.
     /// </summary>
 #pragma warning disable S2365
-    public IReadOnlyCollection<Timer> ResumableTimers => _timers.Where(static t => t.State != TimerState.Stopped && !IsBoundToWindow(t)).ToArray();
+    public IReadOnlyCollection<Timer> ResumableTimers => _timers.Where(static t => t is { ShouldBeSaved: true, State: not TimerState.Stopped } && !IsBoundToWindow(t)).ToArray();
 #pragma warning restore S2365
 
     /// <summary>
@@ -87,7 +87,7 @@ public sealed class TimerManager : Manager
     public override void Persist()
     {
         Settings.Default.Timers = _timers
-            .Where(static t => t.State != TimerState.Stopped && t.State != TimerState.Expired)
+            .Where(static t => t is { ShouldBeSaved: true, State: not TimerState.Stopped and not TimerState.Expired })
             .Where(static t => !t.Options.LockInterface)
             .Take(MaxSavedTimers)
             .ToList();

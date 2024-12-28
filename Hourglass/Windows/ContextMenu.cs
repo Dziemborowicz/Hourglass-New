@@ -174,6 +174,11 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
     private MenuItem _openSavedTimersOnStartupMenuItem = null!;
 
     /// <summary>
+    /// The "Save timer on closing" <see cref="MenuItem"/>.
+    /// </summary>
+    private MenuItem _saveTimerOnClosingMenuItem = null!;
+
+    /// <summary>
     /// The "Display time in the digital clock format" <see cref="MenuItem"/>.
     /// </summary>
     private MenuItem _digitalClockTimeMenuItem = null!;
@@ -431,6 +436,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         // Open saved timers on startup
         _openSavedTimersOnStartupMenuItem.IsChecked = Settings.Default.OpenSavedTimersOnStartup;
 
+        // Save timer on closing
+        _saveTimerOnClosingMenuItem.IsChecked = Settings.Default.SaveTimerOnClosing;
+
         // Prefer 24-hour time when parsing
         _prefer24HourTimeMenuItem.IsChecked = Settings.Default.Prefer24HourTime;
 
@@ -535,6 +543,9 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
 
         // Open saved timers on startup
         Settings.Default.OpenSavedTimersOnStartup = _openSavedTimersOnStartupMenuItem.IsChecked;
+
+        // Save timer on closing
+        Settings.Default.SaveTimerOnClosing = _saveTimerOnClosingMenuItem.IsChecked;
 
         // Prefer 24-hour time when parsing
         Settings.Default.Prefer24HourTime = _prefer24HourTimeMenuItem.IsChecked;
@@ -922,6 +933,14 @@ public sealed class ContextMenu : System.Windows.Controls.ContextMenu
         };
         _openSavedTimersOnStartupMenuItem.Click += CheckableMenuItemClick;
         advancedOptionsMenuItem.Items.Add(_openSavedTimersOnStartupMenuItem);
+
+        // Save timer on closing
+        _saveTimerOnClosingMenuItem = new CheckableMenuItem
+        {
+            Header = Properties.Resources.ContextMenuSaveTimerOnClosingMenuItem
+        };
+        _saveTimerOnClosingMenuItem.Click += CheckableMenuItemClick;
+        advancedOptionsMenuItem.Items.Add(_saveTimerOnClosingMenuItem);
 
         // Prefer 24-hour time when parsing
         _prefer24HourTimeMenuItem = new CheckableMenuItem

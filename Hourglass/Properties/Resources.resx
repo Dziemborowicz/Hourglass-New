@@ -1093,6 +1093,10 @@ $</value>
     <value>&amp;Close</value>
     <comment>Close task dialog command</comment>
   </data>
+  <data name="SaveTimerTaskDialogText" xml:space="preserve">
+    <value>Sa&amp;ve this timer</value>
+    <comment>Save this timer task dialog text</comment>
+  </data>
   <data name="MinimizeWindowCloseTaskDialogCommand" xml:space="preserve">
     <value>Mi&amp;nimize</value>
     <comment>Minimize task dialog command</comment>
@@ -1127,6 +1131,10 @@ $</value>
   <data name="ContextMenuOpenSavedTimersOnStartupMenuItem" xml:space="preserve">
     <value>_Open saved timers on startup</value>
     <comment>The text for the open saved timers on startup menu item, where the character following the optional underscore (_) is the access key</comment>
+  </data>
+  <data name="ContextMenuSaveTimerOnClosingMenuItem" xml:space="preserve">
+    <value>Sa_ve timer on closing</value>
+    <comment>The text for the save timer on closing menu item, where the character following the optional underscore (_) is the access key</comment>
   </data>
   <data name="ContextMenuShowElapsedTimeMenuItem" xml:space="preserve">
     <value>_Show elapsed time instead of time left</value>

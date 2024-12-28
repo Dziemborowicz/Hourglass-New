@@ -164,6 +164,11 @@ public sealed class CommandLineArguments
     public bool OpenSavedTimers { get; private set; }
 
     /// <summary>
+    /// Gets a value indicating whether a timer should be saved on closing.
+    /// </summary>
+    public bool SaveTimerOnClosing { get; private set; }
+
+    /// <summary>
     /// Gets a value indicating whether to prefer interpreting time of day values as 24-hour time.
     /// </summary>
     public bool Prefer24HourTime { get; private set; }
@@ -332,6 +337,7 @@ public sealed class CommandLineArguments
             Sound = options.Sound,
             LoopSound = options.LoopSound,
             OpenSavedTimers = Settings.Default.OpenSavedTimersOnStartup,
+            SaveTimerOnClosing = Settings.Default.SaveTimerOnClosing,
             Prefer24HourTime = Settings.Default.Prefer24HourTime,
             ActivateNextWindow = Settings.Default.ActivateNextWindow,
             OrderByTitleFirst = Settings.Default.OrderByTitleFirst,
@@ -377,6 +383,7 @@ public sealed class CommandLineArguments
             Sound = defaultOptions.Sound,
             LoopSound = defaultOptions.LoopSound,
             OpenSavedTimers = false,
+            SaveTimerOnClosing = true,
             Prefer24HourTime = false,
             ActivateNextWindow = true,
             OrderByTitleFirst = false,
@@ -715,6 +722,20 @@ public sealed class CommandLineArguments
 
                     argumentsBasedOnMostRecentOptions.OpenSavedTimers = openSavedTimers;
                     argumentsBasedOnFactoryDefaults.OpenSavedTimers = openSavedTimers;
+                    break;
+
+                case "--save-timer-on-closing":
+                case "-sc":
+                case "/sc":
+                    ThrowIfDuplicateSwitch(specifiedSwitches, "--save-timer-on-closing");
+
+                    bool saveTimerOnClosing = GetBoolValue(
+                        arg,
+                        remainingArgs,
+                        argumentsBasedOnMostRecentOptions.SaveTimerOnClosing);
+
+                    argumentsBasedOnMostRecentOptions.SaveTimerOnClosing = saveTimerOnClosing;
+                    argumentsBasedOnFactoryDefaults.SaveTimerOnClosing = saveTimerOnClosing;
                     break;
 
                 case "--prefer-24h-time":

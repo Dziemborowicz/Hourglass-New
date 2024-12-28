@@ -18,6 +18,8 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Shell;
 
+using KPreisser.UI;
+
 using Extensions;
 using Managers;
 using Properties;
@@ -2078,15 +2080,22 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
     {
         BringToFrontAndActivate();
 
+        var saveTimerOnClosingTaskDialogCheckBox = new TaskDialogCheckBox(Properties.Resources.SaveTimerTaskDialogText)
+        {
+            Checked = Settings.Default.SaveTimerOnClosing
+        };
+
         MessageBoxResult result = this.ShowTaskDialog(
             Properties.Resources.TimerWindowCloseTaskDialogInstruction,
             Properties.Resources.CloseWindowCloseTaskDialogCommand,
-            Properties.Resources.MinimizeWindowCloseTaskDialogCommand);
+            Properties.Resources.MinimizeWindowCloseTaskDialogCommand,
+            saveTimerOnClosingTaskDialogCheckBox);
 
         switch (result)
         {
             case MessageBoxResult.Yes:
                 ForceClose = true;
+                Timer.ShouldBeSaved = saveTimerOnClosingTaskDialogCheckBox.Checked;
                 Close();
                 return;
             case MessageBoxResult.No:
