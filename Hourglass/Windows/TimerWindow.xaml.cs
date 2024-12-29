@@ -1703,6 +1703,11 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
             return;
         }
 
+        if (Options.LockInterface)
+        {
+            return;
+        }
+
         if (ReferenceEquals(FocusManager.GetFocusedElement(this), this))
         {
             WindowState = WindowState.Minimized;
