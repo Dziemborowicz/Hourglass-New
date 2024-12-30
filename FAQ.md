@@ -298,7 +298,9 @@ You can change it in the close confirmation dialog shown if the **Prompt on clos
 See also [How do I resume a timer that I accidentally closed?](#how-do-i-resume-a-timer-that-i-accidentally-closed)
 
 > [!IMPORTANT]
-> All the not expired yet timers are always saved on exit.
+> Timer is saved implicitly when:
+> - It is not expired yet on application exit.
+> - It has been stopped explicitly.
 
 ## How do I clear saved timers?
 

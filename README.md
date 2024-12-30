@@ -106,8 +106,8 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The `Esc` shortcut minimizes the timer window.
 - The `F11` shortcut makes the timer window full screen and back.
 - The `Ctrl`+`N` shortcut creates a new timer window.
-- The `F2` shortcut edits a timer window title.
-- The `F4` shortcut edits a timer window time.
+- The `F2` shortcut edits the timer window title.
+- The `F4` shortcut edits the timer window time.
 
 #### Context Menu
 
