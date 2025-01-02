@@ -1094,7 +1094,7 @@ $</value>
     <comment>Close task dialog command</comment>
   </data>
   <data name="SaveTimerTaskDialogText" xml:space="preserve">
-    <value>Sa&amp;ve this timer</value>
+    <value>Sa&amp;ve this timer on close</value>
     <comment>Save this timer task dialog text</comment>
   </data>
   <data name="MinimizeWindowCloseTaskDialogCommand" xml:space="preserve">
