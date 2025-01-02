@@ -473,7 +473,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         }
 
         // Do not save timer when edited.
-        if (Timer.StartTime.HasValue && Timer.StartTime.Value != default)
+        if (Timer.State != TimerState.Expired && Timer.StartTime.HasValue && Timer.StartTime.Value != default)
         {
             TimerManager.Instance.Remove(Timer);
         }
