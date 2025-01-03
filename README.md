@@ -62,16 +62,16 @@ ngen-Hourglass.bat uninstall
 
 ### Command-line
 
-- New command `pause`
-- New command `resume`
-- New option `--digital-clock-time`, `-c`, `/c`
-- New option `--multi-timers`, `-mt`, `/mt`
-- New option `--activate-next`, `-an`, `/an`
-- New option `--show-trigger-time`, `-st`, `/st`
-- New option `--pause-after-loop-timer`, `-pl`, `/pl`
-- New option `--order-by-title`, `-ot`, `/ot`
-- Renamed option `--prompt-on-exit` to `--prompt-on-close`
-- New option `--save-timer-on-closing`, `-sc`, `/sc`
+- New command [`pause`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+pause)
+- New command [`resume`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+resume)
+- New option [`--digital-clock-time`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--digital-clock-time), `-c`, `/c`
+- New option [`--multi-timers`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--multi-timers), `-mt`, `/mt`
+- New option [`--activate-next`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--activate-next), `-an`, `/an`
+- New option [`--show-trigger-time`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--show-trigger-time), `-st`, `/st`
+- New option [`--pause-after-loop-timer`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--pause-after-loop-timer), `-pl`, `/pl`
+- New option [`--order-by-title`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--order-by-title), `-ot`, `/ot`
+- Renamed option `--prompt-on-exit` to [`--prompt-on-close`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--prompt-on-close)
+- New option [`--save-timer-on-closing`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--save-timer-on-closing), `-sc`, `/sc`
 
 See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) for details.
 
@@ -83,7 +83,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 
 ### Notification Area
 
-- All the timer windows are arranged by the time left. The order is new, expired, paused, running. Timers can be ordered by the title first using `--order-by-title`, `-ot`, `/ot` command-line option or by the checking **Advanced options** / **Order timers by title first then by time left** timer window context menu option.
+- All the timer windows are arranged by the time left. The order is new, expired, paused, running. Timers can be ordered by the title first using [`--order-by-title`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--order-by-title), `-ot`, `/ot` command-line option or by the checking **Advanced options** / **Order timers by title first then by time left** timer window context menu option.
 - The red circle is shown over the notification area icon if at least one timer is expired.
 - The pause sign is shown over the notification area icon if at least one timer is paused.
 - The digits from `0` to `9` are the hotkeys for the timer windows in the notification area icon context menu.
@@ -116,14 +116,14 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The **Window title** submenu is available directly from the timer window context menu.
 - The **Reset position and size** menu command sets the timer window default position and size.
 - The **Restore**, **Minimize** and **Maximize** timer window commands are always present in the timer window context menu.
-- The **Advanced options** / **Display time in the digital clock format** timer window context menu option toggles the displayed time digital clock time format. The command-line option is `--digital-clock-time`, `-c`, `/c`
-- The **Advanced options** / **Show trigger time** timer window context menu option shows the trigger time in the timer window and in the notification area context menu. The command-line option is `--show-trigger-time`, `-st`, `/st`
-- The **Advanced options** / **Activate next window when minimized or closed** timer window context menu option enables the next timer window activation when the current timer window is minimized or closed. The command-line option is `--activate-next`, `-an`, `/an`
-- The **Advanced options** / **Order timers by title first then by time left** timer window context menu option orders the timers by the title first then by the time left. The command-line option is `--order-by-title`, `-ot`, `/ot`
-- The **Advanced options** / **Save timer on closing** timer window context menu option enables timer window save on closing. The command-line option is `--save-timer-on-closing`, `-sc`, `/sc`
-- The **Pause all** timer window context menu command pauses all the running timers. Command-line command is `pause`
-- The **Resume all** timer window context menu command resumes all the paused timers. Command-line command is `resume`
-- The **Pause after each loop** timer window context menu command pauses the loop timer when it expires. Command-line command is `--pause-after-loop-timer`, `-pl`, `/pl`
+- The **Advanced options** / **Display time in the digital clock format** timer window context menu option toggles the displayed time digital clock time format. The command-line option is [`--digital-clock-time`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--digital-clock-time), `-c`, `/c`
+- The **Advanced options** / **Show trigger time** timer window context menu option shows the trigger time in the timer window and in the notification area context menu. The command-line option is [`--show-trigger-time`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--show-trigger-time), `-st`, `/st`
+- The **Advanced options** / **Activate next window when minimized or closed** timer window context menu option enables the next timer window activation when the current timer window is minimized or closed. The command-line option is [`--activate-next`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--activate-next), `-an`, `/an`
+- The **Advanced options** / **Order timers by title first then by time left** timer window context menu option orders the timers by the title first then by the time left. The command-line option is [`--order-by-title`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--order-by-title), `-ot`, `/ot`
+- The **Advanced options** / **Save timer on closing** timer window context menu option enables timer window save on closing. The command-line option is [`--save-timer-on-closing`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--save-timer-on-closing), `-sc`, `/sc`
+- The **Pause all** timer window context menu command pauses all the running timers. Command-line command is [`pause`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+pause)
+- The **Resume all** timer window context menu command resumes all the paused timers. Command-line command is [`resume`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+resume)
+- The **Pause after each loop** timer window context menu command pauses the loop timer when it expires. Command-line command is [`--pause-after-loop-timer`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--pause-after-loop-timer), `-pl`, `/pl`
 
 #### Other
 
