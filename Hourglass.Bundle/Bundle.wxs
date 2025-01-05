@@ -3,7 +3,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
   <Bundle Name="Hourglass"
-          Version="1.15.43.0"
+          Version="1.15.45.0"
           Manufacturer="2021 Chris Dziemborowicz, 2024-2025 Ivan Ivon"
           UpgradeCode="f1d002c9-cfc9-40fb-84af-96e7aec26e0b"
           IconSourceFile="$(var.Hourglass.ProjectDir)Resources\AppIcon.ico">
