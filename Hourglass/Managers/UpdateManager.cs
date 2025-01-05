@@ -63,7 +63,7 @@ public sealed class UpdateManager : Manager, INotifyPropertyChanged
     /// <summary>
     /// Gets a value indicating whether a newer version of the app is available.
     /// </summary>
-    public bool HasUpdates => LatestVersion is not null && LatestVersion > CurrentVersion;
+    public bool HasUpdates => LatestVersion > CurrentVersion;
 
     /// <summary>
     /// Gets the latest version of the app.
@@ -73,7 +73,7 @@ public sealed class UpdateManager : Manager, INotifyPropertyChanged
     /// <summary>
     /// Gets the unique identifier of this instance of the app.
     /// </summary>
-    public static Guid UniqueId
+    private static Guid UniqueId
     {
         get
         {
@@ -116,7 +116,7 @@ public sealed class UpdateManager : Manager, INotifyPropertyChanged
     /// Fetches the latest <see cref="UpdateInfo"/> from the <see cref="UpdateCheckUrl"/>.
     /// </summary>
     /// <returns>An <see cref="UpdateInfo"/>.</returns>
-    private async Task<UpdateInfo?> FetchUpdateInfoAsync()
+    private static async Task<UpdateInfo?> FetchUpdateInfoAsync()
     {
         try
         {
@@ -134,8 +134,7 @@ public sealed class UpdateManager : Manager, INotifyPropertyChanged
 
             using Stream responseStream = await httpClient.GetStreamAsync(UpdateCheckUrl);
 
-            XmlSerializer serializer = new(typeof(UpdateInfo));
-            return (UpdateInfo)serializer.Deserialize(responseStream);
+            return (UpdateInfo)new XmlSerializer(typeof(UpdateInfo)).Deserialize(responseStream);
         }
         catch (Exception ex) when (ex.CanBeHandled())
         {
