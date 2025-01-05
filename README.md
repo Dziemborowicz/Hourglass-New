@@ -17,18 +17,18 @@ hourglass -n on -a on -g on -c on -st on -v on -w minimized -i left+title -t "Ti
 creates
 
 - 1 hour 23 minutes long timer: `1h23`
-- named **Timer 1**: `-t "Timer 1"`
-- with the notification area icon: `-n on`
+- named **Timer 1**: [`-t`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--title) `"Timer 1"`
+- with the notification area icon: [`-n`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--show-in-notification-area) `on`
 - with the timer window:
-  - which is always on top: `-a on`
-  - shows the reversed progress bar: `-g on`
-  - displays the time in the digital clock format: `-c on`
-  - shows the trigger time: `-st on`
-  - opens all the saved timers on start up: `-v on`
-  - initially minimized: `-w minimized`
-  - has the time left and the timer name displayed in the title: `-i left+title`
+  - which is always on top: [`-a`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--always-on-top) `on`
+  - shows the reversed progress bar: [`-g`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--reverse-progress-bar) `on`
+  - displays the time in the digital clock format: [`-c`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--digital-clock-time) `on`
+  - shows the trigger time: [`-st`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--show-trigger-time) `on`
+  - opens all the saved timers on start up: [`-v`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--open-saved-timers) `on`
+  - initially minimized: [`-w`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--window-state) `minimized`
+  - has the time left and the timer name displayed in the title: [`-i`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--window-title) `left+title`
 
-Run `hourglass -h` to display the **Hourglass** [command-line reference](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) or select **Command-line usage** from the notification area context menu.
+Run `hourglass` [`-h`](https://github.com/search?type=code&q=repo%3Ai2van%2Fhourglass+path%3AHourglass%2FResources%2FUsage.txt+--help) to display the **Hourglass** [command-line reference](https://github.com/i2van/hourglass/blob/develop/Hourglass/Resources/Usage.txt) or select **Command-line usage** from the notification area context menu.
 
 ## Prerequisites
 
@@ -90,7 +90,7 @@ See [command-line usage](https://github.com/i2van/hourglass/blob/develop/Hourgla
 - The `Double Click` shows/hides all the timer windows.
 - The `Ctrl`+`Click` creates a new timer window.
 - The `Shift`+`Click` shows the first timer window.
-- The `Shift`+`Middle Click` shows the recently opened timer window.
+- The `Shift`+`Middle Click` shows the recently opened timer windo w.
 - The `Middle Click` or `Shift`+`Right Click` opens the timer window options menu.
 - The **Pause all** menu command pauses all the running timer windows.
 - The **Resume all** menu command resumes all the paused timer windows.
