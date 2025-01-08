@@ -1049,7 +1049,10 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
         Dispatcher.BeginInvoke(EnableUpdateButton);
 
     private void EnableUpdateButton() =>
-        UpdateButton.IsEnabled = UpdateManager.Instance.HasUpdates && (Mode == TimerWindowMode.Input || !Options.LockInterface);
+        UpdateButton.IsEnabled = IsUpdateButtonEnabled && (Mode == TimerWindowMode.Input || !Options.LockInterface);
+
+    private bool IsUpdateButtonEnabled =>
+        UpdateManager.Instance.HasUpdates;
 
     #endregion
 
@@ -1109,7 +1112,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                 RestartButton.IsEnabled = false;
                 CloseButton.IsEnabled = true;
                 CancelButton.IsEnabled = Timer.State != TimerState.Stopped && Timer.State != TimerState.Expired;
-                UpdateButton.IsEnabled = UpdateManager.Instance.HasUpdates;
+                UpdateButton.IsEnabled = IsUpdateButtonEnabled;
 
                 // Restore the border, context menu, and watermark text that appear for the text boxes
                 TitleTextBox.BorderThickness = new(1);
@@ -1180,7 +1183,7 @@ public sealed partial class TimerWindow : INotifyPropertyChanged, IRestorableWin
                     RestartButton.IsEnabled = Timer.SupportsRestart;
                     CloseButton.IsEnabled = Timer.State is TimerState.Stopped or TimerState.Expired;
                     CancelButton.IsEnabled = false;
-                    UpdateButton.IsEnabled = UpdateManager.Instance.HasUpdates;
+                    UpdateButton.IsEnabled = IsUpdateButtonEnabled;
 
                     // Restore the border, context menu, and watermark text that appear for the text boxes
                     TitleTextBox.BorderThickness = new(1);

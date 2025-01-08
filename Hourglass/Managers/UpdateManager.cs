@@ -96,6 +96,11 @@ public sealed class UpdateManager : Manager, INotifyPropertyChanged
     /// </summary>
     public override void Initialize()
     {
+        if (!Settings.Default.CheckForUpdates)
+        {
+            return;
+        }
+
         ServicePointManager.Expect100Continue = true;
         try
         {

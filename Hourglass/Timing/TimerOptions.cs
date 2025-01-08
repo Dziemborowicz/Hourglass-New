@@ -265,6 +265,22 @@ public sealed class TimerOptions : INotifyPropertyChanged
         }
     }
 
+    public bool ShowUpdateLink
+    {
+        get;
+
+        set
+        {
+            if (field == value)
+            {
+                return;
+            }
+
+            field = value;
+            PropertyChanged.Notify(this);
+        }
+    }
+
     /// <summary>
     /// Gets or sets a value indicating whether to show the time elapsed rather than the time left.
     /// </summary>
